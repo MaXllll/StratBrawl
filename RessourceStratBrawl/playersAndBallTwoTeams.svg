@@ -24,11 +24,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7"
-     inkscape:cx="297.19602"
-     inkscape:cy="600.21732"
+     inkscape:zoom="0.35"
+     inkscape:cx="664.51723"
+     inkscape:cy="602.19852"
      inkscape:document-units="px"
-     inkscape:current-layer="g3323-8"
+     inkscape:current-layer="g3263-6-1"
      showgrid="false"
      inkscape:window-width="994"
      inkscape:window-height="787"
@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1155,5 +1155,13 @@
          inkscape:export-xdpi="90"
          inkscape:export-ydpi="90" />
     </g>
+    <g
+       id="g3263-6-1"
+       transform="matrix(0.50055893,-0.52951591,0.58660903,0.479556,-166.4487,653.82496)"
+       inkscape:transform-center-x="-102.04601"
+       inkscape:transform-center-y="61.939289"
+       inkscape:export-filename="D:\COURS\Unity\StratBrawl\RessourceStratBrawl\playersBothTeam.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
   </g>
 </svg>

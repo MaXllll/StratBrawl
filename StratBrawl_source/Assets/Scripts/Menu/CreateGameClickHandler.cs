@@ -11,7 +11,6 @@ public class CreateGameClickHandler : MonoBehaviour {
 	public void ClickCreateButton(InputField gameName){
 		currentPanel.SetActive (false);
 		nextPanel.SetActive (true);
-		title.text = gameName.text.ToString();
 	}
 
 }

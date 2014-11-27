@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="../../Séance2/my_haxBall/Assets/Script/AbstractAvatarScript.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SC_manager_ui.cs">
     <Files>
-      <File FileName="../../Séance2/my_haxBall/Assets/Script/AbstractAvatarScript.cs" Line="10" Column="2" />
+      <File FileName="Assets\Scripts\SC_manager_ui.cs" Line="28" Column="1" />
+      <File FileName="Assets\Scripts\SC_manager_main.cs" Line="34" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

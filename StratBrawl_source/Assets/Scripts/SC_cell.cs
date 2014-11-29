@@ -7,18 +7,20 @@ public class SC_cell : MonoBehaviour {
 
 	public GridPosition _position;
 	public Transform _T_cell { get; private set;}
-	public Vector3 _V3_world_position { get; private set;}
 	[HideInInspector]
 	public SC_brawler _brawler_on_the_cell;
 	[HideInInspector]
 	public bool _b_is_ball_on_this_cell = false;
 
 
+	/// SUMMARY : Initialize the cell position data of the terrain grid.
+	/// PARAMETERS : Position of the cell.
+	/// RETURN : Void.
 	public void Init(GridPosition position)
 	{
-		_position = position;
-		_V3_world_position = transform.position;
 		_T_cell = transform;
+		_position = position;
+		_T_cell.position = position.GetWorldPosition();
 	}
 
 }

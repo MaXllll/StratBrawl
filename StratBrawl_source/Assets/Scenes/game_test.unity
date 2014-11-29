@@ -178,6 +178,60 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 59412609}
+--- !u!1 &217973295
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 217973296}
+  m_Layer: 0
+  m_Name: Brawlers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &217973296
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 217973295}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.40788996, y: 2.20416093, z: -1.74130595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+--- !u!1 &232614645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 232614646}
+  m_Layer: 0
+  m_Name: Terrain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &232614646
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 232614645}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.40789044, y: 2.20416093, z: -1.7413063}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
 --- !u!1 &325560776
 GameObject:
   m_ObjectHideFlags: 0
@@ -191,7 +245,7 @@ GameObject:
   - 124: {fileID: 325560778}
   - 81: {fileID: 325560777}
   m_Layer: 0
-  m_Name: Main Camera
+  m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,7 +315,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!1 &409915457
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,7 +329,7 @@ GameObject:
   - 114: {fileID: 409915458}
   - 114: {fileID: 409915462}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -349,7 +403,7 @@ RectTransform:
   - {fileID: 1651517334}
   - {fileID: 489074190}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -723,46 +777,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -99.75}
   m_SizeDelta: {x: 92, y: 64.5}
   m_Pivot: {x: .5, y: .5}
---- !u!1 &879165405
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 879165406}
-  - 114: {fileID: 879165407}
-  m_Layer: 0
-  m_Name: Brawlers
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &879165406
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 879165405}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
---- !u!114 &879165407
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 879165405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfd88079131733849820ba4d818da00b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _GO_prefab_brawler: {fileID: 100002, guid: bd368b590eba28143af0d4573ae8325e, type: 2}
 --- !u!1 &1058587399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1007,7 +1021,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1349713894}
-  - 114: {fileID: 1349713896}
+  - 114: {fileID: 1349713895}
+  - 148: {fileID: 1349713896}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -1026,8 +1041,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
---- !u!114 &1349713896
+  m_RootOrder: 0
+--- !u!114 &1349713895
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1035,54 +1050,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349713893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 254f3121d30aeb94a8faf9c1d7c27b95, type: 3}
+  m_Script: {fileID: 11500000, guid: fda831c825b94b343b3578bec043fe43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _game_settings: {fileID: 11400000, guid: e7504d150beef30499ce71b3cd18b1a5, type: 2}
+  _camera: {fileID: 325560780}
+  _T_camera: {fileID: 325560781}
+  _network_view: {fileID: 1349713896}
   _manager_ui: {fileID: 409915462}
-  _manager_terrain: {fileID: 1525583759}
-  _manager_brawlers: {fileID: 879165407}
   _ball: {fileID: 1897094330}
-  _i_selected_action_slot: 0
---- !u!1 &1525583758
-GameObject:
+  _T_root_brawlers: {fileID: 217973296}
+  _GO_prefab_brawler: {fileID: 100002, guid: bd368b590eba28143af0d4573ae8325e, type: 2}
+  _T_root_cells_terrain: {fileID: 232614646}
+  _GO_prefab_cell_terrain: {fileID: 100000, guid: 66885710868dfe040b7f1131e41ef7f2,
+    type: 2}
+--- !u!148 &1349713896
+NetworkView:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1525583760}
-  - 114: {fileID: 1525583759}
-  m_Layer: 0
-  m_Name: Terrain
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1525583759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1525583758}
+  m_GameObject: {fileID: 1349713893}
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86893c3236a016246a9a5efd4d9e1328, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _GO_prefab_cell: {fileID: 100000, guid: 66885710868dfe040b7f1131e41ef7f2, type: 2}
---- !u!4 &1525583760
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1525583758}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 0}
+  m_ViewID:
+    m_ID: 1
+    m_Type: 1
 --- !u!1 &1559357309
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1214,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!1 &1651517330
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,7 +1272,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1349713896}
+      - m_Target: {fileID: 0}
         m_MethodName: CloseMenuActions
         m_Mode: 1
         m_Arguments:

@@ -3,47 +3,68 @@ using System.Collections;
 
 public class SC_brawler : MonoBehaviour {
 
-	public GameObject _GO_button_open_menu_actions;
+	public GameObject _GO_button_brawler;
 
 	[HideInInspector]
 	public int _i_index { get; private set; }
+	public int _i_index_in_team { get; private set; }
 	public GridPosition _position { get; private set; }
 
 	public Transform _T_brawler { get; private set; }
 
-	private bool _b_team = false;
+	public bool _b_team { get; private set; }
 	public bool _b_have_the_ball = false;
 
-	public SC_class_action[] _actions;
-	
+	[HideInInspector]
+	public Action[] _actions;
 
-	public void Init(int i_index, bool b_team)
+	[SerializeField]
+	private Material _Mat_team_true;
+	[SerializeField]
+	private Material _Mat_team_flase;
+
+
+	/// SUMMARY : Initialize the brawler.
+	/// PARAMETERS : Index in the brawlers array. Index of the brawler in his team brawlers array. His team.
+	/// RETURN : Void.
+	public void Init(int i_index, int i_index_in_team, bool b_team)
 	{
-		_i_index = i_index;
-		_b_team = b_team;
 		_T_brawler = transform;
+		_i_index = i_index;
+		_i_index_in_team = i_index_in_team;
+		_b_team = b_team;
+		renderer.material = b_team ? _Mat_team_true : _Mat_team_flase;
+		_GO_button_brawler.SetActive(false);
 		InitActions(4);
 	}
 
+	/// SUMMARY : 
+	/// PARAMETERS : 
+	/// RETURN : Void.
 	private void InitActions(int i_nb_actions)
 	{
-		_actions = new SC_class_action[i_nb_actions];
+		_actions = new Action[i_nb_actions];
 		for(int i = 0; i < i_nb_actions; i++)
 		{
-			_actions[i] = new SC_class_action();
+			_actions[i] = new Action();
+			_actions[i].SetNone();
 		}
 	}
 
+	/// SUMMARY : Set the position of the brawlers.
+	/// PARAMETERS : The position in the terrain grid.
+	/// RETURN : Void.
 	public void SetPosition(GridPosition position)
 	{
 		_position = position;
-		Vector3 V3_world_position = SC_manager_terrain.GridPositionToWorldPosition(_position);
-		V3_world_position.z = -1;
-		_T_brawler.position = V3_world_position;
+		_T_brawler.position = position.GetWorldPosition() + Vector3.back;
 	}
 
+	/// SUMMARY : 
+	/// PARAMETERS : None.
+	/// RETURN : Void.
 	public void OpenMenuActions()
 	{
-		SC_manager_main.OpenMenuActions(this);
+		//SC_manager_main.OpenMenuActions(this);
 	}
 }

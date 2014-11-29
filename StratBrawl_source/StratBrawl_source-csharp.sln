@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 
 Project("{75FBF286-08BB-DD59-7C6F-802AB120FD97}") = "StratBrawl_source", "Assembly-CSharp-vs.csproj", "{0B424B64-C203-FDE2-7318-7340593D31C6}"
 EndProject
+Project("{75FBF286-08BB-DD59-7C6F-802AB120FD97}") = "StratBrawl_source", "Assembly-CSharp-Editor-vs.csproj", "{21DCEDB1-C1B5-447F-CAA4-E6550C80DE98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,11 +15,15 @@ Global
 		{0B424B64-C203-FDE2-7318-7340593D31C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0B424B64-C203-FDE2-7318-7340593D31C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0B424B64-C203-FDE2-7318-7340593D31C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21DCEDB1-C1B5-447F-CAA4-E6550C80DE98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21DCEDB1-C1B5-447F-CAA4-E6550C80DE98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21DCEDB1-C1B5-447F-CAA4-E6550C80DE98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21DCEDB1-C1B5-447F-CAA4-E6550C80DE98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-													GlobalSection(MonoDevelopProperties) = preSolution
+																	GlobalSection(MonoDevelopProperties) = preSolution
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

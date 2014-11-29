@@ -20,11 +20,17 @@ public class SC_ball : MonoBehaviour {
 //	}
 
 
+	/// SUMMARY : Initialize the ball.
+	/// PARAMETERS : None.
+	/// RETURN : Void.
 	public void Init()
 	{
 		_T_ball = transform;
 	}
 
+	/// SUMMARY : Set the brawler who have the ball.
+	/// PARAMETERS : The brawler who have the ball.
+	/// RETURN : Void.
 	public void SetBrawlerWithTheBall(SC_brawler _brawler)
 	{
 		ResetOwner();
@@ -35,6 +41,9 @@ public class SC_ball : MonoBehaviour {
 		_T_ball.localPosition = new Vector3(0f, 0f, -1f);
 	}
 
+	/// SUMMARY : Set the cell where the ball is.
+	/// PARAMETERS : The cell.
+	/// RETURN : Void.
 	public void SetBallOnTheCell(SC_cell _cell)
 	{
 		ResetOwner();
@@ -50,6 +59,9 @@ public class SC_ball : MonoBehaviour {
 		}
 	}
 
+	/// SUMMARY : Set the brawler who have the ball or the cell where is the ball to null.
+	/// PARAMETERS : None.
+	/// RETURN : Void.
 	private void ResetOwner()
 	{
 		if (_brawler_with_the_ball != null)

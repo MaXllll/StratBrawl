@@ -151,7 +151,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1349713895}
         m_MethodName: SetActiveCellsNextToSelectedCell
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -159,7 +159,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1349713895}
         m_MethodName: RegisterAction
@@ -287,6 +287,18 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
             Culture=neutral, PublicKeyToken=null
           m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1349713895}
+        m_MethodName: RegisterSelectedSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -681,6 +693,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 537592830}
     m_Modifications:
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -774,6 +790,30 @@ Prefab:
     - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenMenuActionsTypes
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1349713895}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RegisterSelectedSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
@@ -1747,6 +1787,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1349713895}
+        m_MethodName: RegisterSelectedSlot
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &796190980
@@ -1858,6 +1910,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1349713895}
         m_MethodName: OpenMenuActionsTypes
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1349713895}
+        m_MethodName: RegisterSelectedSlot
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -2021,6 +2085,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 537592830}
     m_Modifications:
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2097,6 +2165,26 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1349713895}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1349713895}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RegisterSelectedSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
   m_RootGameObject: {fileID: 880629497}
@@ -2408,7 +2496,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1349713895}
         m_MethodName: SetActiveCellsNextToSelectedCell
-        m_Mode: 1
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
@@ -2416,7 +2504,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
       - m_Target: {fileID: 1349713895}
         m_MethodName: RegisterAction
@@ -2578,6 +2666,7 @@ MonoBehaviour:
   _GO_prefab_brawler: {fileID: 100002, guid: bd368b590eba28143af0d4573ae8325e, type: 2}
   buttonSprite: {fileID: 0}
   _selected_brawler: {fileID: 0}
+  _actions_chosen: []
   _T_root_cells_gameField: {fileID: 232614646}
   _GO_prefab_cell_gameField: {fileID: 100000, guid: 66885710868dfe040b7f1131e41ef7f2,
     type: 2}
@@ -2969,6 +3058,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
+      - m_Target: {fileID: 1349713895}
+        m_MethodName: SetActiveCellsNextToSelectedCell
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 1349713895}
         m_MethodName: CloseMenuActionsTypes
         m_Mode: 1
@@ -3661,6 +3762,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 537592830}
     m_Modifications:
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 22400002, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3756,6 +3861,30 @@ Prefab:
     - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: OpenMenuActionsTypes
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1349713895}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: RegisterSelectedSlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_IntArgument
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 16238c5b7a25fbf468004047ba9bfaf5, type: 2}

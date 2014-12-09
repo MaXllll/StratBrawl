@@ -926,8 +926,31 @@ Prefab:
     - target: {fileID: 11400000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
       propertyPath: buttonServerPrefab
       value: 
-      objectReference: {fileID: 11400002, guid: 242d91d506f2e4429841ca664db5457d,
-        type: 2}
+      objectReference: {fileID: 100000, guid: 242d91d506f2e4429841ca664db5457d, type: 2}
+    - target: {fileID: 11400000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
+      propertyPath: _GO_current_panel
+      value: 
+      objectReference: {fileID: 2137086930}
+    - target: {fileID: 11400000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
+      propertyPath: _GO_servers_container
+      value: 
+      objectReference: {fileID: 1754439817}
+    - target: {fileID: 11400000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
+      propertyPath: _GO_button_server
+      value: 
+      objectReference: {fileID: 100000, guid: 242d91d506f2e4429841ca664db5457d, type: 2}
+    - target: {fileID: 11400000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
+      propertyPath: _GO_lobby_title
+      value: 
+      objectReference: {fileID: 718637715}
+    - target: {fileID: 11400000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
+      propertyPath: _TE_lobby_title
+      value: 
+      objectReference: {fileID: 718637717}
+    - target: {fileID: 11400000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
+      propertyPath: _GO_lobby_panel
+      value: 
+      objectReference: {fileID: 618693120}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 048a02b9db8b541f889a9441c8a4bf99, type: 2}
   m_RootGameObject: {fileID: 1619415474}
@@ -2066,9 +2089,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce6e7db926c244c09cf3725dcadec05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 2137086930}
-  serversContainer: {fileID: 1754439817}
-  buttonServerPrefab: {fileID: 11400002, guid: 242d91d506f2e4429841ca664db5457d, type: 2}
+  _GO_current_panel: {fileID: 2137086930}
+  _GO_servers_container: {fileID: 1754439817}
+  _GO_button_server: {fileID: 100000, guid: 242d91d506f2e4429841ca664db5457d, type: 2}
+  _TE_lobby_title: {fileID: 718637717}
+  _GO_lobby_panel: {fileID: 618693120}
 --- !u!95 &1619415477
 Animator:
   serializedVersion: 3
@@ -2218,9 +2243,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95899e49d61c04b80afc5bd3e85811ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 371583525}
-  nextPanel: {fileID: 618693120}
-  title: {fileID: 718637717}
+  _GO_current_panel: {fileID: 371583525}
+  _GO_next_panel: {fileID: 618693120}
+  _TE_lobby_title: {fileID: 718637717}
 --- !u!95 &1633565260
 Animator:
   serializedVersion: 3

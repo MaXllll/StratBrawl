@@ -5,23 +5,24 @@ using System.Collections;
 public class SC_create_game_click_handler : MonoBehaviour
 {
 		[SerializeField]
-		public GameObject
-				currentPanel;
+		private GameObject
+				_GO_current_panel;
 		[SerializeField]
-		public GameObject
-				nextPanel;
-		[SerializeField]	
-		public Text
-				title;
+		private GameObject
+				_GO_next_panel;
+		[SerializeField]
+		private Text
+				_TE_lobby_title;
 
 		/// SUMMARY : 
 		/// PARAMETERS : None.
 		/// RETURN : Void.
 		public void ClickCreateButton (InputField gameName)
 		{
-				currentPanel.SetActive (false);
+				_GO_current_panel.SetActive (false);
+				_GO_next_panel.SetActive (true);
+				_TE_lobby_title.text = gameName.text;
 				RegisterAGame (gameName.text);
-				nextPanel.SetActive (true);
 		}
 		
 		public void RegisterAGame (string gameName)

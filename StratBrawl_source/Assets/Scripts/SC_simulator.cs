@@ -191,14 +191,14 @@ public class SC_simulator : MonoBehaviour {
 			case BallStatus.OnBrawler:
 				_i_brawler_with_the_ball_current = ball._brawler_with_the_ball._i_index;
 				_i_brawler_with_the_ball_prevision = ball._brawler_with_the_ball._i_index;
-				_position_on_ground_current = ball._cell_with_the_ball._position;
-				_position_on_ground_prevision = ball._cell_with_the_ball._position;
+				_position_on_ground_current = new GridPosition(-1, -1);
+				_position_on_ground_prevision = new GridPosition(-1, -1);
 				break;
 			case BallStatus.OnGround:
 				_i_brawler_with_the_ball_current = -1;
 				_i_brawler_with_the_ball_prevision = -1;
-				_position_on_ground_current = new GridPosition(-1, -1);
-				_position_on_ground_prevision = new GridPosition(-1, -1);
+				_position_on_ground_current = ball._cell_with_the_ball._position;
+				_position_on_ground_prevision = ball._cell_with_the_ball._position;
 				break;
 			}
 			
@@ -256,7 +256,8 @@ public class SC_simulator : MonoBehaviour {
 					switch (_brawlers_data._brawlers[j]._actions[i]._action_type)
 					{
 					case ActionType.Move:
-						GridPosition position_to_test = _brawlers_data._brawlers[j]._position_current + _brawlers_data._brawlers[j]._actions[i]._direction_move;
+						GridPosition direction = GridPosition.DirectionToGridPosition(_brawlers_data._brawlers[j]._actions[i]._direction_move);
+						GridPosition position_to_test = _brawlers_data._brawlers[j]._position_current + direction;
 						SetPrevisionPosition(_brawlers_data._brawlers[j], position_to_test);
 						break;
 
@@ -278,7 +279,7 @@ public class SC_simulator : MonoBehaviour {
 					{
 						_brawlers_data._brawlers[j]._b_have_the_ball_prevision = false;
 
-						int i_brawler_on_trajectory = _terrain_data.GetFirstBrawlerIndexOnTrajectory(_brawlers_data._brawlers[j]._position_current, _brawlers_data._brawlers[j]._actions[i]._position_pass);
+						int i_brawler_on_trajectory = _terrain_data.GetFirstBrawlerIndexOnTrajectory(_brawlers_data._brawlers[j]._position_current, _brawlers_data._brawlers[j]._actions[i]._position);
 						if (i_brawler_on_trajectory != -1)
 						{
 							_brawlers_data._brawlers[i_brawler_on_trajectory]._b_have_the_ball_prevision = true;
@@ -286,7 +287,7 @@ public class SC_simulator : MonoBehaviour {
 						}
 						else
 						{
-							_ball_data.SetOnGroundPrevision(_brawlers_data._brawlers[j]._actions[i]._position_pass);
+							_ball_data.SetOnGroundPrevision(_brawlers_data._brawlers[j]._actions[i]._position);
 						}
 					}
 					else
@@ -307,7 +308,8 @@ public class SC_simulator : MonoBehaviour {
 				if (_brawlers_data._brawlers[j]._b_is_KO_current
 				    && _brawlers_data._brawlers[j]._actions[i]._action_type == ActionType.Tackle)
 				{
-					GridPosition position_to_tackle = _brawlers_data._brawlers[j]._position_current + _brawlers_data._brawlers[j]._actions[i]._direction_move;
+					GridPosition direction = GridPosition.DirectionToGridPosition(_brawlers_data._brawlers[j]._actions[i]._direction_move);
+					GridPosition position_to_tackle = _brawlers_data._brawlers[j]._position_current + direction;
 					TackleBrawler(j, _terrain_data.GetPrevisionBrawlerIndexAtPosition(position_to_tackle));
 					TackleBrawler(j, _terrain_data.GetCurrentBrawlerIndexAtPosition(position_to_tackle));
 				}

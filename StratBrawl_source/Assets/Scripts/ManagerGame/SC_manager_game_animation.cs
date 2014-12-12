@@ -14,8 +14,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		for (int i = 0; i < _simulation_results.Length; i++)
 		{
-			//TODO
-
 			for (int j = 0; j < _simulation_results[i]._brawlers_simulation_result.Length; i++)
 			{
 				if (!_simulation_results[i]._brawlers_simulation_result[j]._b_is_KO)
@@ -31,7 +29,7 @@ public partial class SC_manager_game : MonoBehaviour {
 				if (_simulation_results[i]._ball_simulation_result._b_is_received_by_a_brawler)
 					_ball.SetBrawlerWithTheBall(_brawlers[_simulation_results[i]._ball_simulation_result._i_brawler]);
 				else
-					_ball.SetBallOnTheCell(_cells_terrain[_simulation_results[i]._ball_simulation_result._position_target._i_x,_simulation_results[i]._ball_simulation_result._position_target._i_y]);
+					_ball.SetBallOnTheCell(_cells_gameField[_simulation_results[i]._ball_simulation_result._position_target._i_x,_simulation_results[i]._ball_simulation_result._position_target._i_y]);
 			}
 
 			yield return new WaitForSeconds(_f_duration_animation + 0.5f);

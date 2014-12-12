@@ -4,6 +4,14 @@ using System.Collections;
 public class SO_game_settings : ScriptableObject {
 
 	[SerializeField]
+	private int i_pass_nb_cells = 2;
+	public int _i_pass_nb_cells { get{ return i_pass_nb_cells; } }
+
+	[SerializeField]
+	private int number_actions_per_turn = 3;
+	public int _number_actions_per_turn { get{ return number_actions_per_turn; } }
+
+	[SerializeField]
 	private int i_gameField_width = 12;
 	public int _i_gameField_width { get{ return i_gameField_width; } }
 

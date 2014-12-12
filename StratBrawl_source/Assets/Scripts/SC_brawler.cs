@@ -24,7 +24,12 @@ public class SC_brawler : MonoBehaviour {
 	[SerializeField]
 	private Material _Mat_team_true;
 	[SerializeField]
-	private Material _Mat_team_flase;
+	private Material _Mat_team_false;
+
+	[SerializeField]
+	private Sprite _Spr_team_blue;
+	[SerializeField]
+	private Sprite _Spr_team_red;
 
 
 	/// SUMMARY : Initialize the brawler.
@@ -36,9 +41,10 @@ public class SC_brawler : MonoBehaviour {
 		_i_index = i_index;
 		_i_index_in_team = i_index_in_team;
 		_b_team = b_team;
-		renderer.material = b_team ? _Mat_team_true : _Mat_team_flase;
+		renderer.material = b_team ? _Mat_team_true : _Mat_team_false;
+		//sprite
 		_GO_button_brawler.SetActive(false);
-		InitActions(4);
+		InitActions(3);
 	}
 
 	/// SUMMARY : 
@@ -68,7 +74,6 @@ public class SC_brawler : MonoBehaviour {
 	/// RETURN : Void.
 	public void OpenMenuActions()
 	{		
-		Debug.Log ("OEKPOFKEPF");
 		SC_manager_game._instance.OpenMenuActionsSlots(this);
 	}
 }

@@ -14,6 +14,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	void Start()
 	{
+		_instance = this;
 		_b_player_team = Network.isServer;
 		
 		GenerateGameField(_game_settings._i_gameField_width, _game_settings._i_gameField_height);
@@ -21,7 +22,6 @@ public partial class SC_manager_game : MonoBehaviour {
 		_ball.Init();
 		
 		SetEngagePosition(true);
-		_instance = this;
 
 		_network_view = networkView;
 		Network.isMessageQueueRunning = true;
@@ -61,12 +61,13 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Return serialize data.
 	private byte[] GenerateActionsDataToSend()
 	{
-		Action[,] _actions = new Action[_brawlers_team_false.Length, 4];
+		Action[,] _actions = new Action[_brawlers_team_false.Length, 3];
 		for (int i = 0; i < _brawlers_team_false.Length; i++)
 		{
-			for (int j = 0; j < 4; j++)
+			for (int j = 0; j < 3; j++)
 			{
 				_actions[i, j] = _brawlers_team_false[i]._actions[j];
+				Debug.Log(_actions[i, j].ToString());
 			}
 		}
 

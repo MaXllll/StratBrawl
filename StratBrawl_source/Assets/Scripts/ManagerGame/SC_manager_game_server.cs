@@ -96,7 +96,7 @@ public partial class SC_manager_game : MonoBehaviour {
 
 		for (int i = 0; i < _brawlers_team_false.Length; i++)
 		{
-			for (int j = 0; j < 4; j++)
+			for (int j = 0; j < 3; j++)
 			{
 				_brawlers_team_false[i]._actions[j] = _actions[i, j];
 			}
@@ -112,7 +112,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		Debug.Log("Simulation");
 
-		SimulationResult[] _simulation_result = _simulator.StartSimulation(_brawlers, _ball, _i_terrain_width, _i_terrain_height);
+		SimulationResult[] _simulation_result = _simulator.StartSimulation(_brawlers, _ball, _i_gameField_width, _i_gameField_height);
 
 		_b_server_is_ready_animation = false;
 		_b_client_is_ready_animation = false;

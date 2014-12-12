@@ -25,6 +25,23 @@ public struct GridPosition
 		return new Vector3(_i_x, _i_y, 0);
 	}
 
+	public static GridPosition DirectionToGridPosition(Direction direction)
+	{
+		switch(direction)
+		{
+		case Direction.Right:
+			return right;
+		case Direction.Left:
+			return left;
+		case Direction.Up:
+			return up;
+		case Direction.Down:
+			return down;
+		default :
+			return zero;
+		}
+	}
+
 	public static GridPosition operator+(GridPosition position_a, GridPosition position_b)
 	{
 		return new GridPosition(position_a._i_x + position_b._i_x, position_a._i_y + position_b._i_y);
@@ -36,35 +53,43 @@ public struct GridPosition
 public struct Action
 {
 	public ActionType _action_type { get; private set; }
-	
-	private Direction _direction;
-	public GridPosition _direction_move
+
+//	private Direction _direction;
+//	public GridPosition _direction_move
+//	{
+//		get
+//		{ 
+//			switch (_direction)
+//			{
+//			case Direction.Right:
+//				return GridPosition.right;
+//			case Direction.Left:
+//				return GridPosition.left;
+//			case Direction.Up:
+//				return GridPosition.up;
+//			case Direction.Down:
+//				return GridPosition.down;
+//			default:
+//				return GridPosition.zero;
+//			}
+//		}
+//	}
+//
+//	public GridPosition _position_pass { get; private set; }
+
+	public Direction _direction_move {get; set;}
+	public GridPosition _position {get; set;}
+
+	public void SetPosition(GridPosition position)
 	{
-		get
-		{ 
-			switch (_direction)
-			{
-			case Direction.Right:
-				return GridPosition.right;
-			case Direction.Left:
-				return GridPosition.left;
-			case Direction.Up:
-				return GridPosition.up;
-			case Direction.Down:
-				return GridPosition.down;
-			default:
-				return GridPosition.zero;
-			}
-		}
+		_position = position;
 	}
-
-	public GridPosition _position_pass { get; private set; }
-
-
 	public void SetNone()
 	{
 		_action_type = ActionType.None;
 	}
+	/*
+	public GridPosition _position_pass {get; private set;}
 	
 	public void SetMove(Direction direction_move)
 	{
@@ -84,6 +109,7 @@ public struct Action
 		_position_pass = position_pass;
 	}
 
+	*/
 	public void SetType(string action_name){
 		switch (action_name) {
 			case "move":
@@ -108,17 +134,17 @@ public struct Action
 		switch (this._action_type) {
 
 			case ActionType.Move:
-				return "move";
+				return "Move : " + _direction_move.ToString();
 			case ActionType.Pass:
-				return "pass";
+				return "Pass";
 			case ActionType.Tackle:
-				return "tackle";
+				return "Tackle";
 			case ActionType.Defense:
-				return "defense";	
+				return "Defense";	
 			case ActionType.None:
-				return "none";
+				return "None";
 			default:
-				return "none";
+				return "None";
 		}
 	}
 }

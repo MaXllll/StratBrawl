@@ -7,7 +7,9 @@ public class SC_cell : MonoBehaviour {
 	[SerializeField]
 	public GameObject _GO_button_canvas;
 	[SerializeField]
-	public Button _UIButton_button;
+	public GameObject _GO_button;
+	[SerializeField]
+	public Image _IMG_action_display;
 
 	public GridPosition _position;
 	public Transform _T_cell { get; private set;}
@@ -15,6 +17,7 @@ public class SC_cell : MonoBehaviour {
 	public SC_brawler _brawler_on_the_cell;
 	[HideInInspector]
 	public bool _b_is_ball_on_this_cell = false;
+
 
 
 	/// SUMMARY : Initialize the cell position data of the terrain grid.
@@ -27,4 +30,11 @@ public class SC_cell : MonoBehaviour {
 		_T_cell.position = position.GetWorldPosition();
 	}
 
+	public void RegisterSelectedCellForAction(){
+		SC_manager_game._instance.RegisterSelectedCellPositionForAction (this);
+	}
+
+	public void UpdateActionSlotText(){
+		SC_manager_game._instance.UpdateActionSlotText ();
+	}
 }

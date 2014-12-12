@@ -4,7 +4,8 @@ using System.Collections;
 public partial class SC_manager_game : MonoBehaviour {
 
 	[SerializeField]
-	private SO_game_settings _game_settings;
+	private SO_game_settings game_settings;
+	public SO_game_settings _game_settings{ get {return game_settings;} }
 
 	[SerializeField]
 	private Camera _camera;

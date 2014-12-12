@@ -40,7 +40,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda831c825b94b343b3578bec043fe43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _game_settings: {fileID: 11400000, guid: e7504d150beef30499ce71b3cd18b1a5, type: 2}
+  game_settings: {fileID: 11400000, guid: e7504d150beef30499ce71b3cd18b1a5, type: 2}
   _camera: {fileID: 0}
   _T_camera: {fileID: 0}
   _network_view: {fileID: 14800000}
@@ -48,9 +48,11 @@ MonoBehaviour:
   _ball: {fileID: 0}
   _T_root_brawlers: {fileID: 0}
   _GO_prefab_brawler: {fileID: 100002, guid: bd368b590eba28143af0d4573ae8325e, type: 2}
+  buttonSprite: {fileID: 0}
   _selected_brawler: {fileID: 0}
   _T_root_cells_gameField: {fileID: 0}
-  _GO_prefab_cell_gameField: {fileID: 0}
+  _GO_prefab_cell_gameField: {fileID: 100000, guid: 66885710868dfe040b7f1131e41ef7f2,
+    type: 2}
 --- !u!148 &14800000
 NetworkView:
   m_ObjectHideFlags: 1

@@ -14,6 +14,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	void Start()
 	{
+		_instance = this;
 		_b_player_team = Network.isServer;
 		
 		GenerateGameField(_game_settings._i_gameField_width, _game_settings._i_gameField_height);
@@ -21,7 +22,6 @@ public partial class SC_manager_game : MonoBehaviour {
 		_ball.Init();
 		
 		SetEngagePosition(true);
-		_instance = this;
 
 		_network_view = networkView;
 		Network.isMessageQueueRunning = true;

@@ -16,15 +16,19 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		_b_player_team = Network.isServer;
 		
-		GenerateTerrain(_game_settings._i_terrain_width, _game_settings._i_terrain_height);
-		GenerateBrawlers(_game_settings._i_nb_brawlers_per_team);_ball.Init();
+		GenerateGameField(_game_settings._i_gameField_width, _game_settings._i_gameField_height);
+		GenerateBrawlers(_game_settings._i_nb_brawlers_per_team);
+		_ball.Init();
 		
 		SetEngagePosition(true);
-		
+		_instance = this;
+
 		_network_view = networkView;
 		Network.isMessageQueueRunning = true;
 		if (Network.isClient)
 			_network_view.RPC("ClientIsReadyToStart", RPCMode.Server);
+		StartPlanification_Client ();
+		Debug.Log ("tamer");
 	}
 
 	/// SUMMARY : Start the planification phase on client side.
@@ -33,6 +37,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	[RPC]
 	private void StartPlanification_Client()
 	{
+		Debug.Log ("tamermaggle");
 		ResetActionsOfAllBrawlers();
 		SetActiveButtonsBrawlers(true, _b_player_team);
 	}

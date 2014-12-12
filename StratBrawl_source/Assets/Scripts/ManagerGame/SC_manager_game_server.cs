@@ -14,7 +14,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	private bool _b_server_is_ready_animation = false;
 	private bool _b_client_is_ready_animation = false;
 
-
 	/// SUMMARY : 
 	/// PARAMETERS : None.
 	/// RETURN : Void.

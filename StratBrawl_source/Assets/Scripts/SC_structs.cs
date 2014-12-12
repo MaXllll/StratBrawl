@@ -83,6 +83,44 @@ public struct Action
 		_action_type = ActionType.Pass;
 		_position_pass = position_pass;
 	}
+
+	public void SetType(string action_name){
+		switch (action_name) {
+			case "move":
+				_action_type = ActionType.Move;
+				break;
+			case "pass":
+				_action_type = ActionType.Pass;
+				break;
+			case "tackle":
+				_action_type = ActionType.Tackle;
+				break;
+			case "defense":
+				_action_type = ActionType.Defense;
+				break;
+			default:
+				_action_type = ActionType.None;
+				break;
+		}
+	}
+
+	public string ToString(){
+		switch (this._action_type) {
+
+			case ActionType.Move:
+				return "move";
+			case ActionType.Pass:
+				return "pass";
+			case ActionType.Tackle:
+				return "tackle";
+			case ActionType.Defense:
+				return "defense";	
+			case ActionType.None:
+				return "none";
+			default:
+				return "none";
+		}
+	}
 }
 
 

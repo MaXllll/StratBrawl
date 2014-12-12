@@ -67,7 +67,8 @@ public class SC_brawler : MonoBehaviour {
 	/// PARAMETERS : None.
 	/// RETURN : Void.
 	public void OpenMenuActions()
-	{
-		//SC_manager_main.OpenMenuActions(this);
+	{		
+		Debug.Log ("OEKPOFKEPF");
+		SC_manager_game._instance.OpenMenuActionsSlots(this);
 	}
 }

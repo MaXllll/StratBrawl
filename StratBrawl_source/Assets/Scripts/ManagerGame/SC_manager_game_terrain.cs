@@ -3,34 +3,34 @@ using System.Collections;
 
 public partial class SC_manager_game : MonoBehaviour {
 	
-	private int _i_terrain_width ;
-	private int _i_terrain_height;
+	private int _i_gameField_width ;
+	private int _i_gameField_height;
 
 	[SerializeField]
-	private Transform _T_root_cells_terrain;
+	private Transform _T_root_cells_gameField;
 	[SerializeField]
-	private GameObject _GO_prefab_cell_terrain;
+	private GameObject _GO_prefab_cell_gameField;
 
-	private SC_cell[,] _cells_terrain;
+	private SC_cell[,] _cells_gameField;
 	
 
-	/// SUMMARY : Generate the terrain.
-	/// PARAMETERS : Size of the terrain.
+	/// SUMMARY : Generate the gameField.
+	/// PARAMETERS : Size of the gameField.
 	/// RETURN : Void.
-	public void GenerateTerrain(int i_width, int i_height)
+	public void GenerateGameField(int i_width, int i_height)
 	{
-		_i_terrain_width = i_width;
-		_i_terrain_height = i_height;
-		_cells_terrain = new SC_cell[i_width, i_height];
+		_i_gameField_width = i_width;
+		_i_gameField_height = i_height;
+		_cells_gameField = new SC_cell[i_width, i_height];
 
 		for(int i = 0; i < i_width; i++)
 		{
 			for(int j = 0; j < i_height; j++)
 			{
-				GameObject GO_tmp = (GameObject) Instantiate(_GO_prefab_cell_terrain, new Vector3(i, j, 0f), Quaternion.identity);
-				GO_tmp.transform.parent = _T_root_cells_terrain;
-				_cells_terrain[i,j] = GO_tmp.GetComponent<SC_cell>();
-				_cells_terrain[i,j].Init(new GridPosition(i, j));
+				GameObject GO_tmp = (GameObject) Instantiate(_GO_prefab_cell_gameField, new Vector3(i, j, 0f), Quaternion.identity);
+				GO_tmp.transform.parent = _T_root_cells_gameField;
+				_cells_gameField[i,j] = GO_tmp.GetComponent<SC_cell>();
+				_cells_gameField[i,j].Init(new GridPosition(i, j));
 			}
 		}
 
@@ -43,6 +43,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : 
 	private GridPosition GetSymmetricPosition(GridPosition grid_position)
 	{
-		return new GridPosition(grid_position._i_x, _i_terrain_height - grid_position._i_y - 1);
+		return new GridPosition(_i_gameField_width - grid_position._i_x -1 , grid_position._i_y);
+		//return new GridPosition( grid_position._i_x , _i_gameField_height-grid_position._i_y-1);
 	}
 }

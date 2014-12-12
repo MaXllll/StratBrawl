@@ -4,12 +4,12 @@ using System.Collections;
 public class SO_game_settings : ScriptableObject {
 
 	[SerializeField]
-	private int i_terrain_width = 7;
-	public int _i_terrain_width { get{ return i_terrain_width; } }
+	private int i_gameField_width = 12;
+	public int _i_gameField_width { get{ return i_gameField_width; } }
 
 	[SerializeField]
-	private int i_terrain_height = 12;
-	public int _i_terrain_height { get{ return i_terrain_height; } }
+	private int i_gameField_height = 7;
+	public int _i_gameField_height { get{ return i_gameField_height; } }
 
 	[SerializeField]
 	private int i_nb_turn_max = 10;
@@ -25,19 +25,19 @@ public class SO_game_settings : ScriptableObject {
 
 	[SerializeField]
 	private GridPosition[] positions_brawlers_attack_formation = new GridPosition[] {
-																		new GridPosition(3,5),
-																		new GridPosition(1,4),
-																		new GridPosition(5,4),
+																		new GridPosition(5,3),
+																		new GridPosition(4,1),
+																		new GridPosition(4,5),
 																		new GridPosition(2,2),
-																		new GridPosition(4,2)};
+																		new GridPosition(2,4)};
 	public GridPosition[] _positions_brawlers_attack_formation { get{ return positions_brawlers_attack_formation; } }
 
 	[SerializeField]
 	private GridPosition[] positions_brawlers_defense_formation = new GridPosition[] {
-																		new GridPosition(3,1),
-																		new GridPosition(1,2),
-																		new GridPosition(5,2),
-																		new GridPosition(2,4),
+																		new GridPosition(1,3),
+																		new GridPosition(2,1),
+																		new GridPosition(2,5),
+																		new GridPosition(4,2),
 																		new GridPosition(4,4)};
 	public GridPosition[] _positions_brawlers_defense_formation { get{ return positions_brawlers_defense_formation; } }
 

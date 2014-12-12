@@ -1,15 +1,13 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SC_simulator.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs">
     <Files>
-      <File FileName="StratBrawl_source.sln" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_simulation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SC_simulator.cs" Line="341" Column="46" />
-      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_animation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SC_ball.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SC_brawler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\SC_animation.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_terrain.cs" Line="1" Column="1" />
+      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs" Line="15" Column="17" />
+      <File FileName="Assets\Scripts\SC_manager_ui.cs" Line="54" Column="1" />
+      <File FileName="Assets\Scripts\SC_structs.cs" Line="99" Column="1" />
+      <File FileName="Assets\Scripts\SC_brawler.cs" Line="72" Column="1" />
+      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_client.cs" Line="123" Column="2" />
+      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game.cs" Line="24" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

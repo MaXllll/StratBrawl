@@ -2,6 +2,6 @@
 using System.Collections;
 
 
-public enum ActionType {None, Move, Tackle, Pass}
+public enum ActionType {None, Move, Tackle, Pass, Defense}
 public enum Direction {Up, Down, Right, Left}
 public enum BallStatus {Null, OnBrawler, OnGround}

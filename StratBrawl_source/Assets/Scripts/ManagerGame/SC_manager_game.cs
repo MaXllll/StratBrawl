@@ -17,23 +17,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	private SC_manager_ui _manager_ui;
 	[SerializeField]
 	private SC_ball _ball;
+	
+	public static SC_manager_game _instance;
 
-
-	// Planification
-	//
-	//	static public void OpenMenuActions(SC_brawler _brawler)
-	//	{
-	//		_instance._selected_brawler = _brawler;
-	//		_instance._manager_brawlers.SetActiveButtonsActions(false);
-	//		_instance._manager_ui.SetActiveButtonBack(true);
-	//		_instance._manager_ui.SetActivePanelActionsSlot(true);
-	//	}
-	//
-	//	public void CloseMenuActions()
-	//	{
-	//		_selected_brawler = null;
-	//		_manager_brawlers.SetActiveButtonsActions(true);
-	//		_manager_ui.SetActiveButtonBack(false);
-	//		_manager_ui.SetActivePanelActionsSlot(false);
-	//	}
 }

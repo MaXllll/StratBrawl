@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class SC_cell : MonoBehaviour {
 
-	public GameObject _GO_button_open_menu_actions;
+	[SerializeField]
+	public GameObject _GO_button_canvas;
+	[SerializeField]
+	public Button _UIButton_button;
 
 	public GridPosition _position;
 	public Transform _T_cell { get; private set;}

@@ -58,11 +58,13 @@
      <Compile Include="Assets\Scripts\Menu\CreateGameClickHandler.cs" />
      <Compile Include="Assets\Scripts\Menu\MenuClickHandler.cs" />
      <Compile Include="Assets\Scripts\Menu\PlayMenuClickHandler.cs" />
+     <Compile Include="Assets\Scripts\SC_animation.cs" />
      <Compile Include="Assets\Scripts\SC_ball.cs" />
      <Compile Include="Assets\Scripts\SC_brawler.cs" />
      <Compile Include="Assets\Scripts\SC_cell.cs" />
      <Compile Include="Assets\Scripts\SC_enums.cs" />
      <Compile Include="Assets\Scripts\SC_manager_ui.cs" />
+     <Compile Include="Assets\Scripts\SC_simulator.cs" />
      <Compile Include="Assets\Scripts\SC_structs.cs" />
      <Compile Include="Assets\tmp\SC_menu_tmp.cs" />
  <Reference Include="UnityEngine.UI">

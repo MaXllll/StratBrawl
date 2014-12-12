@@ -8,6 +8,12 @@ public struct GridPosition
 {
 	public int _i_x, _i_y;
 
+	public static GridPosition zero { get { return new GridPosition(0, 0); } }
+	public static GridPosition right { get { return new GridPosition(1, 0); } }
+	public static GridPosition left { get { return new GridPosition(-1, 0); } }
+	public static GridPosition up { get { return new GridPosition(0, 1); } }
+	public static GridPosition down { get { return new GridPosition(0, 0 -1); } }
+
 	public GridPosition(int i_x, int i_y)
 	{
 		_i_x = i_x;
@@ -18,15 +24,41 @@ public struct GridPosition
 	{
 		return new Vector3(_i_x, _i_y, 0);
 	}
+
+	public static GridPosition operator+(GridPosition position_a, GridPosition position_b)
+	{
+		return new GridPosition(position_a._i_x + position_b._i_x, position_a._i_y + position_b._i_y);
+	}
 }
+
 
 [Serializable]
 public struct Action
 {
-	public ActionType _action_type {get; private set;}
+	public ActionType _action_type { get; private set; }
 	
-	public Direction _direction_move {get; private set;}
-	public GridPosition _position_pass {get; private set;}
+	private Direction _direction;
+	public GridPosition _direction_move
+	{
+		get
+		{ 
+			switch (_direction)
+			{
+			case Direction.Right:
+				return GridPosition.right;
+			case Direction.Left:
+				return GridPosition.left;
+			case Direction.Up:
+				return GridPosition.up;
+			case Direction.Down:
+				return GridPosition.down;
+			default:
+				return GridPosition.zero;
+			}
+		}
+	}
+
+	public GridPosition _position_pass { get; private set; }
 
 
 	public void SetNone()
@@ -37,13 +69,13 @@ public struct Action
 	public void SetMove(Direction direction_move)
 	{
 		_action_type = ActionType.Move;
-		_direction_move = direction_move;
+		_direction = direction_move;
 	}
 	
 	public void SetTackle(Direction direction_move)
 	{
 		_action_type = ActionType.Tackle;
-		_direction_move = direction_move;
+		_direction = direction_move;
 	}
 	
 	public void SetPass(GridPosition position_pass)
@@ -53,8 +85,50 @@ public struct Action
 	}
 }
 
+
 [Serializable]
 public struct SimulationResult
 {
-	//TODO
+	public BallSimulationResult _ball_simulation_result { get; private set; }
+	public BrawlerSimulationResult[] _brawlers_simulation_result { get; private set; }
+
+	public SimulationResult(BallSimulationResult ball_simulation_result, BrawlerSimulationResult[] brawler_simulation_result)
+	{
+		_ball_simulation_result = ball_simulation_result;
+		_brawlers_simulation_result = brawler_simulation_result;
+	}
+}
+
+
+[Serializable]
+public struct BrawlerSimulationResult
+{
+	public ActionType _action_type { get; private set; }
+	public GridPosition _position_target { get; private set; }
+	public bool _b_is_KO { get; private set; }
+
+	public BrawlerSimulationResult(ActionType action_type, GridPosition position_target, bool b_is_KO)
+	{
+		_action_type = action_type;
+		_position_target = position_target;
+		_b_is_KO = b_is_KO;
+	}
+}
+
+
+[Serializable]
+public struct BallSimulationResult
+{
+	public bool _b_is_launch { get; private set; }
+	public GridPosition _position_target { get; private set; }
+	public bool _b_is_received_by_a_brawler { get; private set; }
+	public int _i_brawler { get; private set; }
+
+	public BallSimulationResult(bool b_is_launch, GridPosition position_target, bool b_is_received_by_a_brawler, int i_brawler)
+	{
+		_b_is_launch = b_is_launch;
+		_position_target = position_target;
+		_b_is_received_by_a_brawler = b_is_received_by_a_brawler;
+		_i_brawler = i_brawler;
+	}
 }

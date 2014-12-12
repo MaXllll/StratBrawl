@@ -6,6 +6,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public partial class SC_manager_game : MonoBehaviour {
 
+	[SerializeField]
+	private SC_simulator _simulator;
+
 	private bool _b_server_is_ready_planification = false;
 	private bool _b_client_is_ready_planification = false;
 	private bool _b_server_is_ready_animation = false;
@@ -110,7 +113,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		Debug.Log("Simulation");
 
-		SimulationResult _simulation_result = Simulate();
+		SimulationResult[] _simulation_result = _simulator.StartSimulation(_brawlers, _ball, _i_terrain_width, _i_terrain_height);
 
 		_b_server_is_ready_animation = false;
 		_b_client_is_ready_animation = false;

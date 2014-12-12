@@ -4,6 +4,7 @@ using System.Collections;
 public class SC_brawler : MonoBehaviour {
 
 	public GameObject _GO_button_brawler;
+	public SC_animation _animation;
 
 	[HideInInspector]
 	public int _i_index { get; private set; }
@@ -14,6 +15,8 @@ public class SC_brawler : MonoBehaviour {
 
 	public bool _b_team { get; private set; }
 	public bool _b_have_the_ball = false;
+	public bool _b_is_KO = false;
+	public int _i_KO_round_remaining = 0;
 
 	[HideInInspector]
 	public Action[] _actions;

@@ -84,7 +84,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		MemoryStream _MS = new MemoryStream();
 		_MS.Write(_data_simulation_result,0,_data_simulation_result.Length); 
 		_MS.Seek(0, SeekOrigin.Begin); 
-		SimulationResult _simulation_result = (SimulationResult)_BF.Deserialize(_MS);
+		SimulationResult[] _simulation_result = (SimulationResult[])_BF.Deserialize(_MS);
 
 		StartCoroutine(ResultAnimation(_simulation_result));
 	}
@@ -92,7 +92,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// SUMMARY : Launch the result animation of the simulation and send Ready to the server when animation is done.
 	/// PARAMETERS : Result of the simulation.
 	/// RETURN : Void.
-	private IEnumerator ResultAnimation(SimulationResult _simulation_result)
+	private IEnumerator ResultAnimation(SimulationResult[] _simulation_result)
 	{
 		yield return Animate(_simulation_result);
 

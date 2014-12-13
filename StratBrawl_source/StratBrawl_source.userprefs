@@ -1,11 +1,20 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+<<<<<<< HEAD
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs">
     <Files>
       <File FileName="Assets\Scripts\ManagerGame\SC_manager_game.cs" Line="15" Column="1" />
       <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs" Line="287" Column="70" />
       <File FileName="Assets\Scripts\SC_structs.cs" Line="140" Column="25" />
       <File FileName="Assets\Scripts\SC_manager_ui.cs" Line="82" Column="27" />
+=======
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ManagerGame\SC_manager_game_animation.cs">
+    <Files>
+      <File FileName="Assets\Scripts\SC_simulator.cs" Line="317" Column="4" />
+      <File FileName="Assets\Scripts\SC_animation.cs" Line="48" Column="42" />
+      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_animation.cs" Line="17" Column="87" />
+      <File FileName="Assets\Scripts\SC_structs.cs" Line="196" Column="2" />
+>>>>>>> Fred
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

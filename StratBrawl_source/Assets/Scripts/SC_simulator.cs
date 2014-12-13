@@ -55,9 +55,9 @@ public class SC_simulator : MonoBehaviour {
 			    || position._i_x >= _i_terrain_width
 			    || position._i_y < 0
 			    || position._i_y >= _i_terrain_height)
-				return true;
-			else
 				return false;
+			else
+				return true;
 		}
 		
 		public int GetPrevisionBrawlerIndexAtPosition(GridPosition position)
@@ -128,6 +128,16 @@ public class SC_simulator : MonoBehaviour {
 				_brawlers[i].EndOfIteration();
 			}
 		}
+
+		public BrawlerSimulationResult[] ToResult(int i_iteration)
+		{
+			BrawlerSimulationResult[] brawlers_simulation_result = new BrawlerSimulationResult[_i_nb_brawlers];
+			for (int i = 0; i < _i_nb_brawlers; i++)
+			{
+				brawlers_simulation_result[i] = new BrawlerSimulationResult(_brawlers[i]._actions[i_iteration]._action_type, _brawlers[i]._position_current, _brawlers[i]._b_is_KO_current);
+			}
+			return brawlers_simulation_result;
+		}
 	}
 	
 	
@@ -178,7 +188,6 @@ public class SC_simulator : MonoBehaviour {
 		public int _i_brawler_with_the_ball_prevision;
 		public GridPosition _position_on_ground_current;
 		public GridPosition _position_on_ground_prevision;
-		public GridPosition _position_ball_target;
 
 		
 		public BallData(SC_ball ball)
@@ -201,8 +210,6 @@ public class SC_simulator : MonoBehaviour {
 				_position_on_ground_prevision = ball._cell_with_the_ball._position;
 				break;
 			}
-			
-			_position_ball_target = new GridPosition(-1, -1);
 		}
 
 		public void SetOnBrawlerPrevision(int i_brawler_index)
@@ -221,9 +228,14 @@ public class SC_simulator : MonoBehaviour {
 		
 		public void EndOfIteration()
 		{
+			_ball_status_current = _ball_status_prevision;
 			_i_brawler_with_the_ball_current = _i_brawler_with_the_ball_prevision;
-			_i_brawler_with_the_ball_prevision = -1;
 			_position_on_ground_current = _position_on_ground_prevision;
+		}
+
+		public BallSimulationResult ToResult()
+		{
+			return new BallSimulationResult(_ball_status_current, _i_brawler_with_the_ball_current, _position_on_ground_current);
 		}
 	}
 	
@@ -239,19 +251,14 @@ public class SC_simulator : MonoBehaviour {
 		_terrain_data = new TerrainData(i_terrain_width, i_terrain_height);
 		_terrain_data.SetBrawlersPositionCurrentInTerrain(_brawlers_data);
 		
-		int i_nb_iteration = 4;
+		int i_nb_iteration = 3;
 		SimulationResult[] simulation_result = new SimulationResult[i_nb_iteration];
 		
 		for (int i = 0; i < i_nb_iteration; i++)
 		{
-			bool b_ball_is_launch = false;
-			GridPosition position_ball_target = new GridPosition(0, 0);
-			bool b_ball_is_received_by_a_brawler = false;
-			int i_brawler_receiving_the_ball = -1;
-			
 			for (int j = 0; j < _brawlers_data._i_nb_brawlers; j++)
 			{
-				if (_brawlers_data._brawlers[j]._b_is_KO_current)
+				if (!_brawlers_data._brawlers[j]._b_is_KO_current)
 				{
 					switch (_brawlers_data._brawlers[j]._actions[i]._action_type)
 					{
@@ -274,7 +281,7 @@ public class SC_simulator : MonoBehaviour {
 			{
 				if (_brawlers_data._brawlers[j]._b_have_the_ball_current)
 				{
-					if (_brawlers_data._brawlers[j]._b_is_KO_current
+					if (!_brawlers_data._brawlers[j]._b_is_KO_current
 					    && _brawlers_data._brawlers[j]._actions[i]._action_type == ActionType.Pass)
 					{
 						_brawlers_data._brawlers[j]._b_have_the_ball_prevision = false;
@@ -300,12 +307,17 @@ public class SC_simulator : MonoBehaviour {
 
 			if (_ball_data._ball_status_prevision == BallStatus.OnGround)
 			{
-				_terrain_data.GetPrevisionBrawlerIndexAtPosition(_ball_data._position_on_ground_prevision);
+				int i_brawler = _terrain_data.GetPrevisionBrawlerIndexAtPosition(_ball_data._position_on_ground_prevision);
+				if (i_brawler >= 0 && i_brawler < _brawlers_data._i_nb_brawlers)
+				{
+					_ball_data.SetOnBrawlerPrevision(i_brawler);
+					_brawlers_data._brawlers[i_brawler]._b_have_the_ball_prevision = true;
+				}
 			}
 
 			for (int j = 0; j < _brawlers_data._i_nb_brawlers; j++)
 			{
-				if (_brawlers_data._brawlers[j]._b_is_KO_current
+				if (!_brawlers_data._brawlers[j]._b_is_KO_current
 				    && _brawlers_data._brawlers[j]._actions[i]._action_type == ActionType.Tackle)
 				{
 					GridPosition direction = GridPosition.DirectionToGridPosition(_brawlers_data._brawlers[j]._actions[i]._direction_move);
@@ -314,16 +326,13 @@ public class SC_simulator : MonoBehaviour {
 					TackleBrawler(j, _terrain_data.GetCurrentBrawlerIndexAtPosition(position_to_tackle));
 				}
 			}
-			
+
 			_terrain_data.EndOfIteration();
 			_brawlers_data.EndOfIteration();
 			_ball_data.EndOfIteration();
-			
-			BrawlerSimulationResult[] brawlers_simulation_result = new BrawlerSimulationResult[_brawlers_data._i_nb_brawlers];
-			BallSimulationResult _ball_simulation_result = new BallSimulationResult(b_ball_is_launch,
-			                                                                        position_ball_target,
-			                                                                        b_ball_is_received_by_a_brawler,
-			                                                                        i_brawler_receiving_the_ball);
+
+			BrawlerSimulationResult[] brawlers_simulation_result = _brawlers_data.ToResult(i);
+			BallSimulationResult _ball_simulation_result = _ball_data.ToResult();
 			
 			simulation_result[i] = new SimulationResult(_ball_simulation_result, brawlers_simulation_result);
 		}

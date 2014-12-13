@@ -100,7 +100,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	private IEnumerator ResultAnimation(SimulationResult[] _simulation_result)
 	{
-		yield return Animate(_simulation_result);
+		yield return StartCoroutine(Animate(_simulation_result));
 
 		if (Network.isClient)
 		{

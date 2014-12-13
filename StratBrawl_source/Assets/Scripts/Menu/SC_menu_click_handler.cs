@@ -2,27 +2,37 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/// SUMMARY : This script runs when the current panel is the main menu
+/// The user can click to play, option or quit button
 public class SC_menu_click_handler: MonoBehaviour
 {
 		[SerializeField]
 		private GameObject
-				currentPanel;
+				_GO_current_panel;
 
+		/// SUMMARY : The user click on the play button. We display the play panel.
+		/// PARAMETERS : The next panel.
+		/// RETURN : Void.
 		public void ClickPlayButton (GameObject panelToShow)
 		{
-				currentPanel.SetActive (false);
-				//RegisterTestServer ();
+				_GO_current_panel.SetActive (false);
 				RetrieveHostList ();
 				
 				panelToShow.SetActive (true);
 		}
 
+		/// SUMMARY : The user click on the play button. We display the option panel.
+		/// PARAMETERS : The next panel.
+		/// RETURN : Void.
 		public void ClickOptionsButton (GameObject panelToShow)
 		{
-				currentPanel.SetActive (false);
+				_GO_current_panel.SetActive (false);
 				panelToShow.SetActive (false);
 		}
 
+		/// SUMMARY : The user click on the play button. We quit the game;
+		/// PARAMETERS : None.
+		/// RETURN : Void.
 		public void ClickQuitButton ()
 		{
 				Application.Quit ();
@@ -37,15 +47,4 @@ public class SC_menu_click_handler: MonoBehaviour
 				MasterServer.port = 23466;
 				MasterServer.RequestHostList ("1V1");
 		}
-
-
-
-		/*public void RegisterTestServer ()
-		{
-				Network.InitializeServer (32, 25002, !Network.HavePublicAddress ());
-				MasterServer.RegisterHost ("1V1", "Test1", "Test Comment");
-				MasterServer.RegisterHost ("1V1", "Test2", "Test2 Comment");
-				MasterServer.RegisterHost ("1V1", "Test3", "Test3 Comment");
-				Debug.Log ("BLAAA");
-		}*/
 }

@@ -46,6 +46,22 @@ public struct GridPosition
 	{
 		return new GridPosition(position_a._i_x + position_b._i_x, position_a._i_y + position_b._i_y);
 	}
+
+	public static bool operator==(GridPosition position_a, GridPosition position_b)
+	{
+		if (position_a._i_x == position_b._i_x && position_a._i_y == position_b._i_y)
+			return true;
+		else
+			return false;
+	}
+
+	public static bool operator!=(GridPosition position_a, GridPosition position_b)
+	{
+		if (position_a._i_x == position_b._i_x && position_a._i_y == position_b._i_y)
+			return false;
+		else
+			return true;
+	}
 }
 
 
@@ -183,16 +199,14 @@ public struct BrawlerSimulationResult
 [Serializable]
 public struct BallSimulationResult
 {
-	public bool _b_is_launch { get; private set; }
-	public GridPosition _position_target { get; private set; }
-	public bool _b_is_received_by_a_brawler { get; private set; }
-	public int _i_brawler { get; private set; }
+	public BallStatus _ball_status { get; private set; }
+	public int _i_brawler_with_the_ball { get; private set; }
+	public GridPosition _position_on_ground { get; private set; }
 
-	public BallSimulationResult(bool b_is_launch, GridPosition position_target, bool b_is_received_by_a_brawler, int i_brawler)
+	public BallSimulationResult(BallStatus ball_status, int i_brawler_with_the_ball, GridPosition position_on_ground)
 	{
-		_b_is_launch = b_is_launch;
-		_position_target = position_target;
-		_b_is_received_by_a_brawler = b_is_received_by_a_brawler;
-		_i_brawler = i_brawler;
+		_ball_status = ball_status;
+		_i_brawler_with_the_ball = i_brawler_with_the_ball;
+		_position_on_ground = position_on_ground;
 	}
 }

@@ -7,6 +7,9 @@ public partial class SC_manager_game : MonoBehaviour {
 	private SO_game_settings game_settings;
 	public SO_game_settings _game_settings{ get {return game_settings;} }
 
+	private int _i_score_team_true = 0;
+	private int _i_score_team_false = 0;
+
 	[SerializeField]
 	private Camera _camera;
 	[SerializeField]

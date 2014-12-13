@@ -78,9 +78,58 @@ public class SC_simulator : MonoBehaviour {
 
 		public int GetFirstBrawlerIndexOnTrajectory(GridPosition position_start, GridPosition position_end)
 		{
-
 			// TODO : Calaculate brawlers on trajectory
 
+			GridPosition _position_current = position_start;
+			Vector2 V2_current_position = position_start.ToVector2();
+			Vector2 V2_directory = (position_end - position_start).ToVector2();
+			V2_directory.Normalize();
+
+			float f_next_border_x;
+			if (V2_directory.x > 0)
+				f_next_border_x = _position_current._i_x + 0.5f;
+			else
+				f_next_border_x = _position_current._i_x - 0.5f;
+
+			float f_next_border_y;
+			if (V2_directory.y > 0)
+				f_next_border_y = _position_current._i_y + 0.5f;
+			else
+				f_next_border_y = _position_current._i_y - 0.5f;
+
+			while (_position_current != position_end)
+			{
+				float f_factor_next_cell_x = (f_next_border_x - V2_current_position.x) / V2_directory.x;
+				float f_factor_next_cell_y = (f_next_border_y - V2_current_position.y) / V2_directory.y;
+
+				if (f_factor_next_cell_x >= f_factor_next_cell_y)
+				{
+					_position_current._i_x ++;
+					V2_current_position = new Vector2(f_next_border_x, V2_directory.y * f_factor_next_cell_x);
+					if (V2_directory.x > 0)
+						f_next_border_x = _position_current._i_x + 0.5f;
+					else
+						f_next_border_x = _position_current._i_x - 0.5f;
+				}
+
+				if (f_factor_next_cell_y >= f_factor_next_cell_x)
+				{
+					_position_current._i_y ++;
+					V2_current_position = new Vector2( V2_directory.x * f_factor_next_cell_y, f_next_border_y);
+					if (V2_directory.y > 0)
+						f_next_border_y = _position_current._i_y + 0.5f;
+					else
+						f_next_border_y = _position_current._i_y - 0.5f;
+				}
+
+				int i_brawler = GetPrevisionBrawlerIndexAtPosition(_position_current);
+				if (i_brawler != -1)
+					return i_brawler;
+
+				i_brawler = GetCurrentBrawlerIndexAtPosition(_position_current);
+				if (i_brawler != -1)
+					return i_brawler;
+			}
 
 			return -1;
 		}
@@ -144,6 +193,7 @@ public class SC_simulator : MonoBehaviour {
 	private class BrawlerData
 	{
 		public int _i_index;
+		public bool _b_team;
 		public Action[] _actions;
 		public GridPosition _position_current;
 		public GridPosition _position_prevision;
@@ -156,6 +206,7 @@ public class SC_simulator : MonoBehaviour {
 		public BrawlerData(SC_brawler brawler)
 		{
 			_i_index = brawler._i_index;
+			_b_team = brawler._b_team;
 			_actions = brawler._actions;
 			_position_current = brawler._position;
 			_b_have_the_ball_current = brawler._b_have_the_ball;
@@ -333,8 +384,27 @@ public class SC_simulator : MonoBehaviour {
 
 			BrawlerSimulationResult[] brawlers_simulation_result = _brawlers_data.ToResult(i);
 			BallSimulationResult _ball_simulation_result = _ball_data.ToResult();
-			
-			simulation_result[i] = new SimulationResult(_ball_simulation_result, brawlers_simulation_result);
+
+			bool _b_is_goal = false;
+			bool _b_team_who_scores = false;
+			if (_ball_data._ball_status_current == BallStatus.OnBrawler)
+			{
+				if (_brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._b_team == true && _brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._position_current._i_x == (i_terrain_width - 1))
+				{
+					_b_is_goal = true;
+					_b_team_who_scores = true;
+				}
+				else if (_brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._b_team == false && _brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._position_current._i_x == 0)
+				{
+					_b_is_goal = true;
+					_b_team_who_scores = false;
+				}
+			}
+
+			simulation_result[i] = new SimulationResult(_ball_simulation_result, brawlers_simulation_result, _b_is_goal, _b_team_who_scores);
+
+			if (_b_is_goal)
+				break;
 		}
 		
 		return simulation_result;

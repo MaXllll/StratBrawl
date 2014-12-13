@@ -323,8 +323,9 @@ public partial class SC_manager_game : MonoBehaviour {
 		for(int i = 0; i < i_width; i++)
 		{
 			for(int j = 0; j < i_height; j++)
-			{				
-				RemoveDisplayOnCell(_img_brawler_actions_cells[i,j]);
+			{
+				if (_img_brawler_actions_cells[i,j] != null)
+					RemoveDisplayOnCell(_img_brawler_actions_cells[i,j]);
 			}
 		}
 	}
@@ -333,6 +334,10 @@ public partial class SC_manager_game : MonoBehaviour {
 		CloseMenuActionsSlots();
 		CloseMenuActionsTypes();
 		SetActiveButtonsBrawlers (false,_b_player_team);
+		if (Network.isServer)
+			ServerIsReadyPlanification();
+		else
+			_network_view.RPC("ClientIsReadyPlanification", RPCMode.Server);
 	}
 
 }

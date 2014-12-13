@@ -26,6 +26,11 @@ public struct GridPosition
 		return new Vector3(_i_x, _i_y, 0);
 	}
 
+	public Vector2 ToVector2()
+	{
+		return new Vector2(_i_x, _i_y);
+	}
+
 	public static GridPosition DirectionToGridPosition(Direction direction)
 	{
 		switch(direction)
@@ -46,6 +51,11 @@ public struct GridPosition
 	public static GridPosition operator+(GridPosition position_a, GridPosition position_b)
 	{
 		return new GridPosition(position_a._i_x + position_b._i_x, position_a._i_y + position_b._i_y);
+	}
+
+	public static GridPosition operator-(GridPosition position_a, GridPosition position_b)
+	{
+		return new GridPosition(position_a._i_x - position_b._i_x, position_a._i_y - position_b._i_y);
 	}
 
 	public static bool operator==(GridPosition position_a, GridPosition position_b)
@@ -175,10 +185,15 @@ public struct SimulationResult
 	public BallSimulationResult _ball_simulation_result { get; private set; }
 	public BrawlerSimulationResult[] _brawlers_simulation_result { get; private set; }
 
-	public SimulationResult(BallSimulationResult ball_simulation_result, BrawlerSimulationResult[] brawler_simulation_result)
+	public bool _b_is_goal;
+	public bool _b_team_who_scores;
+
+	public SimulationResult(BallSimulationResult ball_simulation_result, BrawlerSimulationResult[] brawler_simulation_result, bool b_is_goal, bool b_team_who_scores)
 	{
 		_ball_simulation_result = ball_simulation_result;
 		_brawlers_simulation_result = brawler_simulation_result;
+		_b_is_goal = b_is_goal;
+		_b_team_who_scores = b_team_who_scores;
 	}
 }
 

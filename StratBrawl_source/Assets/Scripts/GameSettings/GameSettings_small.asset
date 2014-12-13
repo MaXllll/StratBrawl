@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: GameSettings_small
   m_EditorClassIdentifier: 
   i_pass_nb_cells: 2
-  number_actions_per_turn: 3
+  i_nb_actions_per_turn: 3
   i_gameField_width: 12
   i_gameField_height: 7
   i_nb_turn_max: 10
@@ -24,4 +24,4 @@ MonoBehaviour:
   positions_brawlers_defense_formation:
   - _i_x: 2
     _i_y: 1
-  f_orthographic_size: 3.5
+  f_orthographic_size: 4

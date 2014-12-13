@@ -40,6 +40,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		Debug.Log ("tamermaggle");
 		ResetActionsOfAllBrawlers();
 		SetActiveButtonsBrawlers(true, _b_player_team);
+		InitPlanification ();
 	}
 
 	/// SUMMARY : End the planification phase on client side.

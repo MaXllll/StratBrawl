@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using UnityEngine.UI;
 
 
 [Serializable]
@@ -96,7 +97,7 @@ public struct Action
 	public Direction _direction_move {get; set;}
 	public GridPosition _position {get; set;}
 	//necessary to suppress the image of the action when the player change the action
-	public SC_cell _selected_cell {get; set;}
+	//public Image _image_cell { get; set;}
 
 	public void SetPosition(GridPosition position)
 	{

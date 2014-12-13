@@ -54,9 +54,10 @@
      <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs" />
      <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_server.cs" />
      <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_terrain.cs" />
-     <Compile Include="Assets\Scripts\Menu\CreateGameClickHandler.cs" />
-     <Compile Include="Assets\Scripts\Menu\MenuClickHandler.cs" />
-     <Compile Include="Assets\Scripts\Menu\PlayMenuClickHandler.cs" />
+     <Compile Include="Assets\Scripts\Menu\SC_create_game_click_handler.cs" />
+     <Compile Include="Assets\Scripts\Menu\SC_lobby.cs" />
+     <Compile Include="Assets\Scripts\Menu\SC_menu_click_handler.cs" />
+     <Compile Include="Assets\Scripts\Menu\SC_play_menu_click_handler.cs" />
      <Compile Include="Assets\Scripts\SC_animation.cs" />
      <Compile Include="Assets\Scripts\SC_ball.cs" />
      <Compile Include="Assets\Scripts\SC_brawler.cs" />

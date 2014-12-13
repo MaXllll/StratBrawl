@@ -56,6 +56,7 @@
      <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_simulation.cs" />
      <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_terrain.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_create_game_click_handler.cs" />
+     <Compile Include="Assets\Scripts\Menu\SC_lobby.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_menu_click_handler.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_play_menu_click_handler.cs" />
      <Compile Include="Assets\Scripts\SC_ball.cs" />

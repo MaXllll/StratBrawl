@@ -2,6 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
+/// SUMMARY : This script runs when the current panel is the create game panel
+/// The user can create a game by entering a game name and by pressing the button
 public class SC_create_game_click_handler : MonoBehaviour
 {
 		[SerializeField]
@@ -14,8 +16,8 @@ public class SC_create_game_click_handler : MonoBehaviour
 		private Text
 				_TE_lobby_title;
 
-		/// SUMMARY : 
-		/// PARAMETERS : None.
+		/// SUMMARY : The user click on the create game button. We must create a new server by calling the RegisterAGame method
+		/// PARAMETERS : The input field containing the game name
 		/// RETURN : Void.
 		public void ClickCreateButton (InputField gameName)
 		{
@@ -32,6 +34,6 @@ public class SC_create_game_click_handler : MonoBehaviour
 				MasterServer.ipAddress = "127.0.0.1";
 				MasterServer.port = 23466;
 				MasterServer.RegisterHost ("1V1", gameName, "Test Comment");
-				Debug.LogError ("Je créer la partie " + gameName + " sur le port " + MasterServer.port);
+				Debug.Log ("Je créer la partie " + gameName + " sur le port " + MasterServer.port);
 		}
 }

@@ -50,6 +50,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	private void EndPlanification_Client()
 	{
 		SetActiveButtonsBrawlers(false, _b_player_team);
+		RemoveAllActionDisplay();
 		if (Network.isClient)
 		{
 			byte[] _actions = GenerateActionsDataToSend();

@@ -313,4 +313,26 @@ public partial class SC_manager_game : MonoBehaviour {
 			} 
 		}
 	}
+
+	public void RemoveAllActionDisplay(){
+		int i_width = 5;
+		//int i_width = _game_settings._i_nb_brawlers_per_team;
+		int i_height = 3;		
+		//int i_height = _game_settings._i_nb_actions_per_turn;
+
+		for(int i = 0; i < i_width; i++)
+		{
+			for(int j = 0; j < i_height; j++)
+			{				
+				RemoveDisplayOnCell(_img_brawler_actions_cells[i,j]);
+			}
+		}
+	}
+
+	public void EndTurn(){
+		CloseMenuActionsSlots();
+		CloseMenuActionsTypes();
+		SetActiveButtonsBrawlers (false,_b_player_team);
+	}
+
 }

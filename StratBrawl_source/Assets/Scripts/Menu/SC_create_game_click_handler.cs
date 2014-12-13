@@ -27,6 +27,9 @@ public class SC_create_game_click_handler : MonoBehaviour
 				RegisterAGame (gameName.text);
 		}
 		
+		/// SUMMARY : Initialize a new server using the game name and register it to the master server
+		/// PARAMETERS : The name of the new server
+		/// RETURN : Void.
 		public void RegisterAGame (string gameName)
 		{
 	

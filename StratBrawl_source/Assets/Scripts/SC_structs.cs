@@ -79,6 +79,8 @@ public struct Action
 
 	public Direction _direction_move {get; set;}
 	public GridPosition _position {get; set;}
+	//necessary to suppress the image of the action when the player change the action
+	public SC_cell _selected_cell {get; set;}
 
 	public void SetPosition(GridPosition position)
 	{
@@ -138,7 +140,7 @@ public struct Action
 			case ActionType.Pass:
 				return "Pass";
 			case ActionType.Tackle:
-				return "Tackle";
+				return "Tackle : " + _direction_move.ToString();
 			case ActionType.Defense:
 				return "Defense";	
 			case ActionType.None:

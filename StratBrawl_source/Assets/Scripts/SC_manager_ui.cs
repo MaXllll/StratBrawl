@@ -80,7 +80,6 @@ public class SC_manager_ui : MonoBehaviour {
 	}
 
 	public void UpdateActionsSlotForBrawler(SC_brawler brawler){
-		Debug.Log ("Tamayr");
 		/** ne marche pas il faudrait stocker les buttons dans un tableau pour les parcourir en meme temps que les actions
 		int nb_actions = SC_manager_game._instance._game_settings._number_actions_per_turn;
 		for (int i = 0; i < nb_actions-1; i++) {

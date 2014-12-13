@@ -14,6 +14,10 @@ public partial class SC_manager_game : MonoBehaviour {
 
 	[SerializeField]
 	private Sprite _Spr_ui_arrow;
+	[SerializeField]
+	private Sprite _Spr_ui_ball;
+	[SerializeField]
+	private Sprite _Spr_ui_ball2;
 
 	//Planification
 
@@ -58,13 +62,13 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		_manager_ui.SetActiveButtonBackTypes(false);
 		_manager_ui.SetActivePanelActionsTypes(false);
-		SetActiveCellsForMove (false);
+		SetActiveCellsForMoveAndTackle (false);
 		SetActiveCellsForPass (false);
 		OpenMenuActionsSlots ();
 	}
 
 	
-	public void SetActiveCellsForMove(bool active)
+	public void SetActiveCellsForMoveAndTackle(bool active)
 	{
 		GridPosition cell_selected_position = CalculateCurrentPositionWithFutureActions();
 		int x = (int)cell_selected_position.GetWorldPosition ().x;
@@ -80,7 +84,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		GridPosition cell_selected_position = CalculateCurrentPositionWithFutureActions();
 		int nb_cells = _game_settings._i_pass_nb_cells;
-		Debug.Log(nb_cells);
 		int x = (int)cell_selected_position.GetWorldPosition ().x;
 		int y = (int)cell_selected_position.GetWorldPosition ().y;
 		for (int i=1; i< nb_cells+1; i++) {
@@ -188,29 +191,43 @@ public partial class SC_manager_game : MonoBehaviour {
 	}
 	*/
 	private void AddActionToBrawlerArray(){
+		for (int i = _selected_slot; i < _selected_brawler._actions.Length; i++) {
+			if(_selected_brawler._actions[i]._action_type != ActionType.None){
+				RemoveDisplayOnCell(_selected_brawler._actions[i]._selected_cell);
+				_selected_brawler._actions[i] = new Action();
+				_selected_brawler._actions[i].SetNone();
+			}
+		}
+		if (_selected_brawler._actions [_selected_slot]._action_type != ActionType.None) {			
+			RemoveDisplayOnCell(_selected_brawler._actions [_selected_slot]._selected_cell);
+		}
 		_selected_brawler._actions[_selected_slot] = _selected_action;
-		_number_of_chosen_actions++;
+		_number_of_chosen_actions++;		
+		_manager_ui.UpdateActionsSlotForBrawler(_selected_brawler);
+	}
+
+	public void RemoveDisplayOnCell(SC_cell cell){
+		cell._IMG_action_display.color = new Color (255, 255, 255, 0);
+		cell._IMG_action_display.sprite = null;
 	}
 
 	public void RegisterSelectedCellPositionForAction(SC_cell selected_cell){
 		_selected_cell = selected_cell;
 		// TODO si il y a un bug sur le tackle, voir ici car le tackle ne passera pas par cette méthode donc la 
 		// la selected_cell ne sera pas a jour
-
 		_selected_action._position = selected_cell._position;
 		_selected_action._direction_move = DetermineMoveDirection (selected_cell._position);
+		_selected_action._selected_cell = selected_cell;
 		// TODO optimisation en mettant juste tout les cells à false?
-		SetActiveCellsForMove (false);
+		SetActiveCellsForMoveAndTackle (false);
 		SetActiveCellsForPass (false);
 	}
 
-	public void UpdateActionSlotText(){
-		//_manager_ui.SetActionSlotText (_selected_action.ToString (), _selected_slot);		
+	public void UpdateActionSlotText(){	
 		_manager_ui.SetActionSlotText (_selected_action.ToString (), _selected_slot);
-		//AddActionToArray ();
-		AddActionToBrawlerArray ();		
-		CloseMenuActionsTypes ();		
-		DisplayChosenActionsOnField ();
+		CloseMenuActionsTypes ();			
+		AddActionToBrawlerArray ();	
+		DisplayChosenActionsOnField ();	
 	}
 
 	/// SUMMARY : Register the type of action chose by the player to display the right elements ( arrow if it is a move, nothing if it
@@ -224,14 +241,52 @@ public partial class SC_manager_game : MonoBehaviour {
 	}
 
 	public void DisplayChosenActionsOnField(){
-		Debug.Log ("TIMMY");
-		if(_selected_action._action_type == ActionType.Move){			
-			Debug.Log ("TIMMY2");
-			//_selected_cell._GO_button_canvas.SetActive (true); 
-			//_selected_cell._IMG_action_display.SetActive(true);
-			_selected_cell._IMG_action_display.sprite = _Spr_ui_arrow;
-			_selected_cell._IMG_action_display.color = new Color(255,2555,255,255);
-			//_selected_cell._UIButton_button.image.rectTransform.Rotate(new Vector3(0,0,90));
+		foreach (Action action in _selected_brawler._actions) {
+			// Reset the rectTransform rotation so the rotation is not applied multiple times in a row on it, since this method 
+			// is called for every action changed (needed if the player decide to change action 1 when action 2 or 3 was already defined)
+			if(action._selected_cell != null){
+				action._selected_cell._IMG_action_display.rectTransform.rotation = new Quaternion();				
+				//action._selected_cell._IMG_action_display.rectTransform.transform = new Transform();
+			}
+			if (action._action_type == ActionType.Move) {
+				Image image = action._selected_cell._IMG_action_display;
+				image.sprite = _Spr_ui_arrow;
+				image.color = new Color (255, 255, 255, 255);
+				switch (action._direction_move) {
+					case Direction.Right:				
+							action._selected_cell._IMG_action_display.rectTransform.Rotate (new Vector3 (0, 0, 180));
+							break;
+					case Direction.Down:
+							action._selected_cell._IMG_action_display.rectTransform.Rotate (new Vector3 (0, 0, 90));
+							break;
+					case Direction.Up:
+							action._selected_cell._IMG_action_display.rectTransform.Rotate (new Vector3 (0, 0, -90));
+							break;
+					default:
+							break;
+				}
+			}else if (action._action_type == ActionType.Tackle) {
+				Image image = action._selected_cell._IMG_action_display;
+				image.sprite = _Spr_ui_arrow;
+				image.color = new Color (0, 0, 0, 255);
+				switch (action._direction_move) {
+				case Direction.Right:				
+					action._selected_cell._IMG_action_display.rectTransform.Rotate (new Vector3 (0, 0, 180));
+					//action._selected_cell._IMG_action_display.rectTransform.Translate(new Vector3(0.35f,0,0));
+					break;
+				case Direction.Down:
+					action._selected_cell._IMG_action_display.rectTransform.Rotate (new Vector3 (0, 0, 90));
+					break;
+				case Direction.Up:
+					action._selected_cell._IMG_action_display.rectTransform.Rotate (new Vector3 (0, 0, -90));
+					break;
+				default:
+					break;
+				}
+			}else if (action._action_type == ActionType.Pass) {				
+					action._selected_cell._IMG_action_display.sprite = _Spr_ui_ball;
+					action._selected_cell._IMG_action_display.color = new Color (255, 255, 255, 255);
+			} 
 		}
 	}
 }

@@ -1484,6 +1484,18 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1349713895}
+        m_MethodName: SetActiveCellsForMoveAndTackle
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1349713895}
         m_MethodName: RegisterAction
         m_Mode: 5
         m_Arguments:
@@ -1493,19 +1505,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: tackle
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1349713895}
-        m_MethodName: UpdateActionSlotText
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
@@ -1823,7 +1823,7 @@ GameObject:
   - 222: {fileID: 705829469}
   - 114: {fileID: 705829468}
   m_Layer: 5
-  m_Name: Text_defense
+  m_Name: Text_none
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1871,7 +1871,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Defense
+  m_Text: None
 --- !u!222 &705829469
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1895,7 +1895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &729267710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1934,7 +1934,31 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 729267711}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1349713895}
+        m_MethodName: RegisterAction
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: none
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1349713895}
+        m_MethodName: UpdateActionSlotText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
+            Culture=neutral, PublicKeyToken=null
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &729267711
@@ -3131,7 +3155,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1349713895}
-        m_MethodName: SetActiveCellsForMove
+        m_MethodName: SetActiveCellsForMoveAndTackle
         m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3529,6 +3553,8 @@ MonoBehaviour:
   _GO_prefab_brawler: {fileID: 100002, guid: bd368b590eba28143af0d4573ae8325e, type: 2}
   _selected_brawler: {fileID: 0}
   _Spr_ui_arrow: {fileID: 21300000, guid: ab98f18cc11364945aecf190f2129df2, type: 3}
+  _Spr_ui_ball: {fileID: 0}
+  _Spr_ui_ball2: {fileID: 0}
   _simulator: {fileID: 1349713897}
   _T_root_cells_gameField: {fileID: 232614646}
   _GO_prefab_cell_gameField: {fileID: 100000, guid: 66885710868dfe040b7f1131e41ef7f2,
@@ -3760,6 +3786,18 @@ Prefab:
     - target: {fileID: 100000, guid: 66885710868dfe040b7f1131e41ef7f2, type: 2}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 66885710868dfe040b7f1131e41ef7f2, type: 2}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 66885710868dfe040b7f1131e41ef7f2, type: 2}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400010, guid: 66885710868dfe040b7f1131e41ef7f2, type: 2}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 66885710868dfe040b7f1131e41ef7f2, type: 2}
@@ -4205,18 +4243,6 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1349713895}
-        m_MethodName: SetActiveCellsNextToSelectedCell
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine, Version=0.0.0.0,
-            Culture=neutral, PublicKeyToken=null
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1349713895}
         m_MethodName: CloseMenuActionsTypes
         m_Mode: 1
         m_Arguments:
@@ -4272,7 +4298,7 @@ RectTransform:
   m_RootOrder: 4
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 44, y: -12.6000004}
+  m_AnchoredPosition: {x: 44, y: -17.2000008}
   m_SizeDelta: {x: 81.4100037, y: 30}
   m_Pivot: {x: .5, y: .5}
 --- !u!1 &1679054662

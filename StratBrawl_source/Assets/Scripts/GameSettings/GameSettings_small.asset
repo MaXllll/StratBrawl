@@ -19,8 +19,8 @@ MonoBehaviour:
   i_planification_time: 15
   i_nb_brawlers_per_team: 1
   positions_brawlers_attack_formation:
-  - _i_x: 2
-    _i_y: 3
+  - _i_x: 4
+    _i_y: 4
   positions_brawlers_defense_formation:
   - _i_x: 2
     _i_y: 1

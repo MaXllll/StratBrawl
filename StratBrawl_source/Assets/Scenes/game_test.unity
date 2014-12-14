@@ -3559,7 +3559,6 @@ MonoBehaviour:
   _selected_brawler: {fileID: 0}
   _Spr_ui_arrow: {fileID: 21300000, guid: ab98f18cc11364945aecf190f2129df2, type: 3}
   _Spr_ui_ball: {fileID: 0}
-  _Spr_ui_ball2: {fileID: 0}
   _simulator: {fileID: 1349713897}
   _T_root_cells_gameField: {fileID: 232614646}
   _GO_prefab_cell_gameField: {fileID: 100000, guid: 66885710868dfe040b7f1131e41ef7f2,

@@ -16,8 +16,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	private Sprite _Spr_ui_arrow;
 	[SerializeField]
 	private Sprite _Spr_ui_ball;
-	[SerializeField]
-	private Sprite _Spr_ui_ball2;
 
 	private Image[,] _img_brawler_actions_cells;
 
@@ -25,17 +23,15 @@ public partial class SC_manager_game : MonoBehaviour {
 	//Planification
 
 	public void InitPlanification(){
-		Debug.Log ("mujg");
 		int i_width = 5;
-		//int i_width = _game_settings._i_nb_brawlers_per_team;
+		// TODO int i_width = _game_settings._i_nb_brawlers_per_team;
 		int i_height = 3;		
-		//int i_height = _game_settings._i_nb_actions_per_turn;
+		// TODO int i_height = _game_settings._i_nb_actions_per_turn;
 		_img_brawler_actions_cells = new Image[i_width,i_height];
 		for(int i = 0; i < i_width; i++)
 		{
 			for(int j = 0; j < i_height; j++)
 			{
-				Debug.Log (i);
 				_img_brawler_actions_cells[i,j] = null;
 			}
 		}
@@ -97,17 +93,25 @@ public partial class SC_manager_game : MonoBehaviour {
 
 		SetCellActive (x + 1, y, active);
 		SetCellActive (x - 1, y, active);
-		SetCellActive (x, y+1, active);
-		SetCellActive (x, y-1, active);
+		SetCellActive (x, y + 1, active);
+		SetCellActive (x, y - 1, active);
 	}
 
-		public void SetActiveCellsForPass(bool active)
+	public void SetActiveCellsForPass(bool active)
 	{
 		GridPosition cell_selected_position = CalculateCurrentPositionWithFutureActions();
-		int nb_cells = _game_settings._i_pass_nb_cells;
+		// TODO int nb_cells = _game_settings._i_pass_nb_cells;
+		int nb_cells = 4;
 		int x = (int)cell_selected_position.GetWorldPosition ().x;
 		int y = (int)cell_selected_position.GetWorldPosition ().y;
-		for (int i=1; i< nb_cells+1; i++) {
+		for (int i=0; i <= nb_cells; i++) {
+			for(int j=nb_cells-i;j>=0;j--){
+				SetCellActive(x+j,y+i,active);
+				SetCellActive(x-j,y+i,active);
+				SetCellActive(x+j,y-i,active);
+				SetCellActive(x-j,y-i,active);
+			}
+			/*
 			SetCellActive(x + i, y, active);
 			SetCellActive(x - i, y, active);
 			SetCellActive(x, y + i, active);
@@ -116,6 +120,7 @@ public partial class SC_manager_game : MonoBehaviour {
 			SetCellActive(x-i+1, y+i-1, active);
 			SetCellActive(x+i-1, y-i+1, active);
 			SetCellActive(x+i-1, y+i-1, active);
+			*/
 		}
 	}
 
@@ -316,9 +321,9 @@ public partial class SC_manager_game : MonoBehaviour {
 
 	public void RemoveAllActionDisplay(){
 		int i_width = 5;
-		//int i_width = _game_settings._i_nb_brawlers_per_team;
+		// TODO int i_width = _game_settings._i_nb_brawlers_per_team;
 		int i_height = 3;		
-		//int i_height = _game_settings._i_nb_actions_per_turn;
+		// TODO int i_height = _game_settings._i_nb_actions_per_turn;
 
 		for(int i = 0; i < i_width; i++)
 		{

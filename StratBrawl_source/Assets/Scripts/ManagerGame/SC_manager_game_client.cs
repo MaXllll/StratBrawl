@@ -28,7 +28,6 @@ public partial class SC_manager_game : MonoBehaviour {
 		if (Network.isClient)
 			_network_view.RPC("ClientIsReadyToStart", RPCMode.Server);
 		StartPlanification_Client ();
-		Debug.Log ("tamer");
 	}
 
 	/// SUMMARY : Start the planification phase on client side.
@@ -37,7 +36,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	[RPC]
 	private void StartPlanification_Client()
 	{
-		Debug.Log ("tamermaggle");
 		ResetActionsOfAllBrawlers();
 		SetActiveButtonsBrawlers(true, _b_player_team);
 		InitPlanification ();
@@ -69,7 +67,6 @@ public partial class SC_manager_game : MonoBehaviour {
 			for (int j = 0; j < 3; j++)
 			{
 				_actions[i, j] = _brawlers_team_false[i]._actions[j];
-				Debug.Log(_actions[i, j].ToString());
 			}
 		}
 

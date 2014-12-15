@@ -28,8 +28,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	private void StartPlanification_Server()
 	{
-		Debug.Log("Start planification");
-
 		_b_server_is_ready_planification = false;
 		_b_client_is_ready_planification = false;
 
@@ -73,8 +71,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	private void EndPlanification_Server()
 	{
-		Debug.Log("End planification");
-
 		StopCoroutine(EndPlanificationTimer());
 
 		_network_view.RPC("EndPlanification_Client", RPCMode.All);
@@ -86,8 +82,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	[RPC]
 	private void SendActions(byte[] _data_actions)
 	{
-		Debug.Log("Client actions arrived");
-
 		BinaryFormatter _BF = new BinaryFormatter();
 		MemoryStream _MS = new MemoryStream();
 		_MS.Write(_data_actions,0,_data_actions.Length); 
@@ -110,8 +104,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	private void Simulation()
 	{
-		Debug.Log("Simulation");
-
 		SimulationResult[] _simulation_result = _simulator.StartSimulation(_brawlers, _ball, _i_gameField_width, _i_gameField_height);
 
 		_b_server_is_ready_animation = false;

@@ -37,6 +37,5 @@ public class SC_create_game_click_handler : MonoBehaviour
 				MasterServer.ipAddress = "127.0.0.1";
 				MasterServer.port = 23466;
 				MasterServer.RegisterHost ("1V1", gameName, "Test Comment");
-				Debug.Log ("Je créer la partie " + gameName + " sur le port " + MasterServer.port);
 		}
 }

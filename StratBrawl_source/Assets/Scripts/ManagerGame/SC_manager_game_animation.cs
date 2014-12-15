@@ -27,7 +27,6 @@ public partial class SC_manager_game : MonoBehaviour {
 			case BallStatus.OnBrawler:
 				if (_ball._brawler_with_the_ball == null || simulation_results[i]._ball_simulation_result._i_brawler_with_the_ball != _ball._brawler_with_the_ball._i_index)
 				{
-					Debug.Log(simulation_results[i]._ball_simulation_result._i_brawler_with_the_ball);
 					StartCoroutine(_ball._animation.InterpolationOnMovingTagret(_brawlers[simulation_results[i]._ball_simulation_result._i_brawler_with_the_ball]._T_brawler, _f_duration_animation));
 				}
 				break;

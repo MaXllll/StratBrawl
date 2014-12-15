@@ -3075,7 +3075,7 @@ Prefab:
     - target: {fileID: 11400000, guid: 6a1f14dad6140fd4ea40f100096ef987, type: 2}
       propertyPath: game_settings
       value: 
-      objectReference: {fileID: 11400000, guid: 26feb35ec4d17b34e92e39af0b3ffabb,
+      objectReference: {fileID: 11400000, guid: e7504d150beef30499ce71b3cd18b1a5,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a1f14dad6140fd4ea40f100096ef987, type: 2}
@@ -3547,7 +3547,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fda831c825b94b343b3578bec043fe43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  game_settings: {fileID: 11400000, guid: 26feb35ec4d17b34e92e39af0b3ffabb, type: 2}
+  game_settings: {fileID: 11400000, guid: e7504d150beef30499ce71b3cd18b1a5, type: 2}
   _camera: {fileID: 325560780}
   _T_camera: {fileID: 325560781}
   _network_view: {fileID: 1349713896}

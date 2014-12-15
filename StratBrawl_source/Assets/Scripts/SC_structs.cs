@@ -81,64 +81,20 @@ public struct Action
 {
 	public ActionType _action_type { get; private set; }
 
-//	private Direction _direction;
-//	public GridPosition _direction_move
-//	{
-//		get
-//		{ 
-//			switch (_direction)
-//			{
-//			case Direction.Right:
-//				return GridPosition.right;
-//			case Direction.Left:
-//				return GridPosition.left;
-//			case Direction.Up:
-//				return GridPosition.up;
-//			case Direction.Down:
-//				return GridPosition.down;
-//			default:
-//				return GridPosition.zero;
-//			}
-//		}
-//	}
-//
-//	public GridPosition _position_pass { get; private set; }
-
 	public Direction _direction_move {get; set;}
 	public GridPosition _position {get; set;}
-	//necessary to suppress the image of the action when the player change the action
-	//public Image _image_cell { get; set;}
+
 
 	public void SetPosition(GridPosition position)
 	{
 		_position = position;
 	}
+
 	public void SetNone()
 	{
 		_action_type = ActionType.None;
 	}
-	/*
-	public GridPosition _position_pass {get; private set;}
-	
-	public void SetMove(Direction direction_move)
-	{
-		_action_type = ActionType.Move;
-		_direction = direction_move;
-	}
-	
-	public void SetTackle(Direction direction_move)
-	{
-		_action_type = ActionType.Tackle;
-		_direction = direction_move;
-	}
-	
-	public void SetPass(GridPosition position_pass)
-	{
-		_action_type = ActionType.Pass;
-		_position_pass = position_pass;
-	}
 
-	*/
 	public void SetType(string action_name){
 		switch (action_name) {
 			case "move":

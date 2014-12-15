@@ -25,7 +25,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	//Planification
 
 	public void InitPlanification(){
-		Debug.Log ("mujg");
 		int i_width = 5;
 		//int i_width = _game_settings._i_nb_brawlers_per_team;
 		int i_height = 3;		
@@ -35,7 +34,6 @@ public partial class SC_manager_game : MonoBehaviour {
 		{
 			for(int j = 0; j < i_height; j++)
 			{
-				Debug.Log (i);
 				_img_brawler_actions_cells[i,j] = null;
 			}
 		}
@@ -204,13 +202,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	public void RegisterSelectedSlot(int selected_slot){
 		_selected_slot = selected_slot;
 	}
-	/*
-	private void AddActionToArray(){
-		Debug.Log (_selected_slot);
-		_actions_chosen [_selected_slot] = _selected_action;
-		_number_of_chosen_actions++;
-	}
-	*/
+
 	private void AddActionToBrawlerArray(){
 		for (int i = _selected_slot; i < _selected_brawler._actions.Length; i++) {
 			if(_selected_brawler._actions[i]._action_type != ActionType.None){
@@ -239,8 +231,6 @@ public partial class SC_manager_game : MonoBehaviour {
 		_selected_action._position = selected_cell._position;
 		_selected_action._direction_move = DetermineMoveDirection (selected_cell._position);
 		//_selected_action._image_cell = selected_cell._IMG_action_display;
-		//Debug.Log (_selected_brawler._i_index);
-		//Debug.Log (_selected_brawler._i_index);
 		_img_brawler_actions_cells [_selected_brawler._i_index,_selected_slot] = selected_cell._IMG_action_display;
 		// TODO optimisation en mettant juste tout les cells à false?
 		SetActiveCellsForMoveAndTackle (false);

@@ -60,13 +60,8 @@ public partial class SC_manager_game : MonoBehaviour {
 
 			if (simulation_results[i]._b_is_goal)
 			{
-				if (simulation_results[i]._b_team_who_scores)
-					_i_score_team_true++;
-				else
-					_i_score_team_false++;
-
+				IncrementScore(simulation_results[i]._b_team_who_scores);
 				SetEngagePosition(!simulation_results[i]._b_team_who_scores);
-
 				break;
 			}
 		}

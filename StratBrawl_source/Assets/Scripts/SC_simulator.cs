@@ -71,7 +71,7 @@ public class SC_simulator : MonoBehaviour {
 		public int GetCurrentBrawlerIndexAtPosition(GridPosition position)
 		{
 			if (IsInsideTheTerrain(position))
-				return _i_position_brawlers_prevision[position._i_x, position._i_y];
+				return _i_position_brawlers_current[position._i_x, position._i_y];
 			else
 				return -1;
 		}
@@ -442,6 +442,20 @@ public class SC_simulator : MonoBehaviour {
 			_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
 			return;
 		}
+
+		int i_brawler_prevision_at_current_position = _terrain_data.GetPrevisionBrawlerIndexAtPosition(brawler._position_current);
+		int i_brawler_current_at_prevision_position = _terrain_data.GetCurrentBrawlerIndexAtPosition(position);
+		if (i_brawler_prevision_at_current_position != -1
+		    && i_brawler_prevision_at_current_position == i_brawler_current_at_prevision_position)
+		{
+			_terrain_data.CancelPrevisionAtPosition(_brawlers_data._brawlers[i_brawler_prevision_at_current_position]._position_prevision);
+			SetPrevisionPosition(_brawlers_data._brawlers[i_brawler_prevision_at_current_position], _brawlers_data._brawlers[i_brawler_prevision_at_current_position]._position_current);
+			
+			brawler._position_prevision = brawler._position_current;
+			_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
+			return;
+		}
+
 		int i_brawler_at_prevision_position = _terrain_data.GetPrevisionBrawlerIndexAtPosition(position);
 		if (i_brawler_at_prevision_position != -1)
 		{
@@ -452,6 +466,7 @@ public class SC_simulator : MonoBehaviour {
 			_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
 			return;
 		}
+
 		brawler._position_prevision = position;
 		_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
 	}

@@ -22,6 +22,9 @@ public partial class SC_manager_game : MonoBehaviour {
 		_ball.Init();
 		
 		SetEngagePosition(true);
+		_manager_ui.SetScore(true, _i_score_team_true);
+		_manager_ui.SetScore(false, _i_score_team_false);
+		_manager_ui.EndTimer();
 
 		_network_view = networkView;
 		Network.isMessageQueueRunning = true;
@@ -38,6 +41,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		ResetActionsOfAllBrawlers();
 		SetActiveButtonsBrawlers(true, _b_player_team);
+		_manager_ui.StartTimer(_game_settings._i_planification_time);
 		InitPlanification ();
 	}
 
@@ -49,6 +53,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		SetActiveButtonsBrawlers(false, _b_player_team);
 		RemoveAllActionDisplay();
+		_manager_ui.EndTimer();
 		if (Network.isClient)
 		{
 			byte[] _actions = GenerateActionsDataToSend();
@@ -118,5 +123,19 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		SetBrawlersEngagePositions(_game_settings._positions_brawlers_attack_formation, _game_settings._positions_brawlers_defense_formation, b_team_with_ball);
 		_ball.SetBrawlerWithTheBall(GetTeamCaptain(b_team_with_ball));
+	}
+
+	private void IncrementScore(bool b_team)
+	{
+		if (b_team)
+		{
+			_i_score_team_true++;
+			_manager_ui.SetScore(true, _i_score_team_true);
+		}
+		else
+		{
+			_i_score_team_false++;
+			_manager_ui.SetScore(false, _i_score_team_true);
+		}
 	}
 }

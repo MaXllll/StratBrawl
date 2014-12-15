@@ -202,13 +202,13 @@ public partial class SC_manager_game : MonoBehaviour {
 	private void AddActionToBrawlerArray(){
 		for (int i = _selected_slot; i < _selected_brawler._actions.Length; i++) {
 			if(_selected_brawler._actions[i]._action_type != ActionType.None){
-				RemoveDisplayOnCell(_img_brawler_actions_cells[_selected_brawler._i_index,i]);
+				RemoveDisplayOnCell(_img_brawler_actions_cells[_selected_brawler._i_index_in_team,i]);
 				_selected_brawler._actions[i] = new Action();
 				_selected_brawler._actions[i].SetNone();
 			}
 		}
 		if (_selected_brawler._actions [_selected_slot]._action_type != ActionType.None) {			
-			RemoveDisplayOnCell(_img_brawler_actions_cells[_selected_brawler._i_index,_selected_slot]);
+			RemoveDisplayOnCell(_img_brawler_actions_cells[_selected_brawler._i_index_in_team,_selected_slot]);
 		}
 		_selected_brawler._actions[_selected_slot] = _selected_action;
 		_number_of_chosen_actions++;		
@@ -253,7 +253,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	public void DisplayChosenActionsOnField(){
 		for (int i = 0; i< _selected_brawler._actions.Length ; i++) {
 			Action action = _selected_brawler._actions[i];
-			Image image = _img_brawler_actions_cells[_selected_brawler._i_index,i];
+			Image image = _img_brawler_actions_cells[_selected_brawler._i_index_in_team,i];
 			// Reset the rectTransform rotation so the rotation is not applied multiple times in a row on it, since this method 
 			// is called for every action changed (needed if the player decide to change action 1 when action 2 or 3 was already defined)
 			if(image != null){

@@ -1,0 +1,65 @@
+-debug
+-target:library
+-nowarn:0169
+-out:Temp/Assembly-CSharp.dll
+-r:"D:/Programmes/Unity 4.6/Editor/Data/Managed/UnityEngine.dll"
+-r:"D:/Programmes/Unity 4.6/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll"
+-r:"D:/Programmes/Unity 4.6/Editor/Data/Managed/UnityEditor.dll"
+-define:UNITY_4_6_0
+-define:UNITY_4_6
+-define:UNITY_STANDALONE_WIN
+-define:ENABLE_MICROPHONE
+-define:ENABLE_TEXTUREID_MAP
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_NEW_HIERARCHY 
+-define:ENABLE_AUDIO_FMOD
+-define:UNITY_STANDALONE
+-define:ENABLE_MONO
+-define:ENABLE_TERRAIN
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_GENERICS
+-define:INCLUDE_WP8SUPPORT
+-define:ENABLE_MOVIES
+-define:ENABLE_WWW
+-define:ENABLE_IMAGEEFFECTS
+-define:ENABLE_4_6_FEATURES
+-define:INCLUDE_WP_BLUE_SUPPORT
+-define:ENABLE_WEBCAM
+-define:INCLUDE_METROSUPPORT
+-define:RENDER_SOFTWARE_CURSOR
+-define:ENABLE_NETWORK
+-define:ENABLE_PHYSICS
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_2D_PHYSICS
+-define:ENABLE_SHADOWS
+-define:ENABLE_AUDIO
+-define:ENABLE_NAVMESH_CARVING
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_SINGLE_INSTANCE_BUILD_SETTING
+-define:ENABLE_PROFILER
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_WIN
+Assets/Scripts/GameSettings/SO_game_settings.cs
+Assets/Scripts/ManagerGame/SC_manager_game.cs
+Assets/Scripts/ManagerGame/SC_manager_game_animation.cs
+Assets/Scripts/ManagerGame/SC_manager_game_brawlers.cs
+Assets/Scripts/ManagerGame/SC_manager_game_client.cs
+Assets/Scripts/ManagerGame/SC_manager_game_planification.cs
+Assets/Scripts/ManagerGame/SC_manager_game_server.cs
+Assets/Scripts/ManagerGame/SC_manager_game_terrain.cs
+Assets/Scripts/Menu/SC_create_game_click_handler.cs
+Assets/Scripts/Menu/SC_lobby.cs
+Assets/Scripts/Menu/SC_menu_click_handler.cs
+Assets/Scripts/Menu/SC_play_menu_click_handler.cs
+Assets/Scripts/SC_animation.cs
+Assets/Scripts/SC_ball.cs
+Assets/Scripts/SC_brawler.cs
+Assets/Scripts/SC_cell.cs
+Assets/Scripts/SC_enums.cs
+Assets/Scripts/SC_manager_ui.cs
+Assets/Scripts/SC_simulator.cs
+Assets/Scripts/SC_structs.cs
+Assets/tmp/SC_menu_tmp.cs
+-r:"D:/Programmes/Unity 4.6/Editor/Data/Mono\lib/mono/unity\System.Runtime.Serialization.dll"
+-r:"D:/Programmes/Unity 4.6/Editor/Data/Mono\lib/mono/unity\System.Xml.Linq.dll"

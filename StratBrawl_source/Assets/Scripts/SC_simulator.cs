@@ -97,14 +97,24 @@ public class SC_simulator : MonoBehaviour {
 			else
 				f_next_border_y = position_current._i_y - 0.5f;
 
+			Debug.Log("Start Pass");
+
+			Debug.Log(V2_current_position.x + " " + V2_current_position.y);
+			Debug.Log(position_current._i_x + " " + position_current._i_y);
+
 			while (position_current != position_target && f_distance_current < f_distance_max)
 			{
+				Debug.Log("Start Finding next cell");
+
 				float f_factor_next_cell_x = (f_next_border_x - V2_current_position.x) / V2_directory.x;
 				float f_factor_next_cell_y = (f_next_border_y - V2_current_position.y) / V2_directory.y;
 
+				Debug.Log("Factor next cell x : " + f_factor_next_cell_x);
+				Debug.Log("Factor next cell y : " + f_factor_next_cell_y);
+
 				if (f_factor_next_cell_x <= f_factor_next_cell_y)
 				{
-					V2_current_position = new Vector2(f_next_border_x, V2_directory.y * f_factor_next_cell_x);
+					V2_current_position = new Vector2(f_next_border_x, V2_current_position.y + V2_directory.y * f_factor_next_cell_x);
 					if (V2_directory.x > 0)
 					{
 						position_current._i_x ++;
@@ -119,7 +129,7 @@ public class SC_simulator : MonoBehaviour {
 
 				if (f_factor_next_cell_y <= f_factor_next_cell_x)
 				{
-					V2_current_position = new Vector2( V2_directory.x * f_factor_next_cell_y, f_next_border_y);
+					V2_current_position = new Vector2( V2_current_position.x + V2_directory.x * f_factor_next_cell_y, f_next_border_y);
 					if (V2_directory.y > 0)
 					{
 						position_current._i_y ++;
@@ -131,6 +141,7 @@ public class SC_simulator : MonoBehaviour {
 						f_next_border_y = position_current._i_y - 0.5f;
 					}
 				}
+				Debug.Log(V2_current_position.x + " " + V2_current_position.y);
 				Debug.Log(position_current._i_x + " " + position_current._i_y);
 				f_distance_current = Vector2.Distance(position_start.ToVector2(), V2_current_position);
 

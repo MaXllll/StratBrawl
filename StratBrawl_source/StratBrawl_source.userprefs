@@ -1,12 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SC_structs.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\SC_simulator.cs">
     <Files>
-      <File FileName="Assets\Scripts\SC_simulator.cs" Line="128" Column="10" />
+      <File FileName="Assets\Scripts\SC_simulator.cs" Line="124" Column="7" />
       <File FileName="Assets\Scripts\SC_structs.cs" Line="16" Column="68" />
-      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_client.cs" Line="39" Column="3" />
-      <File FileName="Assets\tmp\SC_menu_tmp.cs" Line="32" Column="52" />
-      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs" Line="219" Column="51" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

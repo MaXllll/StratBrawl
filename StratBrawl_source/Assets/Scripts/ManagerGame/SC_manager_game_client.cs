@@ -40,8 +40,6 @@ public partial class SC_manager_game : MonoBehaviour {
 	private void StartPlanification_Client()
 	{
 		ResetActionsOfAllBrawlers();
-		SetActiveButtonsBrawlers(true, _b_player_team);
-		_manager_ui.StartTimer(_game_settings._i_planification_time);
 		InitPlanification ();
 	}
 

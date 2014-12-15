@@ -23,6 +23,9 @@ public partial class SC_manager_game : MonoBehaviour {
 	//Planification
 
 	public void InitPlanification(){
+		SetActiveButtonsBrawlers(true, _b_player_team);
+		_manager_ui.SetActiveButtonEndTurn (true);
+		_manager_ui.StartTimer(_game_settings._i_planification_time);
 		int i_width = _game_settings._i_nb_brawlers_per_team;
 		int i_height = 3;		
 		// TODO int i_height = _game_settings._i_nb_actions_per_turn;
@@ -316,8 +319,9 @@ public partial class SC_manager_game : MonoBehaviour {
 	}
 
 	public void EndTurn(){
-		CloseMenuActionsSlots();
-		CloseMenuActionsTypes();
+		// TODO To be fixed , these two menus should be closed here but they need a selected_brawler and it wont always be set so it can make nullrefexcept.
+		//CloseMenuActionsTypes();
+		//CloseMenuActionsSlots();
 		SetActiveButtonsBrawlers (false,_b_player_team);
 		if (Network.isServer)
 			ServerIsReadyPlanification();

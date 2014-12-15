@@ -31,6 +31,9 @@ public class SC_manager_ui : MonoBehaviour {
 	[SerializeField]
 	private Text _t_button_slot_3;
 
+	[SerializeField]
+	private GameObject _GO_button_end_turn;
+
 	public void Awake()
 	{
 		SetActiveButtonBackSlotsBrawler(false);
@@ -43,6 +46,12 @@ public class SC_manager_ui : MonoBehaviour {
 	{
 		_GO_panel_actions_slots_brawler.SetActive(b_active);
 	}
+
+	public void SetActiveButtonEndTurn(bool b_active)
+	{
+		_GO_button_end_turn.SetActive(b_active);
+	}
+
 	/*
 	public void SetActiveButtonBackSlots(bool b_active)
 	{

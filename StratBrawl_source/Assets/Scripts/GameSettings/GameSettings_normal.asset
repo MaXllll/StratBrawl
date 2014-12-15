@@ -11,6 +11,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d55402306801cb43ae64624454c375a, type: 3}
   m_Name: GameSettings_normal
   m_EditorClassIdentifier: 
+  i_pass_nb_cells: 2
+  i_nb_actions_per_turn: 3
   i_gameField_width: 12
   i_gameField_height: 7
   i_nb_turn_max: 10

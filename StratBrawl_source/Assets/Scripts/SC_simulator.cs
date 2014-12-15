@@ -76,57 +76,69 @@ public class SC_simulator : MonoBehaviour {
 				return -1;
 		}
 
-		public int GetFirstBrawlerIndexOnTrajectory(GridPosition position_start, GridPosition position_end)
+		public int GetFirstBrawlerIndexOnTrajectory(GridPosition position_start, GridPosition position_target)
 		{
-			// TODO : Calaculate brawlers on trajectory
-
-			GridPosition _position_current = position_start;
+			GridPosition position_current = position_start;
+			float f_distance_max = Vector2.Distance(position_start.ToVector2(), position_target.ToVector2());
+			float f_distance_current = 0f;
 			Vector2 V2_current_position = position_start.ToVector2();
-			Vector2 V2_directory = (position_end - position_start).ToVector2();
+			Vector2 V2_directory = (position_target - position_start).ToVector2();
 			V2_directory.Normalize();
 
 			float f_next_border_x;
 			if (V2_directory.x > 0)
-				f_next_border_x = _position_current._i_x + 0.5f;
+				f_next_border_x = position_current._i_x + 0.5f;
 			else
-				f_next_border_x = _position_current._i_x - 0.5f;
+				f_next_border_x = position_current._i_x - 0.5f;
 
 			float f_next_border_y;
 			if (V2_directory.y > 0)
-				f_next_border_y = _position_current._i_y + 0.5f;
+				f_next_border_y = position_current._i_y + 0.5f;
 			else
-				f_next_border_y = _position_current._i_y - 0.5f;
+				f_next_border_y = position_current._i_y - 0.5f;
 
-			while (_position_current != position_end)
+			while (position_current != position_target && f_distance_current < f_distance_max)
 			{
 				float f_factor_next_cell_x = (f_next_border_x - V2_current_position.x) / V2_directory.x;
 				float f_factor_next_cell_y = (f_next_border_y - V2_current_position.y) / V2_directory.y;
 
-				if (f_factor_next_cell_x >= f_factor_next_cell_y)
+				if (f_factor_next_cell_x <= f_factor_next_cell_y)
 				{
-					_position_current._i_x ++;
 					V2_current_position = new Vector2(f_next_border_x, V2_directory.y * f_factor_next_cell_x);
 					if (V2_directory.x > 0)
-						f_next_border_x = _position_current._i_x + 0.5f;
+					{
+						position_current._i_x ++;
+						f_next_border_x = position_current._i_x + 0.5f;
+					}
 					else
-						f_next_border_x = _position_current._i_x - 0.5f;
+					{
+						position_current._i_x --;
+						f_next_border_x = position_current._i_x - 0.5f;
+					}
 				}
 
-				if (f_factor_next_cell_y >= f_factor_next_cell_x)
+				if (f_factor_next_cell_y <= f_factor_next_cell_x)
 				{
-					_position_current._i_y ++;
 					V2_current_position = new Vector2( V2_directory.x * f_factor_next_cell_y, f_next_border_y);
 					if (V2_directory.y > 0)
-						f_next_border_y = _position_current._i_y + 0.5f;
+					{
+						position_current._i_y ++;
+						f_next_border_y = position_current._i_y + 0.5f;
+					}
 					else
-						f_next_border_y = _position_current._i_y - 0.5f;
+					{
+						position_current._i_y --;
+						f_next_border_y = position_current._i_y - 0.5f;
+					}
 				}
+				Debug.Log(position_current._i_x + " " + position_current._i_y);
+				f_distance_current = Vector2.Distance(position_start.ToVector2(), V2_current_position);
 
-				int i_brawler = GetPrevisionBrawlerIndexAtPosition(_position_current);
+				int i_brawler = GetPrevisionBrawlerIndexAtPosition(position_current);
 				if (i_brawler != -1)
 					return i_brawler;
 
-				i_brawler = GetCurrentBrawlerIndexAtPosition(_position_current);
+				i_brawler = GetCurrentBrawlerIndexAtPosition(position_current);
 				if (i_brawler != -1)
 					return i_brawler;
 			}

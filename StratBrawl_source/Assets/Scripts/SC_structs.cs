@@ -13,7 +13,7 @@ public struct GridPosition
 	public static GridPosition right { get { return new GridPosition(1, 0); } }
 	public static GridPosition left { get { return new GridPosition(-1, 0); } }
 	public static GridPosition up { get { return new GridPosition(0, 1); } }
-	public static GridPosition down { get { return new GridPosition(0, 0 -1); } }
+	public static GridPosition down { get { return new GridPosition(0, -1); } }
 
 	public GridPosition(int i_x, int i_y)
 	{
@@ -115,7 +115,7 @@ public struct Action
 		}
 	}
 
-	public string ToString(){
+	public override string ToString(){
 		switch (this._action_type) {
 
 			case ActionType.Move:

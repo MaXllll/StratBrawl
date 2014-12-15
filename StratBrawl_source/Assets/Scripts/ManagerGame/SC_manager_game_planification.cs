@@ -23,8 +23,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	//Planification
 
 	public void InitPlanification(){
-		int i_width = 5;
-		// TODO int i_width = _game_settings._i_nb_brawlers_per_team;
+		int i_width = _game_settings._i_nb_brawlers_per_team;
 		int i_height = 3;		
 		// TODO int i_height = _game_settings._i_nb_actions_per_turn;
 		_img_brawler_actions_cells = new Image[i_width,i_height];
@@ -101,7 +100,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		GridPosition cell_selected_position = CalculateCurrentPositionWithFutureActions();
 		// TODO int nb_cells = _game_settings._i_pass_nb_cells;
-		int nb_cells = 4;
+		int nb_cells = 6;
 		int x = (int)cell_selected_position.GetWorldPosition ().x;
 		int y = (int)cell_selected_position.GetWorldPosition ().y;
 		for (int i=0; i <= nb_cells; i++) {
@@ -111,16 +110,6 @@ public partial class SC_manager_game : MonoBehaviour {
 				SetCellActive(x+j,y-i,active);
 				SetCellActive(x-j,y-i,active);
 			}
-			/*
-			SetCellActive(x + i, y, active);
-			SetCellActive(x - i, y, active);
-			SetCellActive(x, y + i, active);
-			SetCellActive(x, y - i, active);
-			SetCellActive(x-i+1, y-i+1, active);
-			SetCellActive(x-i+1, y+i-1, active);
-			SetCellActive(x+i-1, y-i+1, active);
-			SetCellActive(x+i-1, y+i-1, active);
-			*/
 		}
 	}
 
@@ -238,7 +227,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		_selected_action._position = selected_cell._position;
 		_selected_action._direction_move = DetermineMoveDirection (selected_cell._position);
 		//_selected_action._image_cell = selected_cell._IMG_action_display;
-		_img_brawler_actions_cells [_selected_brawler._i_index,_selected_slot] = selected_cell._IMG_action_display;
+		_img_brawler_actions_cells [_selected_brawler._i_index_in_team,_selected_slot] = selected_cell._IMG_action_display;
 		// TODO optimisation en mettant juste tout les cells à false?
 		SetActiveCellsForMoveAndTackle (false);
 		SetActiveCellsForPass (false);
@@ -312,8 +301,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	}
 
 	public void RemoveAllActionDisplay(){
-		int i_width = 5;
-		// TODO int i_width = _game_settings._i_nb_brawlers_per_team;
+		int i_width = _game_settings._i_nb_brawlers_per_team;
 		int i_height = 3;		
 		// TODO int i_height = _game_settings._i_nb_actions_per_turn;
 

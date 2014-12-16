@@ -19,5 +19,4 @@ public class SC_lobby : MonoBehaviour {
 		Application.LoadLevel("game_test");
 	}
 
-
 }

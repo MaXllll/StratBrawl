@@ -47,4 +47,13 @@ public class SC_menu_click_handler: MonoBehaviour
 				MasterServer.port = 23466;
 				MasterServer.RequestHostList ("1V1");
 		}
+
+		void Start ()
+		{
+				Screen.autorotateToPortrait = true;
+				Screen.autorotateToLandscapeRight = false;
+				Screen.autorotateToLandscapeLeft = false;
+				Screen.autorotateToPortraitUpsideDown = false;
+				Screen.orientation = ScreenOrientation.Portrait;
+		}
 }

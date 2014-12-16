@@ -39,36 +39,37 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Programmes/Unity 4.6/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Programmes/Unity 4.6/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\GameSettings\SO_game_settings.cs" />
-     <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game.cs" />
-     <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_animation.cs" />
-     <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_brawlers.cs" />
-     <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_client.cs" />
-     <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs" />
-     <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_server.cs" />
-     <Compile Include="Assets\Scripts\ManagerGame\SC_manager_game_terrain.cs" />
+     <Compile Include="Assets\Scripts\Game\GameSettings\SO_game_settings.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_manager_game.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_manager_game_animation.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_manager_game_brawlers.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_manager_game_client.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_manager_game_planification.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_manager_game_server.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_manager_game_terrain.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_animation.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_ball.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_brawler.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_cell.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_enums.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_manager_ui.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_simulator.cs" />
+     <Compile Include="Assets\Scripts\Game\SC_structs.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_create_game_click_handler.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_lobby.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_menu_click_handler.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_play_menu_click_handler.cs" />
-     <Compile Include="Assets\Scripts\SC_animation.cs" />
-     <Compile Include="Assets\Scripts\SC_ball.cs" />
-     <Compile Include="Assets\Scripts\SC_brawler.cs" />
-     <Compile Include="Assets\Scripts\SC_cell.cs" />
-     <Compile Include="Assets\Scripts\SC_enums.cs" />
-     <Compile Include="Assets\Scripts\SC_manager_ui.cs" />
-     <Compile Include="Assets\Scripts\SC_simulator.cs" />
-     <Compile Include="Assets\Scripts\SC_structs.cs" />
+     <Compile Include="Assets\Scripts\Menu\SC_set_frame_rate.cs" />
      <Compile Include="Assets\tmp\SC_menu_tmp.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Programmes/Unity 4.6/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

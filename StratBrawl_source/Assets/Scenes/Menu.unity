@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fff6386ce944b7cb6c718c434da1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 162166766}
+  _GO_current_panel: {fileID: 0}
 --- !u!95 &117601797
 Animator:
   serializedVersion: 3
@@ -2989,7 +2989,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fff6386ce944b7cb6c718c434da1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 162166766}
+  _GO_current_panel: {fileID: 0}
 --- !u!95 &1978940982
 Animator:
   serializedVersion: 3
@@ -3140,7 +3140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fff6386ce944b7cb6c718c434da1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 162166766}
+  _GO_current_panel: {fileID: 0}
 --- !u!95 &1998628000
 Animator:
   serializedVersion: 3
@@ -3252,6 +3252,7 @@ GameObject:
   - 92: {fileID: 2068657304}
   - 124: {fileID: 2068657303}
   - 81: {fileID: 2068657302}
+  - 114: {fileID: 2068657307}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3324,6 +3325,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &2068657307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2068657301}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ac186c0dd66744db0f376564b4d354, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  i_frame_rate: 60
 --- !u!1 &2137086930
 GameObject:
   m_ObjectHideFlags: 0

@@ -48,6 +48,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	{
 		_manager_ui.SetActivePanelActionsSlotsBrawler(true);
 		_manager_ui.SetActiveButtonBackSlotsBrawler(true);
+		_manager_ui.SetActiveButtonEndTurn (false);
 		// Test to check if it is the first time the method is called or not this turn, since only CloseMenuActionsTypes calls it
 		// without _brawler parameter
 		if (_brawler != null) {			
@@ -74,7 +75,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		SC_manager_game._instance.SetActiveButtonsBrawlers(true,_b_player_team);
 		_manager_ui.SetActiveButtonBackSlotsBrawler(false);
 		_manager_ui.SetActivePanelActionsSlotsBrawler(false);
-
+		_manager_ui.SetActiveButtonEndTurn (true);
 	}
 
 	public void CloseMenuActionsTypes()

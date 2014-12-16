@@ -125,19 +125,19 @@ public class SC_manager_ui : MonoBehaviour {
 	public IEnumerator Timer_Coroutine(int i_duration)
 	{
 		int i_timer = i_duration - 1;
+		float f_timer = i_duration;
 		_Text_timer.text = i_timer.ToString();
 
 		while (i_timer > 0)
 		{
-			for (float f_second = 0; f_second < 1; f_second += Time.deltaTime)
+			f_timer -= Time.deltaTime;
+			if (f_timer < i_timer)
 			{
-				yield return null;
+				i_timer--;
+				_Text_timer.text = i_timer.ToString();
 			}
-			i_timer--;
-			_Text_timer.text = i_timer.ToString();
+			yield return null;
 		}
-
-		//_Text_timer.text = "0";
 	}
 
 	public void EndTimer()

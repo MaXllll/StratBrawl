@@ -1,11 +1,11 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Menu/SC_create_game_click_handler.cs">
     <Files>
-      <File FileName="Assets\Scripts\SC_simulator.cs" Line="109" Column="29" />
-      <File FileName="Assets\Scripts\SC_structs.cs" Line="65" Column="7" />
-      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_planification.cs" Line="104" Column="20" />
-      <File FileName="Assets\Scripts\ManagerGame\SC_manager_game_client.cs" Line="39" Column="3" />
+      <File FileName="Assets/Scripts/Menu/SC_create_game_click_handler.cs" Line="34" Column="4" />
+      <File FileName="Assets/Scripts/Menu/SC_menu_click_handler.cs" Line="51" Column="3" />
+      <File FileName="Assets/Scripts/Menu/SC_lobby.cs" Line="20" Column="3" />
+      <File FileName="Assets/Scripts/Menu/SC_play_menu_click_handler.cs" Line="104" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

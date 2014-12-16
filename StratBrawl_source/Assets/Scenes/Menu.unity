@@ -194,7 +194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fff6386ce944b7cb6c718c434da1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 162166766}
+  _GO_current_panel: {fileID: 162166766}
 --- !u!95 &117601797
 Animator:
   serializedVersion: 3
@@ -1487,6 +1487,7 @@ GameObject:
   - 114: {fileID: 645543640}
   - 222: {fileID: 645543643}
   - 114: {fileID: 645543642}
+  - 114: {fileID: 645543644}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1576,6 +1577,27 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 645543638}
+--- !u!114 &645543644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 645543638}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 1
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: .77700001
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
 --- !u!1 &705348886
 GameObject:
   m_ObjectHideFlags: 0
@@ -2989,7 +3011,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fff6386ce944b7cb6c718c434da1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 162166766}
+  _GO_current_panel: {fileID: 0}
 --- !u!95 &1978940982
 Animator:
   serializedVersion: 3
@@ -3140,7 +3162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0fff6386ce944b7cb6c718c434da1f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentPanel: {fileID: 162166766}
+  _GO_current_panel: {fileID: 0}
 --- !u!95 &1998628000
 Animator:
   serializedVersion: 3

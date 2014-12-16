@@ -52,12 +52,6 @@ public class SC_manager_ui : MonoBehaviour {
 		_GO_button_end_turn.SetActive(b_active);
 	}
 
-	/*
-	public void SetActiveButtonBackSlots(bool b_active)
-	{
-		_GO_button_back_slots.SetActive(b_active);
-	}
-	*/
 	public void SetActiveButtonBackTypes(bool b_active)
 	{
 		_GO_button_back_types.SetActive(b_active);
@@ -67,12 +61,7 @@ public class SC_manager_ui : MonoBehaviour {
 	{
 		_GO_panel_actions_slots_brawler.SetActive(b_active);
 	}
-	/*
-	public void SetActivePanelActionsSlots(bool b_active)
-	{
-		_GO_panel_actions_slots.SetActive(b_active);
-	}
-	*/
+	
 	public void SetActivePanelActionsTypes(bool b_active)
 	{
 		_GO_panel_actions_types.SetActive(b_active);

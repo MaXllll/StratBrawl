@@ -51,17 +51,12 @@ public class SC_ball : MonoBehaviour {
 	public void SetBallOnTheCell(SC_cell _cell)
 	{
 		ResetOwner();
-
-//		if (_cell._brawler_on_the_cell != null)
-//			SetBrawlerWithTheBall(_cell._brawler_on_the_cell);
-//		else
-//		{
-			_ball_status = BallStatus.OnGround;
-			_cell_with_the_ball = _cell;
-			_cell_with_the_ball._b_is_ball_on_this_cell = true;
-			_T_ball.parent = _cell._T_cell;
-			_T_ball.localPosition = new Vector3(0f, 0f, -2f);
-//		}
+		
+		_ball_status = BallStatus.OnGround;
+		_cell_with_the_ball = _cell;
+		_cell_with_the_ball._b_is_ball_on_this_cell = true;
+		_T_ball.parent = _cell._T_cell;
+		_T_ball.localPosition = new Vector3(0f, 0f, -2f);
 	}
 
 	/// SUMMARY : Set the brawler who have the ball or the cell where is the ball to null.

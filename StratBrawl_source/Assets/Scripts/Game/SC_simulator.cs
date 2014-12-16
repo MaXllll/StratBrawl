@@ -206,7 +206,10 @@ public class SC_simulator : MonoBehaviour {
 			BrawlerSimulationResult[] brawlers_simulation_result = new BrawlerSimulationResult[_i_nb_brawlers];
 			for (int i = 0; i < _i_nb_brawlers; i++)
 			{
-				brawlers_simulation_result[i] = new BrawlerSimulationResult(_brawlers[i]._actions[i_iteration]._action_type, _brawlers[i]._position_current, _brawlers[i]._b_is_KO_current);
+				if (_brawlers[i]._actions[i_iteration]._action_type == ActionType.Tackle)
+					brawlers_simulation_result[i] = new BrawlerSimulationResult(_brawlers[i]._actions[i_iteration]._action_type, _brawlers[i]._position_current + GridPosition.DirectionToGridPosition(_brawlers[i]._actions[i_iteration]._direction_move), _brawlers[i]._b_is_KO_current);
+				else
+					brawlers_simulation_result[i] = new BrawlerSimulationResult(_brawlers[i]._actions[i_iteration]._action_type, _brawlers[i]._position_current, _brawlers[i]._b_is_KO_current);
 			}
 			return brawlers_simulation_result;
 		}

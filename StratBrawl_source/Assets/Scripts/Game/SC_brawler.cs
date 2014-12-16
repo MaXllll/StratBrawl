@@ -47,8 +47,8 @@ public class SC_brawler : MonoBehaviour {
 		InitActions(3);
 	}
 
-	/// SUMMARY : 
-	/// PARAMETERS : 
+	/// SUMMARY : Init Actions array.
+	/// PARAMETERS : Number of actions.
 	/// RETURN : Void.
 	private void InitActions(int i_nb_actions)
 	{

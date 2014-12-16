@@ -11,6 +11,9 @@ public class SC_animation : MonoBehaviour {
 		_T_object = transform;
 	}
 
+	/// SUMMARY : Play brawler animation.
+	/// PARAMETERS : ActionType of the brawler to select the animation, the position target of the animation, and the duration of th animation.
+	/// RETURN : Void.
 	public IEnumerator PlayAnimation(ActionType action_type, GridPosition position_target, float f_duration)
 	{
 		switch (action_type)
@@ -20,12 +23,16 @@ public class SC_animation : MonoBehaviour {
 			break;
 		case ActionType.Tackle:
 			Vector3 V3_position_start = _T_object.position;
-			yield return StartCoroutine(Interpolation(position_target.GetWorldPosition() + Vector3.back, f_duration * 0.5f));
-			yield return StartCoroutine(Interpolation(V3_position_start, f_duration * 0.5f));
+			yield return new WaitForSeconds(f_duration * 0.3f);
+			yield return StartCoroutine(HalfInterpolation(position_target.GetWorldPosition() + Vector3.back, f_duration * 0.2f));
+			yield return StartCoroutine(Interpolation(V3_position_start, f_duration * 0.2f));
 			break;
 		}
 	}
 
+	/// SUMMARY : Interolate the transfrom to the target position.
+	/// PARAMETERS : The taget position and the duration of the interpolation.
+	/// RETURN : Void.
 	public IEnumerator Interpolation(Vector3 V3_position_target, float f_duration)
 	{
 		Vector3 V3_position_start = _T_object.position;
@@ -37,6 +44,23 @@ public class SC_animation : MonoBehaviour {
 		_T_object.position = V3_position_target;
 	}
 
+	/// SUMMARY : 
+	/// PARAMETERS : None.
+	/// RETURN : Void.
+	public IEnumerator HalfInterpolation(Vector3 V3_position_target, float f_duration)
+	{
+		Vector3 V3_position_start = _T_object.position;
+		for (float f_time = 0; f_time < f_duration; f_time += Time.deltaTime)
+		{
+			yield return null;
+			_T_object.position = Vector3.Lerp(V3_position_start, V3_position_target, (f_time / f_duration) *  0.5f);
+		}
+		_T_object.position = Vector3.Lerp(V3_position_start, V3_position_target, 0.5f);
+	}
+
+	/// SUMMARY : 
+	/// PARAMETERS : None.
+	/// RETURN : Void.
 	public IEnumerator InterpolationOnMovingTagret(Transform T_target, float f_duration)
 	{
 		Vector3 V3_position_start = _T_object.position;

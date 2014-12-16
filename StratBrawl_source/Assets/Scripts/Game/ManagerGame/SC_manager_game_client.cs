@@ -123,6 +123,9 @@ public partial class SC_manager_game : MonoBehaviour {
 		_ball.SetBrawlerWithTheBall(GetTeamCaptain(b_team_with_ball));
 	}
 
+	/// SUMMARY : Increment score of the team who score goal and update UI.
+	/// PARAMETERS : The team who scores.
+	/// RETURN : Void.
 	private void IncrementScore(bool b_team)
 	{
 		if (b_team)
@@ -133,7 +136,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		else
 		{
 			_i_score_team_false++;
-			_manager_ui.SetScore(false, _i_score_team_true);
+			_manager_ui.SetScore(false, _i_score_team_false);
 		}
 	}
 }

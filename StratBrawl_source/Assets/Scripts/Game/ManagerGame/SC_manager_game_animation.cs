@@ -12,8 +12,10 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	private IEnumerator Animate(SimulationResult[] simulation_results)
 	{
+
 		for (int i = 0; i < simulation_results.Length; i++)
 		{
+			// Loop in brawlers result to play animation of their action.
 			for (int j = 0; j < simulation_results[i]._brawlers_simulation_result.Length; j++)
 			{
 				if (!simulation_results[i]._brawlers_simulation_result[j]._b_is_KO)
@@ -22,6 +24,7 @@ public partial class SC_manager_game : MonoBehaviour {
 					                                                     _f_duration_animation));
 			}
 
+			// Play animation of the ball.
 			switch (simulation_results[i]._ball_simulation_result._ball_status)
 			{
 			case BallStatus.OnBrawler:
@@ -38,8 +41,10 @@ public partial class SC_manager_game : MonoBehaviour {
 				break;
 			}
 
+			// Wait end of the animation.
 			yield return new WaitForSeconds(_f_duration_animation);
 
+			// Make sure that brawlers is on correct positions
 			for (int j = 0; j < simulation_results[i]._brawlers_simulation_result.Length; j++)
 			{
 				if (simulation_results[i]._brawlers_simulation_result[j]._action_type == ActionType.Move)
@@ -56,8 +61,10 @@ public partial class SC_manager_game : MonoBehaviour {
 				break;
 			}
 
+			// Wait between two series of actions
 			yield return new WaitForSeconds(_f_duration_animation * 0.5f);
 
+			// If someone scores, incremant score, set brawler end ball position, and stop animation.
 			if (simulation_results[i]._b_is_goal)
 			{
 				IncrementScore(simulation_results[i]._b_team_who_scores);

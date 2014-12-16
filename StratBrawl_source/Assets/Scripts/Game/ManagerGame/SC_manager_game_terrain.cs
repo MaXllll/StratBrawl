@@ -44,6 +44,5 @@ public partial class SC_manager_game : MonoBehaviour {
 	private GridPosition GetSymmetricPosition(GridPosition grid_position)
 	{
 		return new GridPosition(_i_gameField_width - grid_position._i_x -1 , grid_position._i_y);
-		//return new GridPosition( grid_position._i_x , _i_gameField_height-grid_position._i_y-1);
 	}
 }

@@ -31,7 +31,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		_b_server_is_ready_planification = false;
 		_b_client_is_ready_planification = false;
 
-		StartCoroutine(EndPlanificationTimer());
+		StartCoroutine("EndPlanificationTimer");
 
 		_network_view.RPC("StartPlanification_Client", RPCMode.All);
 	}
@@ -71,7 +71,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	/// RETURN : Void.
 	private void EndPlanification_Server()
 	{
-		StopCoroutine(EndPlanificationTimer());
+		StopCoroutine("EndPlanificationTimer");
 
 		_network_view.RPC("EndPlanification_Client", RPCMode.All);
 	}

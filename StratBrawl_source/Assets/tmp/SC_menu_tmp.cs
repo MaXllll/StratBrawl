@@ -31,7 +31,7 @@ public class SC_menu_tmp : MonoBehaviour {
 		case 0:
 			if (GUI.Button(new Rect(f_BoutonPositionX, Screen.height * 0.4f, f_BoutonSizeX, f_BoutonSizeY), "Create Game"))
 			{
-				Network.InitializeServer(1, 25005, false);
+				Network.InitializeServer(1, 25002, false);
 				i_Index = 1;
 			}
 			if (GUI.Button(new Rect(f_BoutonPositionX, Screen.height * 0.65f, f_BoutonSizeX, f_BoutonSizeY), "Join Game"))
@@ -52,7 +52,7 @@ public class SC_menu_tmp : MonoBehaviour {
 			s_ServerIP = GUI.TextField(new Rect(f_BoutonPositionX, Screen.height * 0.15f, f_BoutonSizeX, f_BoutonSizeY), s_ServerIP);
 			if (GUI.Button(new Rect(f_BoutonPositionX, Screen.height * 0.4f, f_BoutonSizeX, f_BoutonSizeY), "Connect"))
 			{
-				Network.Connect(s_ServerIP, 25005);
+				Network.Connect(s_ServerIP, 25002);
 				i_Index = 3;
 			}
 			if (GUI.Button(new Rect(f_BoutonPositionX, Screen.height * 0.65f, f_BoutonSizeX, f_BoutonSizeY), "Back to menu"))

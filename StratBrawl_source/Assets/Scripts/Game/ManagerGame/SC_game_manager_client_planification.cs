@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System;
 
-public partial class SC_manager_game : MonoBehaviour {
+public partial class SC_game_manager_client : MonoBehaviour {
 
 	public SC_brawler _selected_brawler;
 	public Action _selected_action;
@@ -54,7 +54,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		if (_brawler != null) {			
 			_selected_brawler = _brawler;
 			_manager_ui.UpdateActionsSlotForBrawler(_selected_brawler);
-			SC_manager_game._instance.SetActiveButtonsBrawlers (false, _brawler._b_team);
+			SetActiveButtonsBrawlers (false, _brawler._b_team);
 		}
 	}
 
@@ -72,7 +72,7 @@ public partial class SC_manager_game : MonoBehaviour {
 	public void CloseMenuActionsSlots()
 	{
 		_selected_brawler = null;
-		SC_manager_game._instance.SetActiveButtonsBrawlers(true,_b_player_team);
+		SetActiveButtonsBrawlers(true,_b_player_team);
 		_manager_ui.SetActiveButtonBackSlotsBrawler(false);
 		_manager_ui.SetActivePanelActionsSlotsBrawler(false);
 		_manager_ui.SetActiveButtonEndTurn (true);
@@ -325,7 +325,7 @@ public partial class SC_manager_game : MonoBehaviour {
 		//CloseMenuActionsSlots();
 		SetActiveButtonsBrawlers (false,_b_player_team);
 		if (Network.isServer)
-			ServerIsReadyPlanification();
+			SC_game_manager_server._instance.ServerIsReadyPlanification();
 		else
 			_network_view.RPC("ClientIsReadyPlanification", RPCMode.Server);
 	}

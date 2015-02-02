@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public partial class SC_manager_game : MonoBehaviour {
+public partial class SC_game_manager_client : MonoBehaviour {
 
 	[SerializeField]
 	private Transform _T_root_brawlers;
@@ -9,8 +9,8 @@ public partial class SC_manager_game : MonoBehaviour {
 	private GameObject _GO_prefab_brawler;
 
 	private SC_brawler[] _brawlers;
-	private SC_brawler[] _brawlers_team_true;
-	private SC_brawler[] _brawlers_team_false;
+	public SC_brawler[] _brawlers_team_true;
+	public SC_brawler[] _brawlers_team_false;
 
 
 	/// SUMMARY : Generate brawlers of both teams and store them in arrays.

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SC_simulator : MonoBehaviour {
+public class SC_game_simulation {
 
 	private BallData _ball_data;
 	private BrawlersData _brawlers_data;
@@ -177,13 +177,20 @@ public class SC_simulator : MonoBehaviour {
 		public int _i_nb_brawlers;
 		public BrawlerData[] _brawlers;
 		
-		public BrawlersData(SC_brawler[] brawlers)
+		public BrawlersData(SO_game_settings game_settings)
 		{
-			_i_nb_brawlers = brawlers.Length;
+			_i_nb_brawlers = game_settings._settings._i_nb_brawlers_per_team * 2;
 			_brawlers = new BrawlerData[_i_nb_brawlers];
 			for (int i = 0; i < _i_nb_brawlers; i++)
 			{
-				_brawlers[i] = new BrawlerData(brawlers[i]);
+				_brawlers[i] = new BrawlerData();
+				_brawlers[i]._i_index = i;
+				_brawlers[i]._b_team = i < game_settings._settings._i_nb_brawlers_per_team;
+				_brawlers[i]._actions = new Action[3];
+				_brawlers[i]._position_current = _brawlers[i]._b_team ? game_settings._settings._positions_brawlers_attack_formation[i] : game_settings._settings._positions_brawlers_defense_formation[i - game_settings._settings._i_nb_brawlers_per_team];
+				_brawlers[i]._b_have_the_ball_current = i == 0;
+				_brawlers[i]._b_is_KO_current = false;
+				_brawlers[i]._i_KO_round_remaining = 0;
 			}
 		}
 		
@@ -223,17 +230,6 @@ public class SC_simulator : MonoBehaviour {
 		public bool _b_is_KO_prevision;
 		public int _i_KO_round_remaining;
 		
-		public BrawlerData(SC_brawler brawler)
-		{
-			_i_index = brawler._i_index;
-			_b_team = brawler._b_team;
-			_actions = brawler._actions;
-			_position_current = brawler._position;
-			_b_have_the_ball_current = brawler._b_have_the_ball;
-			_b_is_KO_current = brawler._b_is_KO;
-			_i_KO_round_remaining = brawler._i_KO_round_remaining;
-		}
-		
 		public void EndOfIteration()
 		{
 			_position_current = _position_prevision;
@@ -261,26 +257,14 @@ public class SC_simulator : MonoBehaviour {
 		public GridPosition _position_on_ground_prevision;
 
 		
-		public BallData(SC_ball ball)
+		public BallData()
 		{
-			_ball_status_current = ball._ball_status;
-			_ball_status_prevision = ball._ball_status;
-
-			switch (_ball_status_current)
-			{
-			case BallStatus.OnBrawler:
-				_i_brawler_with_the_ball_current = ball._brawler_with_the_ball._i_index;
-				_i_brawler_with_the_ball_prevision = ball._brawler_with_the_ball._i_index;
-				_position_on_ground_current = new GridPosition(-1, -1);
-				_position_on_ground_prevision = new GridPosition(-1, -1);
-				break;
-			case BallStatus.OnGround:
-				_i_brawler_with_the_ball_current = -1;
-				_i_brawler_with_the_ball_prevision = -1;
-				_position_on_ground_current = ball._cell_with_the_ball._position;
-				_position_on_ground_prevision = ball._cell_with_the_ball._position;
-				break;
-			}
+			_ball_status_current = BallStatus.OnBrawler;
+			_ball_status_prevision = BallStatus.OnBrawler;
+			_i_brawler_with_the_ball_current = 0;
+			_i_brawler_with_the_ball_prevision = 0;
+			_position_on_ground_current = new GridPosition(-1, -1);
+			_position_on_ground_prevision = new GridPosition(-1, -1);
 		}
 
 		public void SetOnBrawlerPrevision(int i_brawler_index)
@@ -310,19 +294,23 @@ public class SC_simulator : MonoBehaviour {
 		}
 	}
 	
-	
+
+	public void Init(SO_game_settings game_settings)
+	{
+		_brawlers_data = new BrawlersData(game_settings);
+
+		_terrain_data = new TerrainData(game_settings._settings._i_gameField_width, game_settings._settings._i_gameField_height);
+		_terrain_data.SetBrawlersPositionCurrentInTerrain(_brawlers_data);
+
+		_ball_data = new BallData();
+	}
+
 	
 	/// SUMMARY : Simulate brawlers action.
 	/// PARAMETERS : 
 	/// RETURN : Return the results.
-	public SimulationResult[] StartSimulation(SC_brawler[] brawlers, SC_ball ball, int i_terrain_width, int i_terrain_height)
+	public SimulationResult[] StartSimulation()
 	{
-		// Init simulation's datas 
-		_ball_data = new BallData(ball);
-		_brawlers_data = new BrawlersData(brawlers);
-		_terrain_data = new TerrainData(i_terrain_width, i_terrain_height);
-		_terrain_data.SetBrawlersPositionCurrentInTerrain(_brawlers_data);
-		
 		int i_nb_iteration = 3;
 		SimulationResult[] simulation_result = new SimulationResult[i_nb_iteration];
 
@@ -421,7 +409,7 @@ public class SC_simulator : MonoBehaviour {
 			bool _b_team_who_scores = false;
 			if (_ball_data._ball_status_current == BallStatus.OnBrawler)
 			{
-				if (_brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._b_team == true && _brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._position_current._i_x == (i_terrain_width - 1))
+				if (_brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._b_team == true && _brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._position_current._i_x == (_terrain_data._i_terrain_width - 1))
 				{
 					_b_is_goal = true;
 					_b_team_who_scores = true;

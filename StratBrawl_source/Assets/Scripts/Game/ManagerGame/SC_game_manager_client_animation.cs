@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public partial class SC_manager_game : MonoBehaviour {
+public partial class SC_game_manager_client : MonoBehaviour {
 
 	[SerializeField]
 	private float _f_duration_animation = 0.5f;

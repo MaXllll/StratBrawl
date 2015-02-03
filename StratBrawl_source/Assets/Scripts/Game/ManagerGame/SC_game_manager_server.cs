@@ -4,13 +4,11 @@ using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 
-public class SC_game_manager_server : MonoBehaviour {
+public partial class SC_game_manager_server : MonoBehaviour {
 
 	[SerializeField]
 	private SO_game_settings _game_settings;
-
-	private SC_game_simulation _game_simulation;
-
+	
 	private NetworkView _network_view;
 
 	private bool _b_server_is_ready_planification = false;
@@ -27,8 +25,7 @@ public class SC_game_manager_server : MonoBehaviour {
 		{
 			_network_view = networkView;
 			_instance = this;
-			_game_simulation = new SC_game_simulation();
-			_game_simulation.Init(_game_settings);
+			InitSimulation();
 
 			BinaryFormatter _BF = new BinaryFormatter();
 			MemoryStream _MS = new MemoryStream();
@@ -53,7 +50,6 @@ public class SC_game_manager_server : MonoBehaviour {
 	/// RETURN : Void.
 	private void StartPlanification_Server()
 	{
-		Debug.Log("a");
 		_b_server_is_ready_planification = false;
 		_b_client_is_ready_planification = false;
 		
@@ -102,7 +98,7 @@ public class SC_game_manager_server : MonoBehaviour {
 		_network_view.RPC("EndPlanification_Client", RPCMode.All);
 	}
 	
-	/// SUMMARY : Get the serialized data, deserialize it, and ask to start the simulation. 
+	/// SUMMARY : Get the serialized data, deserialize it, launch the simulation, serialize the result data, and send it to client.
 	/// PARAMETERS : Serialized data of the brawlers's actions of the connected player.
 	/// RETURN : Void.
 	[RPC]
@@ -112,31 +108,24 @@ public class SC_game_manager_server : MonoBehaviour {
 		MemoryStream _MS = new MemoryStream();
 		_MS.Write(_data_actions,0,_data_actions.Length); 
 		_MS.Seek(0, SeekOrigin.Begin); 
-		Action[,] _actions = (Action[,])_BF.Deserialize(_MS);
+		Action[,] actions_team_false = (Action[,])_BF.Deserialize(_MS);
 
-		for (int i = 0; i < SC_game_manager_client._instance._brawlers_team_false.Length; i++)
+		Action[,] actions_team_true = new Action[SC_game_manager_client._instance._brawlers_team_true.Length, 3];
+		for (int i = 0; i < SC_game_manager_client._instance._brawlers_team_true.Length; i++)
 		{
 			for (int j = 0; j < 3; j++)
 			{
-				SC_game_manager_client._instance._brawlers_team_false[i]._actions[j] = _actions[i, j];
+				actions_team_true[i, j] = SC_game_manager_client._instance._brawlers_team_true[i]._actions[j];
 			}
 		}
-		
-		Simulation();
-	}
-	
-	/// SUMMARY : Launch the simulation, serialize the result data, and send it to client.
-	/// PARAMETERS : None.
-	/// RETURN : Void.
-	private void Simulation()
-	{
-		SimulationResult[] _simulation_result = _game_simulation.StartSimulation();
+
+		SimulationResult[] _simulation_result = StartSimulation(actions_team_true, actions_team_false);
 		
 		_b_server_is_ready_animation = false;
 		_b_client_is_ready_animation = false;
 		
-		BinaryFormatter _BF = new BinaryFormatter();
-		MemoryStream _MS = new MemoryStream();
+		_BF = new BinaryFormatter();
+		_MS = new MemoryStream();
 		_BF.Serialize(_MS, _simulation_result);
 		byte[] _data_simulation_result = _MS.ToArray();
 		_MS.Close();

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class SC_game_simulation {
+public partial class SC_game_manager_server {
 
 	private BallData _ball_data;
 	private BrawlersData _brawlers_data;
@@ -39,7 +39,7 @@ public class SC_game_simulation {
 			}
 		}
 		
-		public void SetBrawlePositionPrevisionInTerrain(BrawlerData brawler_data)
+		public void SetBrawlersPositionPrevisionInTerrain(BrawlerData brawler_data)
 		{
 			_i_position_brawlers_prevision[brawler_data._position_prevision._i_x, brawler_data._position_prevision._i_y] = brawler_data._i_index;
 		}
@@ -58,6 +58,11 @@ public class SC_game_simulation {
 				return false;
 			else
 				return true;
+		}
+
+		public GridPosition GetSymmetricPosition(GridPosition grid_position)
+		{
+			return new GridPosition(_i_terrain_width - grid_position._i_x -1 , grid_position._i_y);
 		}
 		
 		public int GetPrevisionBrawlerIndexAtPosition(GridPosition position)
@@ -175,22 +180,39 @@ public class SC_game_simulation {
 	private class BrawlersData
 	{
 		public int _i_nb_brawlers;
+		public int _i_nb_brawler_per_team;
 		public BrawlerData[] _brawlers;
 		
 		public BrawlersData(SO_game_settings game_settings)
 		{
 			_i_nb_brawlers = game_settings._settings._i_nb_brawlers_per_team * 2;
+			_i_nb_brawler_per_team = game_settings._settings._i_nb_brawlers_per_team;
 			_brawlers = new BrawlerData[_i_nb_brawlers];
 			for (int i = 0; i < _i_nb_brawlers; i++)
 			{
 				_brawlers[i] = new BrawlerData();
 				_brawlers[i]._i_index = i;
 				_brawlers[i]._b_team = i < game_settings._settings._i_nb_brawlers_per_team;
-				_brawlers[i]._actions = new Action[3];
 				_brawlers[i]._position_current = _brawlers[i]._b_team ? game_settings._settings._positions_brawlers_attack_formation[i] : game_settings._settings._positions_brawlers_defense_formation[i - game_settings._settings._i_nb_brawlers_per_team];
-				_brawlers[i]._b_have_the_ball_current = i == 0;
-				_brawlers[i]._b_is_KO_current = false;
-				_brawlers[i]._i_KO_round_remaining = 0;
+			}
+		}
+
+		public void SetActions(Action[,] actions_team_true, Action[,] actions_team_false)
+		{
+			for (int i = 0; i < _i_nb_brawler_per_team; i++)
+			{
+				for (int j = 0; j < 3; ++j)
+				{
+					_brawlers[i]._actions[j] = actions_team_true[i, j];
+				}
+			}
+
+			for (int i = 0; i < _i_nb_brawler_per_team; i++)
+			{
+				for (int j = 0; j < 3; ++j)
+				{
+					_brawlers[i + _i_nb_brawler_per_team]._actions[j] = actions_team_false[i, j];
+				}
 			}
 		}
 		
@@ -221,14 +243,14 @@ public class SC_game_simulation {
 	{
 		public int _i_index;
 		public bool _b_team;
-		public Action[] _actions;
-		public GridPosition _position_current;
-		public GridPosition _position_prevision;
-		public bool _b_have_the_ball_current;
-		public bool _b_have_the_ball_prevision;
-		public bool _b_is_KO_current;
-		public bool _b_is_KO_prevision;
-		public int _i_KO_round_remaining;
+		public Action[] _actions = new Action[3];
+		public GridPosition _position_current = new GridPosition(-1, -1);
+		public GridPosition _position_prevision = new GridPosition(-1, -1);
+		public bool _b_have_the_ball_current = false;
+		public bool _b_have_the_ball_prevision = false;
+		public bool _b_is_KO_current = false;
+		public bool _b_is_KO_prevision = false;
+		public int _i_KO_round_remaining = 0;
 		
 		public void EndOfIteration()
 		{
@@ -259,10 +281,10 @@ public class SC_game_simulation {
 		
 		public BallData()
 		{
-			_ball_status_current = BallStatus.OnBrawler;
-			_ball_status_prevision = BallStatus.OnBrawler;
-			_i_brawler_with_the_ball_current = 0;
-			_i_brawler_with_the_ball_prevision = 0;
+			_ball_status_current = BallStatus.Null;
+			_ball_status_prevision = BallStatus.Null;
+			_i_brawler_with_the_ball_current = -1;
+			_i_brawler_with_the_ball_prevision = -1;
 			_position_on_ground_current = new GridPosition(-1, -1);
 			_position_on_ground_prevision = new GridPosition(-1, -1);
 		}
@@ -295,24 +317,28 @@ public class SC_game_simulation {
 	}
 	
 
-	public void Init(SO_game_settings game_settings)
+	public void InitSimulation()
 	{
-		_brawlers_data = new BrawlersData(game_settings);
+		_brawlers_data = new BrawlersData(_game_settings);
 
-		_terrain_data = new TerrainData(game_settings._settings._i_gameField_width, game_settings._settings._i_gameField_height);
-		_terrain_data.SetBrawlersPositionCurrentInTerrain(_brawlers_data);
+		_terrain_data = new TerrainData(_game_settings._settings._i_gameField_width, _game_settings._settings._i_gameField_height);
 
 		_ball_data = new BallData();
+
+		SetBrawlersEngagePositions(true);
+		_terrain_data.SetBrawlersPositionCurrentInTerrain(_brawlers_data);
 	}
 
 	
 	/// SUMMARY : Simulate brawlers action.
 	/// PARAMETERS : 
 	/// RETURN : Return the results.
-	public SimulationResult[] StartSimulation()
+	public SimulationResult[] StartSimulation(Action[,] actions_team_true, Action[,] actions_team_false)
 	{
 		int i_nb_iteration = 3;
 		SimulationResult[] simulation_result = new SimulationResult[i_nb_iteration];
+
+		_brawlers_data.SetActions(actions_team_true, actions_team_false);
 
 		// Make n simulation, which n is the number of action per brawler.
 		for (int i = 0; i < i_nb_iteration; i++)
@@ -426,7 +452,10 @@ public class SC_game_simulation {
 
 			// If someone scores goal, skip next iteration.
 			if (_b_is_goal)
+			{
+				SetBrawlersEngagePositions(!_b_team_who_scores);
 				break;
+			}
 		}
 		
 		return simulation_result;
@@ -438,7 +467,7 @@ public class SC_game_simulation {
 		if (!_terrain_data.IsInsideTheTerrain(position))
 		{
 			brawler._position_prevision = brawler._position_current;
-			_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
+			_terrain_data.SetBrawlersPositionPrevisionInTerrain(brawler);
 			return;
 		}
 
@@ -451,7 +480,7 @@ public class SC_game_simulation {
 			SetPrevisionPosition(_brawlers_data._brawlers[i_brawler_prevision_at_current_position], _brawlers_data._brawlers[i_brawler_prevision_at_current_position]._position_current);
 			
 			brawler._position_prevision = brawler._position_current;
-			_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
+			_terrain_data.SetBrawlersPositionPrevisionInTerrain(brawler);
 			return;
 		}
 
@@ -462,12 +491,12 @@ public class SC_game_simulation {
 			SetPrevisionPosition(_brawlers_data._brawlers[i_brawler_at_prevision_position], _brawlers_data._brawlers[i_brawler_at_prevision_position]._position_current);
 
 			brawler._position_prevision = brawler._position_current;
-			_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
+			_terrain_data.SetBrawlersPositionPrevisionInTerrain(brawler);
 			return;
 		}
 
 		brawler._position_prevision = position;
-		_terrain_data.SetBrawlePositionPrevisionInTerrain(brawler);
+		_terrain_data.SetBrawlersPositionPrevisionInTerrain(brawler);
 	}
 
 	private void TackleBrawler(int i_brawler_from, int i_brawler_to_tackle)
@@ -481,6 +510,32 @@ public class SC_game_simulation {
 				_brawlers_data._brawlers[i_brawler_from]._b_have_the_ball_prevision = true;
 				_ball_data._i_brawler_with_the_ball_prevision = i_brawler_from;
 			}
+		}
+	}
+
+	private void SetBrawlersEngagePositions(bool b_team_with_ball)
+	{
+		for (int i = 0; i < _brawlers_data._brawlers.Length; i++)
+		{
+			int i_index_in_team = i % _brawlers_data._i_nb_brawler_per_team;
+			GridPosition _position = _brawlers_data._brawlers[i]._b_team == b_team_with_ball ? _game_settings._settings._positions_brawlers_attack_formation[i_index_in_team] : _game_settings._settings._positions_brawlers_defense_formation[i_index_in_team];
+			if (!_brawlers_data._brawlers[i]._b_team)
+				_position = _terrain_data.GetSymmetricPosition(_position);
+			_brawlers_data._brawlers[i]._position_current = _position;
+			_brawlers_data._brawlers[i]._position_prevision = _position;
+		}
+
+		_ball_data._ball_status_current = BallStatus.OnBrawler;
+		_ball_data._ball_status_prevision = BallStatus.OnBrawler;
+		if (b_team_with_ball)
+		{
+			_brawlers_data._brawlers[0]._b_have_the_ball_current = true;
+			_ball_data._i_brawler_with_the_ball_prevision = 0;
+		}
+		else
+		{
+			_brawlers_data._brawlers[_brawlers_data._i_nb_brawler_per_team]._b_have_the_ball_current = true;
+			_ball_data._i_brawler_with_the_ball_prevision = _brawlers_data._i_nb_brawler_per_team;
 		}
 	}
 }

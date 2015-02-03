@@ -53,12 +53,12 @@
      <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client_planification.cs" />
      <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client_terrain.cs" />
      <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_server.cs" />
+     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_server_simulation.cs" />
      <Compile Include="Assets\Scripts\Game\SC_animation.cs" />
      <Compile Include="Assets\Scripts\Game\SC_ball.cs" />
      <Compile Include="Assets\Scripts\Game\SC_brawler.cs" />
      <Compile Include="Assets\Scripts\Game\SC_cell.cs" />
      <Compile Include="Assets\Scripts\Game\SC_enums.cs" />
-     <Compile Include="Assets\Scripts\Game\SC_game_simulation.cs" />
      <Compile Include="Assets\Scripts\Game\SC_manager_ui.cs" />
      <Compile Include="Assets\Scripts\Game\SC_structs.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_create_game_click_handler.cs" />

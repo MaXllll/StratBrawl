@@ -31,10 +31,10 @@ public class SC_cell : MonoBehaviour {
 	}
 
 	public void RegisterSelectedCellForAction(){
-		SC_manager_game._instance.RegisterSelectedCellPositionForAction (this);
+		SC_game_manager_client._instance.RegisterSelectedCellPositionForAction (this);
 	}
 
 	public void UpdateActionSlotText(){
-		SC_manager_game._instance.UpdateActionSlotText ();
+		SC_game_manager_client._instance.UpdateActionSlotText ();
 	}
 }

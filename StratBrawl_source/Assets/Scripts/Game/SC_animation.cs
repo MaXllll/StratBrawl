@@ -31,7 +31,7 @@ public class SC_animation : MonoBehaviour {
 	}
 
 	/// SUMMARY : Interolate the transfrom to the target position.
-	/// PARAMETERS : The taget position and the duration of the interpolation.
+	/// PARAMETERS : The target position and the duration of the interpolation.
 	/// RETURN : Void.
 	public IEnumerator Interpolation(Vector3 V3_position_target, float f_duration)
 	{
@@ -44,8 +44,8 @@ public class SC_animation : MonoBehaviour {
 		_T_object.position = V3_position_target;
 	}
 
-	/// SUMMARY : 
-	/// PARAMETERS : None.
+	/// SUMMARY : Interolate the transfrom to the target position.
+	/// PARAMETERS : The target position and the duration of the interpolation.
 	/// RETURN : Void.
 	public IEnumerator HalfInterpolation(Vector3 V3_position_target, float f_duration)
 	{
@@ -58,8 +58,8 @@ public class SC_animation : MonoBehaviour {
 		_T_object.position = Vector3.Lerp(V3_position_start, V3_position_target, 0.5f);
 	}
 
-	/// SUMMARY : 
-	/// PARAMETERS : None.
+	/// SUMMARY : Interolate the transfrom to the target transform.
+	/// PARAMETERS : The target transform and the duration of the interpolation.
 	/// RETURN : Void.
 	public IEnumerator InterpolationOnMovingTagret(Transform T_target, float f_duration)
 	{

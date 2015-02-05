@@ -74,6 +74,6 @@ public class SC_brawler : MonoBehaviour {
 	/// RETURN : Void.
 	public void OpenMenuActions()
 	{		
-		SC_manager_game._instance.OpenMenuActionsSlots(this);
+		SC_game_manager_client._instance.OpenMenuActionsSlots(this);
 	}
 }

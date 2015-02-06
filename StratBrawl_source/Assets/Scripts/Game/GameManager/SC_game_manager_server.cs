@@ -135,12 +135,12 @@ public partial class SC_game_manager_server : MonoBehaviour {
 		_MS.Seek(0, SeekOrigin.Begin); 
 		Action[,] actions_team_false = (Action[,])_BF.Deserialize(_MS);
 
-		Action[,] actions_team_true = new Action[SC_game_manager_client._instance._brawlers_team_true.Length, 3];
-		for (int i = 0; i < SC_game_manager_client._instance._brawlers_team_true.Length; i++)
+		Action[,] actions_team_true = new Action[SC_game_manager_client._instance._board_game._brawlers_team_true.Length, 3];
+		for (int i = 0; i < SC_game_manager_client._instance._board_game._brawlers_team_true.Length; i++)
 		{
 			for (int j = 0; j < 3; j++)
 			{
-				actions_team_true[i, j] = SC_game_manager_client._instance._brawlers_team_true[i]._actions[j];
+				actions_team_true[i, j] = SC_game_manager_client._instance._board_game._brawlers_team_true[i]._actions[j];
 			}
 		}
 

@@ -6,9 +6,11 @@ using System.Runtime.Serialization.Formatters.Binary;
 
 public partial class SC_game_manager_client : MonoBehaviour {
 
+	public SC_board_game _board_game;
+
 	private int _i_score_team_true = 0;
 	private int _i_score_team_false = 0;
-	
+
 	[SerializeField]
 	private Camera _camera;
 	[SerializeField]
@@ -52,11 +54,11 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		_MS.Seek(0, SeekOrigin.Begin); 
 		_game_settings = (GameSettings)_BF.Deserialize(_MS);
 
-		GenerateGameField(_game_settings._i_game_field_width, _game_settings._i_game_field_height);
-		GenerateBrawlers(_game_settings._i_nb_brawlers_per_team);
-		_ball.Init();
+		_i_score_team_true = _game_snap._i_score_team_true;
+		_i_score_team_false = _game_snap._i_score_team_false;
 
-		SetGameFromSnap(_game_snap);
+		_board_game.Init(_game_settings);
+		_board_game.SetGameFromSnap(_game_snap);
 
 		_manager_ui.SetScore(true, _i_score_team_true);
 		_manager_ui.SetScore(false, _i_score_team_false);
@@ -74,7 +76,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	[RPC]
 	private void StartPlanification_Client()
 	{
-		ResetActionsOfAllBrawlers();
+		_board_game.ResetActionsOfAllBrawlers();
 		InitPlanification ();
 	}
 
@@ -85,7 +87,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	[RPC]
 	private void EndPlanification_Client()
 	{
-		SetActiveButtonsBrawlers(false, _b_player_team);
+		_board_game.SetActiveButtonsBrawlers(false, _b_player_team);
 		RemoveAllActionDisplay();
 		_manager_ui.EndTimer();
 		if (Network.isClient)
@@ -101,12 +103,12 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	/// RETURN : Return serialize data.
 	private byte[] GenerateActionsDataToSend()
 	{
-		Action[,] _actions = new Action[_brawlers_team_false.Length, 3];
-		for (int i = 0; i < _brawlers_team_false.Length; i++)
+		Action[,] _actions = new Action[_board_game._brawlers_team_false.Length, 3];
+		for (int i = 0; i < _board_game._brawlers_team_false.Length; i++)
 		{
 			for (int j = 0; j < 3; j++)
 			{
-				_actions[i, j] = _brawlers_team_false[i]._actions[j];
+				_actions[i, j] = _board_game._brawlers_team_false[i]._actions[j];
 			}
 		}
 		
@@ -141,7 +143,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	/// RETURN : Void.
 	private IEnumerator ResultAnimation(SimulationResult[] _simulation_result)
 	{
-		yield return StartCoroutine(Animate(_simulation_result));
+		yield return StartCoroutine(_board_game.Animate(_simulation_result));
 		
 		if (Network.isClient)
 		{
@@ -151,41 +153,6 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		{
 			SC_game_manager_server._instance.ServerIsReadyAnimation();
 		}
-	}
-
-
-	/// SUMMARY : Initialize brawlers and ball for engage.
-	/// PARAMETERS : The team who have the ball.
-	/// RETURN : Void.
-	private void SetEngagePosition(bool b_team_with_ball)
-	{
-		SetBrawlersEngagePositions(_game_settings._positions_brawlers_attack_formation, _game_settings._positions_brawlers_defense_formation, b_team_with_ball);
-		_ball.SetBrawlerWithTheBall(GetTeamCaptain(b_team_with_ball));
-	}
-
-
-	/// SUMMARY : 
-	/// PARAMETERS : 
-	/// RETURN : Void.
-	private void SetGameFromSnap(GameSnap game_snap)
-	{
-		_i_score_team_true = game_snap._i_score_team_true;
-		_i_score_team_false = game_snap._i_score_team_false;
-
-		for (int i = 0; i < _brawlers.Length; ++i)
-		{
-			_brawlers[i].SetPosition(game_snap._brawlers[i]._position);
-			_brawlers[i]._b_is_KO = game_snap._brawlers[i]._b_is_KO;
-			_brawlers[i]._i_KO_round_remaining = game_snap._brawlers[i]._i_KO_round_remaining;
-		}
-
-		_ball._ball_status = game_snap._ball_status;
-
-		if (_ball._ball_status == BallStatus.OnBrawler)
-			_ball.SetBrawlerWithTheBall(_brawlers[game_snap._i_brawler_with_the_ball]);
-
-		if (_ball._ball_status == BallStatus.OnGround)
-			_ball.SetBallOnTheCell(_cells_gameField[game_snap._cell_with_the_ball._i_x, game_snap._cell_with_the_ball._i_y]);
 	}
 
 
@@ -213,6 +180,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	[RPC]
 	private void EndGame(byte[] data_replay)
 	{
-		SC_replay_files_manager.SaveReplay(data_replay);
+		if (Network.isServer)
+			SC_replay_files_manager.SaveReplay(data_replay);
 	}
 }

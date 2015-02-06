@@ -23,7 +23,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	//Planification
 
 	public void InitPlanification(){
-		SetActiveButtonsBrawlers(true, _b_player_team);
+		_board_game.SetActiveButtonsBrawlers(true, _b_player_team);
 		_manager_ui.SetActiveButtonEndTurn (true);
 		_manager_ui.StartTimer(_game_settings._i_planification_time);
 		int i_width = _game_settings._i_nb_brawlers_per_team;
@@ -54,7 +54,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		if (_brawler != null) {			
 			_selected_brawler = _brawler;
 			_manager_ui.UpdateActionsSlotForBrawler(_selected_brawler);
-			SetActiveButtonsBrawlers (false, _brawler._b_team);
+			_board_game.SetActiveButtonsBrawlers (false, _brawler._b_team);
 		}
 	}
 
@@ -72,7 +72,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	public void CloseMenuActionsSlots()
 	{
 		_selected_brawler = null;
-		SetActiveButtonsBrawlers(true,_b_player_team);
+		_board_game.SetActiveButtonsBrawlers(true,_b_player_team);
 		_manager_ui.SetActiveButtonBackSlotsBrawler(false);
 		_manager_ui.SetActivePanelActionsSlotsBrawler(false);
 		_manager_ui.SetActiveButtonEndTurn (true);
@@ -124,7 +124,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	/// RETURN : Void.
 	private void SetCellActive(int pos_x, int pos_y,bool active){
 		try{
-			SC_cell cell = _cells_gameField [pos_x, pos_y];
+			SC_cell cell = _board_game._cells_gameField [pos_x, pos_y];
 			cell._GO_button.SetActive (active);
 		}catch (IndexOutOfRangeException exception){
 			// Do nothing because we don't care, it will happens in a lot of cases (mostly when the brawler is close to a wall)
@@ -323,7 +323,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		// TODO To be fixed , these two menus should be closed here but they need a selected_brawler and it wont always be set so it can make nullrefexcept.
 		//CloseMenuActionsTypes();
 		//CloseMenuActionsSlots();
-		SetActiveButtonsBrawlers (false,_b_player_team);
+		_board_game.SetActiveButtonsBrawlers (false,_b_player_team);
 		if (Network.isServer)
 			SC_game_manager_server._instance.ServerIsReadyPlanification();
 		else

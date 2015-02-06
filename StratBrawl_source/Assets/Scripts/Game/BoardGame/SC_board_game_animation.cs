@@ -1,18 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public partial class SC_game_manager_client : MonoBehaviour {
+public partial class SC_board_game : MonoBehaviour {
 
 	[SerializeField]
 	private float _f_duration_animation = 0.5f;
 
+	[SerializeField]
+	private GameObject GO_increment_score;
 
+	
 	/// SUMMARY : This makes it easy to create, name and place unique new ScriptableObject asset files.
 	/// PARAMETERS : Data of the result of the simulation.
 	/// RETURN : Void.
-	private IEnumerator Animate(SimulationResult[] simulation_results)
+	public IEnumerator Animate(SimulationResult[] simulation_results)
 	{
-
+		
 		for (int i = 0; i < simulation_results.Length; i++)
 		{
 			// Loop in brawlers result to play animation of their action.
@@ -23,7 +26,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 					                                                     simulation_results[i]._brawlers_simulation_result[j]._position_target,
 					                                                     _f_duration_animation));
 			}
-
+			
 			// Play animation of the ball.
 			switch (simulation_results[i]._ball_simulation_result._ball_status)
 			{
@@ -40,17 +43,17 @@ public partial class SC_game_manager_client : MonoBehaviour {
 				}
 				break;
 			}
-
+			
 			// Wait end of the animation.
 			yield return new WaitForSeconds(_f_duration_animation);
-
+			
 			// Make sure that brawlers is on correct positions
 			for (int j = 0; j < simulation_results[i]._brawlers_simulation_result.Length; j++)
 			{
 				if (simulation_results[i]._brawlers_simulation_result[j]._action_type == ActionType.Move)
 					_brawlers[j].SetPosition(simulation_results[i]._brawlers_simulation_result[j]._position_target);
 			}
-
+			
 			switch (simulation_results[i]._ball_simulation_result._ball_status)
 			{
 			case BallStatus.OnBrawler:
@@ -60,14 +63,15 @@ public partial class SC_game_manager_client : MonoBehaviour {
 				_ball.SetBallOnTheCell(_cells_gameField[simulation_results[i]._ball_simulation_result._position_on_ground._i_x,simulation_results[i]._ball_simulation_result._position_on_ground._i_y]);
 				break;
 			}
-
+			
 			// Wait between two series of actions
 			yield return new WaitForSeconds(_f_duration_animation * 0.5f);
-
+			
 			// If someone scores, incremant score, set brawler end ball position, and stop animation.
 			if (simulation_results[i]._b_is_goal)
 			{
-				IncrementScore(simulation_results[i]._b_team_who_scores);
+				if (GO_increment_score != null)
+					GO_increment_score.SendMessage("IncrementScore", simulation_results[i]._b_team_who_scores, SendMessageOptions.DontRequireReceiver);
 				SetEngagePosition(!simulation_results[i]._b_team_who_scores);
 				break;
 			}

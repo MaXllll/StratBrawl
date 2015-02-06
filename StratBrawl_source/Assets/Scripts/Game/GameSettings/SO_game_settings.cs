@@ -12,14 +12,6 @@ public class SO_game_settings : ScriptableObject {
 [Serializable]
 public class GameSettings {
 
-//	[SerializeField]
-//	public int i_pass_nb_cells = 2;
-//	public int _i_pass_nb_cells { get{ return i_pass_nb_cells; } }
-//
-//	[SerializeField]
-//	private int i_nb_actions_per_turn = 3;
-//	public int _i_nb_actions_per_turn { get{ return i_nb_actions_per_turn; } }
-
 	[SerializeField]
 	private int i_game_field_width = 12;
 	public int _i_game_field_width { get{ return i_game_field_width; } }
@@ -61,8 +53,4 @@ public class GameSettings {
 																		new GridPosition(4,2),
 																		new GridPosition(4,4)};
 	public GridPosition[] _positions_brawlers_defense_formation { get{ return positions_brawlers_defense_formation; } }
-
-	[SerializeField]
-	private float f_orthographic_size = 5;
-	public float _f_orthographic_size { get{ return f_orthographic_size; } }
 }

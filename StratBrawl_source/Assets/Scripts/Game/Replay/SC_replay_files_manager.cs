@@ -25,7 +25,7 @@ public class SC_replay_files_manager : MonoBehaviour {
 	{
 		InitDirectory();
 
-		string s_path = _s_directory_name + "/replay_" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".sbr";
+		string s_path = _s_directory_name + "/replay_" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm-ss") + ".sbreplay";
 		File.WriteAllBytes(s_path, data_replay);
 	}
 
@@ -37,11 +37,11 @@ public class SC_replay_files_manager : MonoBehaviour {
 	{
 		InitDirectory();
 
-		string[] s_files_name = Directory.GetFiles(_s_directory_name, ".sbr");
+		string[] s_files_name = Directory.GetFiles(_s_directory_name, ".sbreplay");
 		for (int i = 0; i < s_files_name.Length; ++i)
 		{
 			s_files_name[i] = s_files_name[i].Replace(_s_directory_name + "/", string.Empty);
-			s_files_name[i] = s_files_name[i].Replace(".sbr", string.Empty);
+			s_files_name[i] = s_files_name[i].Replace(".sbreplay", string.Empty);
 		}
 
 		return s_files_name;
@@ -55,7 +55,7 @@ public class SC_replay_files_manager : MonoBehaviour {
 	{
 		InitDirectory();
 
-		string s_path = _s_directory_name + "/" + s_file_name + ".sbr";
+		string s_path = _s_directory_name + "/" + s_file_name + ".sbreplay";
 		byte[] data_replay = File.ReadAllBytes(s_path);
 		BinaryFormatter _BF = new BinaryFormatter();
 		MemoryStream _MS = new MemoryStream();

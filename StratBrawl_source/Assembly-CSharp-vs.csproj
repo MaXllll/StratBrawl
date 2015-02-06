@@ -46,14 +46,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Game\BoardGame\SC_board_game.cs" />
+     <Compile Include="Assets\Scripts\Game\BoardGame\SC_board_game_animation.cs" />
+     <Compile Include="Assets\Scripts\Game\BoardGame\SC_board_game_brawlers.cs" />
+     <Compile Include="Assets\Scripts\Game\BoardGame\SC_board_game_gamefield.cs" />
+     <Compile Include="Assets\Scripts\Game\GameManager\SC_game_manager_client.cs" />
+     <Compile Include="Assets\Scripts\Game\GameManager\SC_game_manager_client_planification.cs" />
+     <Compile Include="Assets\Scripts\Game\GameManager\SC_game_manager_server.cs" />
+     <Compile Include="Assets\Scripts\Game\GameManager\SC_game_manager_server_simulation.cs" />
      <Compile Include="Assets\Scripts\Game\GameSettings\SO_game_settings.cs" />
-     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client.cs" />
-     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client_animation.cs" />
-     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client_brawlers.cs" />
-     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client_planification.cs" />
-     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client_terrain.cs" />
-     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_server.cs" />
-     <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_server_simulation.cs" />
      <Compile Include="Assets\Scripts\Game\Replay\SC_replay_files_manager.cs" />
      <Compile Include="Assets\Scripts\Game\Replay\SC_replay_manager.cs" />
      <Compile Include="Assets\Scripts\Game\SC_animation.cs" />

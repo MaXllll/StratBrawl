@@ -184,3 +184,44 @@ public struct BallSimulationResult
 		_position_on_ground = position_on_ground;
 	}
 }
+
+
+[Serializable]
+public struct GameSnap
+{
+	public int _i_score_team_true;
+	public int _i_score_team_false;
+
+	// Brawlers infos
+	public BrawlerSnap[] _brawlers;
+
+	// Ball infos
+	public BallStatus _ball_status;
+	public int _i_brawler_with_the_ball;
+	public GridPosition _cell_with_the_ball;
+}
+
+
+[Serializable]
+public struct BrawlerSnap
+{
+	public GridPosition _position;
+	public bool _b_is_KO;
+	public int _i_KO_round_remaining;
+}
+
+
+[Serializable]
+public struct Replay
+{
+	public GameSettings _game_settings;
+	public GameSnap _start_game_snap;
+	public SimulationResult[][] _record;
+
+	public Replay(GameSettings game_settings, GameSnap start_game_snap, SimulationResult[][] record)
+	{
+		_game_settings = game_settings;
+		_start_game_snap = start_game_snap;
+		_record = record;
+	}
+}

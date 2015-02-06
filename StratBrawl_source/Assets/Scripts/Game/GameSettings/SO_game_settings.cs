@@ -4,31 +4,37 @@ using System;
 
 public class SO_game_settings : ScriptableObject {
 
+	public string _s_settings_name;
+
 	public GameSettings _settings;
 }
 
 [Serializable]
 public class GameSettings {
 
-	[SerializeField]
-	public int i_pass_nb_cells = 2;
-	public int _i_pass_nb_cells { get{ return i_pass_nb_cells; } }
+//	[SerializeField]
+//	public int i_pass_nb_cells = 2;
+//	public int _i_pass_nb_cells { get{ return i_pass_nb_cells; } }
+//
+//	[SerializeField]
+//	private int i_nb_actions_per_turn = 3;
+//	public int _i_nb_actions_per_turn { get{ return i_nb_actions_per_turn; } }
 
 	[SerializeField]
-	private int i_nb_actions_per_turn = 3;
-	public int _i_nb_actions_per_turn { get{ return i_nb_actions_per_turn; } }
+	private int i_game_field_width = 12;
+	public int _i_game_field_width { get{ return i_game_field_width; } }
 
 	[SerializeField]
-	private int i_gameField_width = 12;
-	public int _i_gameField_width { get{ return i_gameField_width; } }
+	private int i_game_field_height = 7;
+	public int _i_game_field_height { get{ return i_game_field_height; } }
 
 	[SerializeField]
-	private int i_gameField_height = 7;
-	public int _i_gameField_height { get{ return i_gameField_height; } }
-
-	[SerializeField]
-	private int i_nb_turn_max = 10;
+	private int i_nb_turn_max = 20;
 	public int _i_nb_turn_max { get{ return i_nb_turn_max; } }
+
+	[SerializeField]
+	private int i_nb_score_max = 5;
+	public int _i_nb_score_max { get{ return i_nb_score_max; } }
 
 	[SerializeField]
 	private int i_planification_time = 60;

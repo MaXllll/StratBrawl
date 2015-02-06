@@ -1,12 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public partial class SC_game_manager_server {
+
+	[SerializeField]
+	private SO_game_settings _game_settings;
+
+	private int _i_score_team_true = 0;
+	private int _i_score_team_false = 0;
+	private int _i_turn = 0;
 
 	private BallData _ball_data;
 	private BrawlersData _brawlers_data;
 	private TerrainData _terrain_data;
 
+	private GameSnap _game_snap_start;
+	private List<SimulationResult[]> _record;
 
 	private class TerrainData
 	{
@@ -321,12 +331,15 @@ public partial class SC_game_manager_server {
 	{
 		_brawlers_data = new BrawlersData(_game_settings);
 
-		_terrain_data = new TerrainData(_game_settings._settings._i_gameField_width, _game_settings._settings._i_gameField_height);
+		_terrain_data = new TerrainData(_game_settings._settings._i_game_field_width, _game_settings._settings._i_game_field_height);
 
 		_ball_data = new BallData();
 
 		SetBrawlersEngagePositions(true);
 		_terrain_data.SetBrawlersPositionCurrentInTerrain(_brawlers_data);
+
+		_record = new List<SimulationResult[]>(_game_settings._settings._i_nb_turn_max);
+		_game_snap_start = SimulationDataToGameSnap();
 	}
 
 	
@@ -439,11 +452,13 @@ public partial class SC_game_manager_server {
 				{
 					_b_is_goal = true;
 					_b_team_who_scores = true;
+					++_i_score_team_true;
 				}
 				else if (_brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._b_team == false && _brawlers_data._brawlers[_ball_data._i_brawler_with_the_ball_current]._position_current._i_x == 0)
 				{
 					_b_is_goal = true;
 					_b_team_who_scores = false;
+					++_i_score_team_false;
 				}
 			}
 
@@ -457,7 +472,9 @@ public partial class SC_game_manager_server {
 				break;
 			}
 		}
-		
+
+		_record.Add(simulation_result);
+
 		return simulation_result;
 	}
 	
@@ -530,12 +547,36 @@ public partial class SC_game_manager_server {
 		if (b_team_with_ball)
 		{
 			_brawlers_data._brawlers[0]._b_have_the_ball_current = true;
+			_ball_data._i_brawler_with_the_ball_current = 0;
 			_ball_data._i_brawler_with_the_ball_prevision = 0;
 		}
 		else
 		{
 			_brawlers_data._brawlers[_brawlers_data._i_nb_brawler_per_team]._b_have_the_ball_current = true;
+			_ball_data._i_brawler_with_the_ball_current = _brawlers_data._i_nb_brawler_per_team;
 			_ball_data._i_brawler_with_the_ball_prevision = _brawlers_data._i_nb_brawler_per_team;
 		}
+	}
+
+	private GameSnap SimulationDataToGameSnap()
+	{
+		GameSnap game_snap = new GameSnap();
+
+		game_snap._i_score_team_true = _i_score_team_true;
+		game_snap._i_score_team_false = _i_score_team_false;
+
+		game_snap._brawlers = new BrawlerSnap[_brawlers_data._i_nb_brawlers];
+		for (int i = 0; i < _brawlers_data._i_nb_brawlers; ++i)
+		{
+			game_snap._brawlers[i]._position = _brawlers_data._brawlers[i]._position_current;
+			game_snap._brawlers[i]._b_is_KO = _brawlers_data._brawlers[i]._b_is_KO_current;
+			game_snap._brawlers[i]._i_KO_round_remaining = _brawlers_data._brawlers[i]._i_KO_round_remaining;
+		}
+
+		game_snap._ball_status = _ball_data._ball_status_current;
+		game_snap._i_brawler_with_the_ball = _ball_data._i_brawler_with_the_ball_current;
+		game_snap._cell_with_the_ball = _ball_data._position_on_ground_current;
+
+		return game_snap;
 	}
 }

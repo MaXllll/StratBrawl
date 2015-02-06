@@ -54,6 +54,8 @@
      <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_client_terrain.cs" />
      <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_server.cs" />
      <Compile Include="Assets\Scripts\Game\ManagerGame\SC_game_manager_server_simulation.cs" />
+     <Compile Include="Assets\Scripts\Game\Replay\SC_replay_files_manager.cs" />
+     <Compile Include="Assets\Scripts\Game\Replay\SC_replay_manager.cs" />
      <Compile Include="Assets\Scripts\Game\SC_animation.cs" />
      <Compile Include="Assets\Scripts\Game\SC_ball.cs" />
      <Compile Include="Assets\Scripts\Game\SC_brawler.cs" />

@@ -67,7 +67,8 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	{
 		for (int i = 0; i < _brawlers.Length; i++)
 		{
-			for (int j = 0; j < _game_settings._i_nb_actions_per_turn; j++)
+			// TODO _game_settings._i_nb_actions_per_turn;
+			for (int j = 0; j < 3; j++)
 			{
 				_brawlers[i]._actions[j].SetNone();
 			}

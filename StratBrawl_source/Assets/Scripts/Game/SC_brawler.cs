@@ -25,6 +25,10 @@ public class SC_brawler : MonoBehaviour {
 	private Material _Mat_team_true;
 	[SerializeField]
 	private Material _Mat_team_false;
+	[SerializeField]
+	public Material _Mat_team_true_ball;
+	[SerializeField]
+	public Material _Mat_team_false_ball;
 
 	[SerializeField]
 	private Sprite _Spr_team_blue;

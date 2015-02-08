@@ -113,9 +113,9 @@ MonoBehaviour:
   _i_KO_round_remaining: 0
   _actions: []
   _Mat_team_true: {fileID: 2100000, guid: dc6d26b474b80e2449040be249a86cef, type: 2}
-  _Mat_team_false: {fileID: 2100000, guid: d3b0e7c292bee0e40b7da748c0ac77e2, type: 2}
-  _Spr_team_blue: {fileID: 0}
-  _Spr_team_red: {fileID: 0}
+  _Mat_team_false: {fileID: 2100000, guid: 93af574b8fa1dce47bbfe3a6dec5f328, type: 2}
+  _Spr_team_blue: {fileID: 21300000, guid: 484930126f0dccd48b29567317388a9a, type: 3}
+  _Spr_team_red: {fileID: 21300000, guid: 76940ff2603e95d4eb082435b12a1eb4, type: 3}
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1

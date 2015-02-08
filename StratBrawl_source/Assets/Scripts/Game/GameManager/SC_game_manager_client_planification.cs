@@ -199,8 +199,8 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		}
 	}
 
-	public void RegisterSelectedSlot(int selected_slot){
-		_selected_slot = selected_slot;
+	public void RegisterSelectedSlot(int selected_slot_p){
+		_selected_slot = selected_slot_p;
 	}
 
 	private void AddActionToBrawlerArray(){
@@ -211,9 +211,6 @@ public partial class SC_game_manager_client : MonoBehaviour {
 				_selected_brawler._actions[i].SetNone();
 			}
 		}
-		if (_selected_brawler._actions [_selected_slot]._action_type != ActionType.None) {			
-			RemoveDisplayOnCell(_img_brawler_actions_cells[_selected_brawler._i_index_in_team,_selected_slot]);
-		}
 		_selected_brawler._actions[_selected_slot] = _selected_action;
 		_number_of_chosen_actions++;		
 		_manager_ui.UpdateActionsSlotForBrawler(_selected_brawler);
@@ -222,6 +219,7 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	public void RemoveDisplayOnCell(Image cell_image){
 		cell_image.color = new Color (255, 255, 255, 0);
 		cell_image.sprite = null;
+		//cell_image = new Image ();
 	}
 
 	public void RegisterSelectedCellPositionForAction(SC_cell selected_cell){
@@ -231,7 +229,12 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		_selected_action._position = selected_cell._position;
 		_selected_action._direction_move = DetermineMoveDirection (selected_cell._position);
 		//_selected_action._image_cell = selected_cell._IMG_action_display;
-		_img_brawler_actions_cells [_selected_brawler._i_index_in_team,_selected_slot] = selected_cell._IMG_action_display;
+		Image currentImageInArray = _img_brawler_actions_cells [_selected_brawler._i_index_in_team, _selected_slot];
+		if (currentImageInArray != null) {
+			RemoveDisplayOnCell(currentImageInArray);
+		}
+		_img_brawler_actions_cells[_selected_brawler._i_index_in_team, _selected_slot] = selected_cell._IMG_action_display;
+		
 		// TODO optimisation en mettant juste tout les cells à false?
 		SetActiveCellsForMoveAndTackle (false);
 		SetActiveCellsForPass (false);

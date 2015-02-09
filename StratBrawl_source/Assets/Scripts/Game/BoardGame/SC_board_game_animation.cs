@@ -63,7 +63,9 @@ public partial class SC_board_game : MonoBehaviour {
 				_ball.SetBallOnTheCell(_cells_gameField[simulation_results[i]._ball_simulation_result._position_on_ground._i_x,simulation_results[i]._ball_simulation_result._position_on_ground._i_y]);
 				break;
 			}
-			
+
+			Debug.Log ("Client : " + simulation_results[i]._ball_simulation_result._i_brawler_with_the_ball);
+
 			// Wait between two series of actions
 			yield return new WaitForSeconds(_f_duration_animation * 0.5f);
 			

@@ -41,7 +41,7 @@ public class SC_ball : MonoBehaviour {
 		_ball_status = BallStatus.OnBrawler;
 		_brawler_with_the_ball = _brawler;
 		_brawler_with_the_ball._b_have_the_ball = true;
-		//_T_ball.parent = _brawler._T_brawler;
+		_T_ball.parent = _brawler._T_brawler;
 		if (_brawler._b_team) {
 			_brawler._T_brawler.renderer.material = _brawler._Mat_team_true_ball;
 		}else{

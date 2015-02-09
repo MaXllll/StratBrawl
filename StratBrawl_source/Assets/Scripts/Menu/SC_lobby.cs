@@ -8,7 +8,7 @@ public class SC_lobby : MonoBehaviour {
 	/// PARAMETERS : The player.
 	/// RETURN : Void.
 	void OnPlayerConnected(NetworkPlayer player){
-		Application.LoadLevel ("game_test");
+		Application.LoadLevel ("Game");
 	}
 
 	/// SUMMARY : (Client side) A new player has just connected. It means there are 2 players in the game, we can load the game.
@@ -16,7 +16,7 @@ public class SC_lobby : MonoBehaviour {
 	/// RETURN : Void.
 	void OnConnectedToServer()	
 	{
-		Application.LoadLevel("game_test");
+		Application.LoadLevel("Game");
 	}
 
 }

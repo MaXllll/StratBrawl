@@ -34,6 +34,11 @@ public class SC_manager_ui : MonoBehaviour {
 	[SerializeField]
 	private GameObject _GO_button_end_turn;
 
+	[SerializeField]
+	private GameObject _GO_menu_end;
+	[SerializeField]
+	private Text _test_end;
+
 	public void Awake()
 	{
 		SetActiveButtonBackSlotsBrawler(false);
@@ -134,4 +139,24 @@ public class SC_manager_ui : MonoBehaviour {
 		StopCoroutine("Timer_Coroutine");
 		_GO_timer.SetActive(false);
 	}
+
+	public void SetEnd(GameResult game_result)
+	{
+		_GO_menu_end.SetActive(true);
+		_GO_timer.SetActive(false);
+		switch(game_result)
+		{
+		case GameResult.Win:
+			_test_end.text = "You Win !";
+			break;
+		case GameResult.Lose:
+			_test_end.text = "You Lose !";
+			break;
+		case GameResult.Draw:
+			_test_end.text = "Draw !";
+			break;
+		}
+	}
+
+
 }

@@ -27,6 +27,9 @@ public partial class SC_game_manager_client : MonoBehaviour {
 
 	private GameSettings _game_settings;
 
+	private byte[] _data_replay;
+	private bool _b_relpay_is_already_saved = false;
+
 	
 	/// SUMMARY : Initialize th game manager.
 	/// PARAMETERS : None.
@@ -180,7 +183,43 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	[RPC]
 	private void EndGame(byte[] data_replay)
 	{
-		if (Network.isServer)
-			SC_replay_files_manager.SaveReplay(data_replay);
+		_data_replay = data_replay;
+
+		GameResult game_result;
+		if (_i_score_team_true > _i_score_team_false)
+		{
+			if (_b_player_team)
+				game_result = GameResult.Win;
+			else
+				game_result = GameResult.Lose;
+		}
+		else if (_i_score_team_true < _i_score_team_false)
+		{
+			if (_b_player_team)
+				game_result = GameResult.Lose;
+			else
+				game_result = GameResult.Win;
+		}
+		else
+		{
+			game_result = GameResult.Draw;
+		}
+		_manager_ui.SetEnd(game_result);
+	}
+
+
+	public void SaveReplay()
+	{
+		if (!_b_relpay_is_already_saved)
+		{
+			_b_relpay_is_already_saved = true;
+			SC_replay_files_manager.SaveReplay(_data_replay);
+		}
+	}
+
+
+	public void GoToMenu()
+	{
+		Application.LoadLevel("Menu");
 	}
 }

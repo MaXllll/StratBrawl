@@ -22,6 +22,7 @@ public partial class SC_board_game : MonoBehaviour {
 		_ball.Init();
 	}
 
+
 	/// SUMMARY : Initialize brawlers and ball for engage.
 	/// PARAMETERS : The team who have the ball.
 	/// RETURN : Void.

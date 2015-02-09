@@ -21,7 +21,7 @@ public partial class SC_board_game : MonoBehaviour {
 			// Loop in brawlers result to play animation of their action.
 			for (int j = 0; j < simulation_results[i]._brawlers_simulation_result.Length; j++)
 			{
-				if (!simulation_results[i]._brawlers_simulation_result[j]._b_is_KO)
+				if (_brawlers[j]._position != simulation_results[i]._brawlers_simulation_result[j]._position_target)
 					StartCoroutine(_brawlers[j]._animation.PlayAnimation(simulation_results[i]._brawlers_simulation_result[j]._action_type,
 					                                                     simulation_results[i]._brawlers_simulation_result[j]._position_target,
 					                                                     _f_duration_animation));
@@ -33,12 +33,14 @@ public partial class SC_board_game : MonoBehaviour {
 			case BallStatus.OnBrawler:
 				if (_ball._brawler_with_the_ball == null || simulation_results[i]._ball_simulation_result._i_brawler_with_the_ball != _ball._brawler_with_the_ball._i_index)
 				{
+					_ball.ResetOwner();
 					StartCoroutine(_ball._animation.InterpolationOnMovingTagret(_brawlers[simulation_results[i]._ball_simulation_result._i_brawler_with_the_ball]._T_brawler, _f_duration_animation));
 				}
 				break;
 			case BallStatus.OnGround:
 				if (_ball._cell_with_the_ball == null || simulation_results[i]._ball_simulation_result._position_on_ground != _ball._cell_with_the_ball._position)
 				{
+					_ball.ResetOwner();
 					StartCoroutine(_ball._animation.Interpolation(simulation_results[i]._ball_simulation_result._position_on_ground.GetWorldPosition(), _f_duration_animation));
 				}
 				break;
@@ -50,6 +52,7 @@ public partial class SC_board_game : MonoBehaviour {
 			// Make sure that brawlers is on correct positions
 			for (int j = 0; j < simulation_results[i]._brawlers_simulation_result.Length; j++)
 			{
+				_brawlers[j]._b_is_KO = simulation_results[i]._brawlers_simulation_result[j]._b_is_KO;
 				if (simulation_results[i]._brawlers_simulation_result[j]._action_type == ActionType.Move)
 					_brawlers[j].SetPosition(simulation_results[i]._brawlers_simulation_result[j]._position_target);
 			}

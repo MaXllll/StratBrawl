@@ -10,7 +10,16 @@ public partial class SC_board_game : MonoBehaviour {
 	private Transform _T_root_cells_gameField;
 	[SerializeField]
 	private GameObject _GO_prefab_cell_gameField;
-	
+
+	[SerializeField]
+	private Material _Mat_gamefield_border;
+	[SerializeField]
+	private Material _Mat_gamefield_center;
+	[SerializeField]
+	private Material _Mat_gamefield_score_zone_border;
+	[SerializeField]
+	private Material _Mat_gamefield_score_zone_center;
+
 	public SC_cell[,] _cells_gameField;
 	
 	
@@ -31,8 +40,31 @@ public partial class SC_board_game : MonoBehaviour {
 				GO_tmp.transform.parent = _T_root_cells_gameField;
 				_cells_gameField[i,j] = GO_tmp.GetComponent<SC_cell>();
 				_cells_gameField[i,j].Init(new GridPosition(i, j));
+				_cells_gameField[i,j].renderer.sharedMaterial = _Mat_gamefield_center;
 			}
 		}
+
+		for(int i = 1; i < i_width - 1; i++)
+		{
+			_cells_gameField[i,0].renderer.sharedMaterial = _Mat_gamefield_border;
+			_cells_gameField[i,0]._T_cell.eulerAngles = Vector3.forward * 180;
+			_cells_gameField[i,i_height - 1].renderer.sharedMaterial = _Mat_gamefield_border;
+		}
+
+		for(int i = 1; i < i_height - 1; i++)
+		{
+			_cells_gameField[0,i].renderer.sharedMaterial = _Mat_gamefield_score_zone_center;
+			_cells_gameField[i_width - 1,i].renderer.sharedMaterial = _Mat_gamefield_score_zone_center;
+		}
+
+		_cells_gameField[0, 0].renderer.sharedMaterial = _Mat_gamefield_score_zone_border;
+		_cells_gameField[0, 0]._T_cell.eulerAngles = Vector3.forward * 180;
+		_cells_gameField[i_width - 1, 0].renderer.sharedMaterial = _Mat_gamefield_score_zone_border;
+		_cells_gameField[i_width - 1, 0]._T_cell.eulerAngles = Vector3.forward * 180;
+		_cells_gameField[0, i_height - 1].renderer.sharedMaterial = _Mat_gamefield_score_zone_border;
+		_cells_gameField[i_width - 1, i_height - 1].renderer.sharedMaterial = _Mat_gamefield_score_zone_border;
+
+
 
 		_T_camera.position = new Vector3((i_width - 1) * 0.5f, (i_height - 1) * 0.5f, -10);
 

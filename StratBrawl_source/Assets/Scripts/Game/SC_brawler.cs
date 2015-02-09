@@ -22,18 +22,13 @@ public class SC_brawler : MonoBehaviour {
 	public Action[] _actions;
 
 	[SerializeField]
-	private Material _Mat_team_true;
+	public Material _Mat_team_true;
 	[SerializeField]
-	private Material _Mat_team_false;
+	public Material _Mat_team_false;
 	[SerializeField]
 	public Material _Mat_team_true_ball;
 	[SerializeField]
 	public Material _Mat_team_false_ball;
-
-	[SerializeField]
-	private Sprite _Spr_team_blue;
-	[SerializeField]
-	private Sprite _Spr_team_red;
 
 
 	/// SUMMARY : Initialize the brawler.

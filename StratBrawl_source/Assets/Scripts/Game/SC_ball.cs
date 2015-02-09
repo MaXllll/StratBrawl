@@ -42,11 +42,11 @@ public class SC_ball : MonoBehaviour {
 		_brawler_with_the_ball = _brawler;
 		_brawler_with_the_ball._b_have_the_ball = true;
 		_T_ball.parent = _brawler._T_brawler;
-		if (_brawler._b_team) {
-			_brawler._T_brawler.renderer.material = _brawler._Mat_team_true_ball;
-		}else{
-			_brawler._T_brawler.renderer.material = _brawler._Mat_team_false_ball;
-		}
+		if (_brawler._b_team)
+			_brawler._T_brawler.renderer.sharedMaterial = _brawler._Mat_team_true_ball;
+		else
+			_brawler._T_brawler.renderer.sharedMaterial = _brawler._Mat_team_false_ball;
+		
 		_T_ball.localPosition = new Vector3(0f, 0f, -1f);
 	}
 
@@ -71,6 +71,11 @@ public class SC_ball : MonoBehaviour {
 	{
 		if (_brawler_with_the_ball != null)
 		{
+			if (_brawler_with_the_ball._b_team)
+				_brawler_with_the_ball._T_brawler.renderer.sharedMaterial = _brawler_with_the_ball._Mat_team_true;
+			else
+				_brawler_with_the_ball._T_brawler.renderer.sharedMaterial = _brawler_with_the_ball._Mat_team_false;
+
 			_brawler_with_the_ball._b_have_the_ball = false;
 			_brawler_with_the_ball = null;
 		}

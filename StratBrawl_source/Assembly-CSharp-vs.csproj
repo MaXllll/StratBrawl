@@ -55,8 +55,6 @@
      <Compile Include="Assets\Scripts\Game\GameManager\SC_game_manager_server.cs" />
      <Compile Include="Assets\Scripts\Game\GameManager\SC_game_manager_server_simulation.cs" />
      <Compile Include="Assets\Scripts\Game\GameSettings\SO_game_settings.cs" />
-     <Compile Include="Assets\Scripts\Game\Replay\SC_replay_files_manager.cs" />
-     <Compile Include="Assets\Scripts\Game\Replay\SC_replay_manager.cs" />
      <Compile Include="Assets\Scripts\Game\SC_animation.cs" />
      <Compile Include="Assets\Scripts\Game\SC_ball.cs" />
      <Compile Include="Assets\Scripts\Game\SC_brawler.cs" />
@@ -69,6 +67,8 @@
      <Compile Include="Assets\Scripts\Menu\SC_menu_click_handler.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_play_menu_click_handler.cs" />
      <Compile Include="Assets\Scripts\Menu\SC_set_frame_rate.cs" />
+     <Compile Include="Assets\Scripts\Replay\SC_replay_files_manager.cs" />
+     <Compile Include="Assets\Scripts\Replay\SC_replay_manager.cs" />
      <Compile Include="Assets\tmp\SC_menu_tmp.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files (x86)/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.0/UnityEngine.UI.dll</HintPath>

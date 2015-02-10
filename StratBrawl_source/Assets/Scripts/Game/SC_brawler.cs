@@ -22,14 +22,13 @@ public class SC_brawler : MonoBehaviour {
 	public Action[] _actions;
 
 	[SerializeField]
-	private Material _Mat_team_true;
+	public Material _Mat_team_true;
 	[SerializeField]
-	private Material _Mat_team_false;
-
+	public Material _Mat_team_false;
 	[SerializeField]
-	private Sprite _Spr_team_blue;
+	public Material _Mat_team_true_ball;
 	[SerializeField]
-	private Sprite _Spr_team_red;
+	public Material _Mat_team_false_ball;
 
 
 	/// SUMMARY : Initialize the brawler.
@@ -42,6 +41,7 @@ public class SC_brawler : MonoBehaviour {
 		_i_index_in_team = i_index_in_team;
 		_b_team = b_team;
 		renderer.material = b_team ? _Mat_team_true : _Mat_team_false;
+		_T_brawler.Rotate(new Vector3(0,0, b_team ? 90 : 270));
 		//sprite
 		_GO_button_brawler.SetActive(false);
 		InitActions(3);

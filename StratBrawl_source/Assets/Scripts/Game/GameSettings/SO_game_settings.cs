@@ -4,6 +4,8 @@ using System;
 
 public class SO_game_settings : ScriptableObject {
 
+	public string _s_settings_name;
+
 	public GameSettings _settings;
 }
 
@@ -11,24 +13,20 @@ public class SO_game_settings : ScriptableObject {
 public class GameSettings {
 
 	[SerializeField]
-	public int i_pass_nb_cells = 2;
-	public int _i_pass_nb_cells { get{ return i_pass_nb_cells; } }
+	private int i_game_field_width = 12;
+	public int _i_game_field_width { get{ return i_game_field_width; } }
 
 	[SerializeField]
-	private int i_nb_actions_per_turn = 3;
-	public int _i_nb_actions_per_turn { get{ return i_nb_actions_per_turn; } }
+	private int i_game_field_height = 7;
+	public int _i_game_field_height { get{ return i_game_field_height; } }
 
 	[SerializeField]
-	private int i_gameField_width = 12;
-	public int _i_gameField_width { get{ return i_gameField_width; } }
-
-	[SerializeField]
-	private int i_gameField_height = 7;
-	public int _i_gameField_height { get{ return i_gameField_height; } }
-
-	[SerializeField]
-	private int i_nb_turn_max = 10;
+	private int i_nb_turn_max = 20;
 	public int _i_nb_turn_max { get{ return i_nb_turn_max; } }
+
+	[SerializeField]
+	private int i_nb_score_max = 5;
+	public int _i_nb_score_max { get{ return i_nb_score_max; } }
 
 	[SerializeField]
 	private int i_planification_time = 60;
@@ -55,8 +53,4 @@ public class GameSettings {
 																		new GridPosition(4,2),
 																		new GridPosition(4,4)};
 	public GridPosition[] _positions_brawlers_defense_formation { get{ return positions_brawlers_defense_formation; } }
-
-	[SerializeField]
-	private float f_orthographic_size = 5;
-	public float _f_orthographic_size { get{ return f_orthographic_size; } }
 }

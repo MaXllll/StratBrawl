@@ -21,6 +21,7 @@ public partial class SC_game_manager_server : MonoBehaviour {
 
 	void Start()
 	{
+		//Network.InitializeServer (2, 23466);
 		if (Network.isServer)
 		{
 			_network_view = networkView;
@@ -33,6 +34,7 @@ public partial class SC_game_manager_server : MonoBehaviour {
 			byte[] _data_game_settings = _MS.ToArray();
 			_MS.Close();
 			_network_view.RPC("InitGame", RPCMode.All, _data_game_settings);
+			//ClientIsReadyToStart();
 		}
 	}
 

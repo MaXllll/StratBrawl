@@ -22,18 +22,15 @@ public partial class SC_game_manager_server : MonoBehaviour {
 
 	void Start()
 	{
-<<<<<<< HEAD:StratBrawl_source/Assets/Scripts/Game/ManagerGame/SC_game_manager_server.cs
-		//Network.InitializeServer (2, 23466);
-=======
+
 		Network.InitializeServer (2, 23466);
->>>>>>> f3da89d935e885f2688fef3d0828ca77555af858:StratBrawl_source/Assets/Scripts/Game/GameManager/SC_game_manager_server.cs
+
 		if (Network.isServer)
 		{
 			_network_view = networkView;
 			_instance = this;
 			InitSimulation();
 
-<<<<<<< HEAD:StratBrawl_source/Assets/Scripts/Game/ManagerGame/SC_game_manager_server.cs
 			BinaryFormatter _BF = new BinaryFormatter();
 			MemoryStream _MS = new MemoryStream();
 			_BF.Serialize(_MS, _game_settings._settings);
@@ -41,9 +38,7 @@ public partial class SC_game_manager_server : MonoBehaviour {
 			_MS.Close();
 			_network_view.RPC("InitGame", RPCMode.All, _data_game_settings);
 			//ClientIsReadyToStart();
-=======
 			SendGameSnap(_game_snap_start);
->>>>>>> f3da89d935e885f2688fef3d0828ca77555af858:StratBrawl_source/Assets/Scripts/Game/GameManager/SC_game_manager_server.cs
 		}
 		ClientIsReadyToStart ();
 	}

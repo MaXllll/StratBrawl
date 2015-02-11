@@ -51,11 +51,14 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		_manager_ui.SetActiveButtonEndTurn (false);
 		// Test to check if it is the first time the method is called or not this turn, since only CloseMenuActionsTypes calls it
 		// without _brawler parameter
-		if (_brawler != null) {			
+		//if (_brawler != null) {			
 			_selected_brawler = _brawler;
 			_manager_ui.UpdateActionsSlotForBrawler(_selected_brawler);
-			_board_game.SetActiveButtonsBrawlers (false, _brawler._b_team);
-		}
+			//_board_game.SetActiveButtonsBrawlers (false, _brawler._b_team);
+		//}
+		// By default the first action is selected
+		_selected_slot = 0;
+		OpenMenuActionsTypes ();
 	}
 
 	/// SUMMARY : Opens the panel containing the different types slots of action possible
@@ -63,10 +66,10 @@ public partial class SC_game_manager_client : MonoBehaviour {
 	/// RETURN : Void.
 	public void OpenMenuActionsTypes()
 	{
-		_manager_ui.SetActivePanelActionsSlotsBrawler(false);		
+		//_manager_ui.SetActivePanelActionsSlotsBrawler(false);		
 		_manager_ui.SetActivePanelActionsTypes(true);		
-		_manager_ui.SetActiveButtonBackSlotsBrawler(false);	
-		_manager_ui.SetActiveButtonBackTypes(true);		
+		//_manager_ui.SetActiveButtonBackSlotsBrawler(false);	
+		//_manager_ui.SetActiveButtonBackTypes(true);		
 	}
 	
 	public void CloseMenuActionsSlots()
@@ -76,20 +79,26 @@ public partial class SC_game_manager_client : MonoBehaviour {
 		_manager_ui.SetActiveButtonBackSlotsBrawler(false);
 		_manager_ui.SetActivePanelActionsSlotsBrawler(false);
 		_manager_ui.SetActiveButtonEndTurn (true);
-	}
-
-	public void CloseMenuActionsTypes()
-	{
 		_manager_ui.SetActiveButtonBackTypes(false);
 		_manager_ui.SetActivePanelActionsTypes(false);
 		SetActiveCellsForMoveAndTackle (false);
 		SetActiveCellsForPass (false);
-		OpenMenuActionsSlots ();
+	}
+
+	public void CloseMenuActionsTypes()
+	{
+
+		//OpenMenuActionsSlots ();
 	}
 
 	
 	public void SetActiveCellsForMoveAndTackle(bool active)
 	{
+		if (_selected_cell != null && active)
+		{
+			SetActiveCellsForMoveAndTackle (false);
+			SetActiveCellsForPass (false);
+		}
 		GridPosition cell_selected_position = CalculateCurrentPositionWithFutureActions();
 		int x = (int)cell_selected_position.GetWorldPosition ().x;
 		int y = (int)cell_selected_position.GetWorldPosition ().y;
@@ -102,6 +111,11 @@ public partial class SC_game_manager_client : MonoBehaviour {
 
 	public void SetActiveCellsForPass(bool active)
 	{
+		if (_selected_cell != null && active)
+		{
+			SetActiveCellsForMoveAndTackle (false);
+			SetActiveCellsForPass (false);
+		}
 		GridPosition cell_selected_position = CalculateCurrentPositionWithFutureActions();
 		// TODO int nb_cells = _game_settings._i_pass_nb_cells;
 		int nb_cells = 5;

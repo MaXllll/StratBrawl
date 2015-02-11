@@ -1,20 +1,12 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Game\GameManager\SC_game_manager_server.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\StratBrawl_2\StratBrawl_source\Assets\Scripts\Game\BoardGame\SC_board_game_animation.cs">
     <Files>
-      <File FileName="Assets\Scripts\Game\GameManager\SC_game_manager_server.cs" Line="27" Column="4" />
-      <File FileName="Assets\Scripts\Game\BoardGame\SC_board_game_gamefield.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\BoardGame\SC_board_game_animation.cs" Line="60" Column="42" />
-      <File FileName="Assets\Scripts\Game\BoardGame\SC_board_game_brawlers.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\BoardGame\SC_board_game.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\SC_ball.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Game\SC_brawler.cs" Line="1" Column="1" />
+      <File FileName="..\..\StratBrawl_2\StratBrawl_source\Assets\Scripts\Game\GameManager\SC_game_manager_server.cs" Line="22" Column="2" />
+      <File FileName="..\..\StratBrawl_2\StratBrawl_source\Assets\Scripts\Game\GameManager\SC_game_manager_client.cs" Line="1" Column="1" />
+      <File FileName="..\..\StratBrawl_2\StratBrawl_source\Assets\Scripts\Game\GameManager\SC_game_manager_server_simulation.cs" Line="590" Column="1" />
+      <File FileName="..\..\StratBrawl_2\StratBrawl_source\Assets\Scripts\Game\BoardGame\SC_board_game_animation.cs" Line="95" Column="4" />
     </Files>
-    <Pads>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State />
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

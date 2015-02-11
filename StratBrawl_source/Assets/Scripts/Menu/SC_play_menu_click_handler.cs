@@ -75,6 +75,18 @@ public class SC_play_menu_click_handler : MonoBehaviour
 				}
 		}
 
+		/// SUMMARY : The user click on the create game button. We must create a new server by calling the RegisterAGame method
+		/// PARAMETERS : The input field containing the game name
+		/// RETURN : Void.
+		public void ClickJoinButton (InputField ip)
+		{	
+				if (ip.text != "") {
+						_GO_current_panel.SetActive (false);
+						_GO_lobby_panel.SetActive (true);
+						Network.Connect (ip.text, 25002);
+				}
+		}
+
 		//The script is awake, request the server list from the master server
 		void Awake ()
 		{

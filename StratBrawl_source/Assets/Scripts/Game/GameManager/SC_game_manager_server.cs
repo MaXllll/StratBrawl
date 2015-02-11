@@ -22,13 +22,22 @@ public partial class SC_game_manager_server : MonoBehaviour {
 
 	void Start()
 	{
+
 		Network.InitializeServer (2, 23466);
+
 		if (Network.isServer)
 		{
 			_network_view = networkView;
 			_instance = this;
 			InitSimulation();
 
+			BinaryFormatter _BF = new BinaryFormatter();
+			MemoryStream _MS = new MemoryStream();
+			_BF.Serialize(_MS, _game_settings._settings);
+			byte[] _data_game_settings = _MS.ToArray();
+			_MS.Close();
+			_network_view.RPC("InitGame", RPCMode.All, _data_game_settings);
+			//ClientIsReadyToStart();
 			SendGameSnap(_game_snap_start);
 		}
 		ClientIsReadyToStart ();

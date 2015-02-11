@@ -1,0 +1,14 @@
+Menu in-game
+Afficher le tour en cours et le nombre de tours maximum.
+Son
+Réglage d’option de partie lors de la création du server
+Améliorer la gestion des déconnexion / reconnexion
+Outil permettant d’effectuer l’équilibrage du jeu (taille terrain, nb action par tour, nb brawler, nb de tour limite, distance passes, …)
+Features spécialisées :
+Vs Ordi
+Améliorer le lecteur de replay
+Ameliorer les visuels des actions sur le terrain, éviter que deux actions puissent se superposer sur une même case et se cacher l’une l’autre
+Réduire la taille des sprites afin qu’on puisse voir deux sprites (ou plus) sur la meme case
+Gestion des actions en layer par brawler
+Highlighter les actions du brawler selectionné pour amélorier la compréhension
+Améliorer le visuel des boutons à la planification

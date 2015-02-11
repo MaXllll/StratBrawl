@@ -47,14 +47,25 @@ public partial class SC_board_game : MonoBehaviour {
 			}
 			
 			// Wait end of the animation.
-			yield return new WaitForSeconds(_f_duration_animation);
-			
+			yield return new WaitForSeconds(_f_duration_animation * 0.5f);
+
+			for (int j = 0; j < simulation_results[i]._brawlers_simulation_result.Length; j++)
+			{
+				if (simulation_results[i]._brawlers_simulation_result[j]._b_is_KO)
+					_brawlers[j].renderer.material.color = new Color(0.4f, 0.4f, 0.4f, 1f);
+			}
+
+			yield return new WaitForSeconds(_f_duration_animation * 0.5f);
+
 			// Make sure that brawlers is on correct positions
 			for (int j = 0; j < simulation_results[i]._brawlers_simulation_result.Length; j++)
 			{
 				_brawlers[j]._b_is_KO = simulation_results[i]._brawlers_simulation_result[j]._b_is_KO;
 				if (simulation_results[i]._brawlers_simulation_result[j]._action_type == ActionType.Move)
 					_brawlers[j].SetPosition(simulation_results[i]._brawlers_simulation_result[j]._position_target);
+
+				if (!simulation_results[i]._brawlers_simulation_result[j]._b_is_KO)
+					_brawlers[j].renderer.material.color = new Color(1f, 1f, 1f, 1f);
 			}
 			
 			switch (simulation_results[i]._ball_simulation_result._ball_status)
@@ -66,8 +77,6 @@ public partial class SC_board_game : MonoBehaviour {
 				_ball.SetBallOnTheCell(_cells_gameField[simulation_results[i]._ball_simulation_result._position_on_ground._i_x,simulation_results[i]._ball_simulation_result._position_on_ground._i_y]);
 				break;
 			}
-
-			Debug.Log ("Client : " + simulation_results[i]._ball_simulation_result._i_brawler_with_the_ball);
 
 			// Wait between two series of actions
 			yield return new WaitForSeconds(_f_duration_animation * 0.5f);

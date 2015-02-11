@@ -38,6 +38,19 @@ public class SC_play_menu_click_handler : MonoBehaviour
 				panel_to_show.SetActive (true);
 		}
 
+		/// SUMMARY : The user click on the join button. The next panel is displayed.
+		/// PARAMETERS : The next panel.
+		/// RETURN : Void.
+		public void ClickJoinGameButton (InputField IPInputField)
+		{
+			if(!IPInputField.text.Equals("")){
+				_GO_current_panel.SetActive (false);
+				_GO_lobby_panel.SetActive (true);
+				Network.Connect(IPInputField.text, 1119);
+			}
+		}
+
+
 
 		/// SUMMARY : Retrieve master server hosts list
 		/// PARAMETERS : None.
@@ -66,24 +79,12 @@ public class SC_play_menu_click_handler : MonoBehaviour
 								});
 
 								_games_button.Add (button_obj);
-								//button.transform.Translate (new Vector3 (0, 2, 0));
+								button.transform.Translate (Vector3.down * 30 * i);
 
 				
 								i++;
 						}
 						MasterServer.ClearHostList ();
-				}
-		}
-
-		/// SUMMARY : The user click on the create game button. We must create a new server by calling the RegisterAGame method
-		/// PARAMETERS : The input field containing the game name
-		/// RETURN : Void.
-		public void ClickJoinButton (InputField ip)
-		{	
-				if (ip.text != "") {
-						_GO_current_panel.SetActive (false);
-						_GO_lobby_panel.SetActive (true);
-						Network.Connect (ip.text, 25002);
 				}
 		}
 
@@ -106,7 +107,7 @@ public class SC_play_menu_click_handler : MonoBehaviour
 		}
 
 		/// SUMMARY : The user want to join a server
-		/// PARAMETERS : None.
+		/// PARAMETERS : The server Data
 		/// RETURN : Void.
 		void NextPanel (HostData server)
 		{
@@ -114,5 +115,13 @@ public class SC_play_menu_click_handler : MonoBehaviour
 				_GO_lobby_panel.SetActive (true);
 				_TE_lobby_title.text = server.gameName;
 				Network.Connect (server);
+		}
+
+		/// SUMMARY : The user click on the back button. We go back.
+		/// RETURN : Void.
+		public void ClickBackButton(GameObject panelToShow)
+		{
+			_GO_current_panel.SetActive (false);
+			panelToShow.SetActive (true);
 		}
 }

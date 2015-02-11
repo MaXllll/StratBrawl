@@ -21,10 +21,12 @@ public class SC_create_game_click_handler : MonoBehaviour
 		/// RETURN : Void.
 		public void ClickCreateButton (InputField gameName)
 		{
-				_GO_current_panel.SetActive (false);
-				_GO_next_panel.SetActive (true);
-				_TE_lobby_title.text = gameName.text;
-				RegisterAGame (gameName.text);
+				if(!gameName.text.Equals("")){
+					_GO_current_panel.SetActive (false);
+					_GO_next_panel.SetActive (true);
+					_TE_lobby_title.text = gameName.text;
+					RegisterAGame (gameName.text);
+				}
 		}
 		
 		/// SUMMARY : Initialize a new server using the game name and register it to the master server
@@ -33,9 +35,17 @@ public class SC_create_game_click_handler : MonoBehaviour
 		public void RegisterAGame (string gameName)
 		{
 	
-				Network.InitializeServer (32, 25002, true);// !Network.HavePublicAddress ());
+				Network.InitializeServer (32, 1119, true);// !Network.HavePublicAddress ());
 				MasterServer.ipAddress = "127.0.0.1";
 				MasterServer.port = 23466;
 				MasterServer.RegisterHost ("1V1", gameName, "Test Comment");
+		}
+
+		/// SUMMARY : The user click on the back button. We go back.
+		/// RETURN : Void.
+		public void ClickBackButton (GameObject panelToShow)
+		{
+				_GO_current_panel.SetActive (false);
+				panelToShow.SetActive (true);
 		}
 }
